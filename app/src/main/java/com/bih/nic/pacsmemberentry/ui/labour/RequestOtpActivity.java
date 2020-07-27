@@ -107,7 +107,7 @@ public class RequestOtpActivity extends Activity {
         @Override
         protected DefaultResponse doInBackground(String... param) {
 
-            return WebserviceHelper.RequestOTP(et_reg_no.getText().toString(),et_mobile.getText().toString());
+            return WebserviceHelper.RequestOTP(et_mobile.getText().toString());
 
         }
 
