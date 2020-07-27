@@ -55,7 +55,7 @@ public class Login extends Activity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(this, HqHomeActivity.class);
+                Intent intent = new Intent(Login.this, HqHomeActivity.class);
                 startActivity(intent);
 //                setvalue();
 //                if(isValidInput()){
