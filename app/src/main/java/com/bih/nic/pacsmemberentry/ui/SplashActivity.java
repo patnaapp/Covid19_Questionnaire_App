@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,9 +13,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 import com.bih.nic.pacsmemberentry.CommonPref;
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 
+import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.ui.labour.HqHomeActivity;
 import com.bih.nic.pacsmemberentry.ui.labour.Login;
 import com.bih.nic.pacsmemberentry.MarshmallowPermission;
@@ -36,6 +40,11 @@ import com.bih.nic.pacsmemberentry.ui.labour.MainHomeActivity;
 
 import java.io.IOException;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 
 public class SplashActivity extends Activity {
     private static int SPLASH_TIME_OUT = 3000;
@@ -43,6 +52,8 @@ public class SplashActivity extends Activity {
     DataBaseHelper databaseHelper;
     MarshmallowPermission permission;
     SQLiteDatabase db;
+    private static final int PERMISSION_ALL = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +89,12 @@ public class SplashActivity extends Activity {
     protected void onResume()
     {
         // TODO Auto-generated method stub
+        requestRequiredPermission();
         super.onResume();
 
-        if(Utiilties.isOnline(SplashActivity.this)){
-
-        new CheckUpdate().execute();}else {start();}
+//        if(Utiilties.isOnline(SplashActivity.this)){
+//
+//        new CheckUpdate().execute();}else {start();}
     }
 
     public void modifyTable()
@@ -214,6 +226,7 @@ public class SplashActivity extends Activity {
             String imei = null;
 
             permission=new MarshmallowPermission(SplashActivity.this, Manifest.permission.READ_PHONE_STATE);
+
             if(permission.result==-1 || permission.result==0){
 
             }
@@ -425,5 +438,70 @@ public class SplashActivity extends Activity {
             start();
         }
 
+
+    }
+
+    private void requestRequiredPermission(){
+        String[] PERMISSIONS = {
+                ACCESS_FINE_LOCATION,
+                ACCESS_COARSE_LOCATION,
+                CAMERA,
+                WRITE_EXTERNAL_STORAGE,
+        };
+
+        if(!hasPermissions(this, PERMISSIONS)){
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }else{
+            checkOnline();
+        }
+    }
+    public  boolean hasPermissions(Context context, String... allPermissionNeeded)
+    {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && context != null && allPermissionNeeded != null)
+            for (String permission : allPermissionNeeded)
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED)
+                    return false;
+        return true;
+    }
+
+    protected void checkOnline() {
+        // TODO Auto-generated method stub
+        super.onResume();
+
+
+        if (Utiilties.isOnline(SplashActivity.this) == false) {
+
+            AlertDialog.Builder ab = new AlertDialog.Builder(SplashActivity.this);
+            ab.setTitle("Alert Dialog !!!");
+            ab.setMessage(Html.fromHtml("<font color=#000000>Internet Connection is not avaliable... \n Please Turn ON Network Connection \n To Turn ON Network Connection Press Yes Button Else To Exit Press Cancel Button.</font>"));
+            ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                    GlobalVariables.isOffline = false;
+                    Intent I = new Intent(
+                            android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                    startActivity(I);
+                }
+            });
+            ab.setNegativeButton("Go Offline", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+
+                    start();
+                }
+            });
+
+
+            ab.show();
+
+        } else {
+
+            GlobalVariables.isOffline = false;
+            //new CheckUpdate().execute();
+            new CheckUpdate().execute();
+        }
     }
 }

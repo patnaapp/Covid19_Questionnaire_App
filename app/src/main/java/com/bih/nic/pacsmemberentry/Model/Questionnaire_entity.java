@@ -39,6 +39,10 @@ public class Questionnaire_entity implements Serializable {
     private String all_precautions_nm="";
     private String med_asst_nm="";
     private String med_asst_id="";
+    private String Latitude="";
+    private String Longitude="";
+    private String ques_id="";
+    private String answer_id="";
 
 
     public String getEntry_by() {
@@ -295,5 +299,37 @@ public class Questionnaire_entity implements Serializable {
 
     public void setMed_asst_id(String med_asst_id) {
         this.med_asst_id = med_asst_id;
+    }
+
+    public String getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        Latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return Longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        Longitude = longitude;
+    }
+
+    public String getQues_id() {
+        return ques_id;
+    }
+
+    public void setQues_id(String ques_id) {
+        this.ques_id = ques_id;
+    }
+
+    public String getAnswer_id() {
+        return answer_id;
+    }
+
+    public void setAnswer_id(String answer_id) {
+        this.answer_id = answer_id;
     }
 }

@@ -25,6 +25,7 @@ import com.bih.nic.pacsmemberentry.Model.Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.Model.SkillMaster;
 import com.bih.nic.pacsmemberentry.Model.SubDepartmentWiseVacancy;
 import com.bih.nic.pacsmemberentry.Model.SubSkillMaster;
+import com.bih.nic.pacsmemberentry.Model.Upload_Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.Model.UserDetails;
 import com.bih.nic.pacsmemberentry.Model.Versioninfo;
 import com.bih.nic.pacsmemberentry.Model.WorkDetailsEntity;
@@ -2896,4 +2897,138 @@ public class WebserviceHelper implements KvmSerializable {
         return userDetails;
     }
 
+
+    public static String UploadAttendanceData(Context context, ArrayList<Upload_Questionnaire_entity> checkbox)
+    {
+
+        context=context;
+        DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
+        dbfac.setNamespaceAware(true);
+        DocumentBuilder docBuilder = null;
+        try
+        {
+            docBuilder = dbfac.newDocumentBuilder();
+        }
+        catch (ParserConfigurationException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "0";
+        }
+        DOMImplementation domImpl = docBuilder.getDOMImplementation();
+        Document doc = domImpl.createDocument(SERVICENAMESPACE,	InsertData_Ben, null);
+        doc.setXmlVersion("1.0");
+        doc.setXmlStandalone(true);
+
+        Element poleElement = doc.getDocumentElement();
+        Element pdlsElement = doc.createElement("studentAttendance");
+        ArrayList<Upload_Questionnaire_entity> poleDetail = checkbox;
+
+        for(int x=0;x<poleDetail.size();x++){
+            Element pdElement = doc.createElement("MarkAttendance");
+            Element fid = doc.createElement("_Disecode");
+            fid.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_by()));
+            pdElement.appendChild(fid);
+
+            Element vLebel = doc.createElement("_a_Id");
+            vLebel.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_date()));
+            //vLebel.appendChild(doc.createTextNode("1234"));
+            pdElement.appendChild(vLebel);
+
+            Element vLebel2 = doc.createElement("_Attendance_per");
+            vLebel2.appendChild(doc.createTextNode(poleDetail.get(x).getQues_id()));
+            pdElement.appendChild(vLebel2);
+
+            Element vLebel3 = doc.createElement("_AttendancePer_By");
+            vLebel3.appendChild(doc.createTextNode(poleDetail.get(x).getAnswer_id()));
+            pdElement.appendChild(vLebel3);
+
+            Element vLebel4 = doc.createElement("_AttendancePer_Date");
+            vLebel4.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_date()));
+            pdElement.appendChild(vLebel4);
+            pdlsElement.appendChild(pdElement);
+        }
+        poleElement.appendChild(pdlsElement);
+
+        TransformerFactory transfac = TransformerFactory.newInstance();
+        Transformer trans = null;
+        String res = "0";
+        try {
+
+            try {
+                trans = transfac.newTransformer();
+            } catch (TransformerConfigurationException e1) {
+
+                // TODO Auto-generated catch block
+
+                e1.printStackTrace();
+                return "0";
+            }
+
+            trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            trans.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            // create string from xml tree
+            StringWriter sw = new StringWriter();
+            StreamResult result = new StreamResult(sw);
+            DOMSource source = new DOMSource(doc);
+
+            BasicHttpResponse httpResponse = null;
+
+            try {
+                trans.transform(source, result);
+            } catch (TransformerException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return "0";
+            }
+
+            String SOAPRequestXML = sw.toString();
+
+            String startTag = "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+                    + "xmlns:xsd=\"http://www.w3.org/2001/XMLSchem\" "
+                    + "xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"   >  "
+                    + "<soap:Body > ";
+            String endTag = "</soap:Body > " + "</soap:Envelope>";
+
+//			HttpPost httppost = new HttpPost("http://mobapp.bih.nic.in/locationcapturewebservice.asmx");
+
+            HttpPost httppost = new HttpPost(SERVICEURL);
+
+            // Log.i("Request: ", "XML Request= " + startTag + SOAPRequestXML
+            // + endTag);
+
+            StringEntity sEntity = new StringEntity(startTag + SOAPRequestXML
+                    + endTag, HTTP.UTF_8);
+
+            sEntity.setContentType("text/xml");
+            // httppost.setHeader("Content-Type","application/soap+xml;charset=UTF-8");
+            httppost.setEntity(sEntity);
+
+            HttpClient httpclient = new DefaultHttpClient();
+
+            httpResponse = (BasicHttpResponse) httpclient.execute(httppost);
+
+            Log.i("Responddddddddse: ", httpResponse.getStatusLine().toString());
+
+            if (httpResponse.getStatusLine().getStatusCode() == 200
+                    || httpResponse.getStatusLine().getReasonPhrase()
+                    .toString().equals("OK")) {
+                res = "1";
+            } else {
+                res = "0";
+            }
+
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "0";
+        }
+
+        // response.put("HTTPStatus",httpResponse.getStatusLine().toString());
+
+        return res;
+
+    }
 }

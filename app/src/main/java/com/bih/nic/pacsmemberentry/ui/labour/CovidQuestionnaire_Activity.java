@@ -1,18 +1,30 @@
 package com.bih.nic.pacsmemberentry.ui.labour;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.Service;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,22 +32,28 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.Model.DecimalDigitsInputFilter;
 import com.bih.nic.pacsmemberentry.Model.DefaultResponse;
 import com.bih.nic.pacsmemberentry.Model.Questionnaire_entity;
+import com.bih.nic.pacsmemberentry.Model.Upload_Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CovidQuestionnaire_Activity extends Activity implements AdapterView.OnItemSelectedListener {
+public class CovidQuestionnaire_Activity extends Activity implements AdapterView.OnItemSelectedListener, LocationListener {
 
     Spinner sp_fever_status,sp_Cough,sp_cold,sp_medicine_kit,sp_family_covid_postive,sp_continue_home_isolation,sp_medical_assitnce,sp_yoga,sp_stay_separate,sp_all_precaution;
     EditText et_body_temp,et_other_prblm,edt_covid_test_date,edt_discharge_date;
@@ -49,7 +67,26 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
     String family_member_positive_id="",family_member_positive_nm="",cont_home_isolatn_nm="",cont_home_isolatn_id="",med_asst_id="",med_asst_nm="",yoga_id="",yoga_nm="",separate_id="",separate_nm="",all_pecaution_id="",all_precaution_nm="";
     Questionnaire_entity benfiList;
     String version="";
-    Button btn_submit;
+    Button btn_submit,btn_location_lnr_1;
+    String userid="",ques_count="";
+    LinearLayout ll_test_date;
+    LocationManager mlocManager = null;
+    LocationManager locationManager;
+    Location loc;
+    boolean isGPS = false;
+    boolean isNetwork = false;
+    ArrayList<String> permissions = new ArrayList<>();
+    private ProgressDialog dialog;
+    static Location LastLocation = null;
+    private final int UPDATE_LATLNG = 2;
+    private final int UPDATE_ADDRESS = 1;
+    TextView tv_lat1,tv_long1;
+    String locationpoint="",loc_captured="N";
+    String Lat1="",Long1="";
+    ArrayList<Upload_Questionnaire_entity> daily_ques_array;
+    String ques_Id="";
+    String superisor_id="",patient_id="";
+    ProgressBar profressBar1;
 
 
     @Override
@@ -59,23 +96,40 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         setContentView(R.layout.activity_covid_questionnaire_);
         getActionBar().hide();
         Utiilties.setStatusBarColor(this);
-        initialize();
+        dialog = new ProgressDialog(this);
+        dialog.setCanceledOnTouchOutside(false);
+//        userid=getIntent().getExtras().getString("userid");
+//        ques_count=getIntent().getExtras().getString("Count");
 
-        try {
+        initialize();
+        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
+        isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+
+        GlobalVariables.glocation = null;
+
+        try
+        {
             version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
 //                TextView tv = (TextView)getActivity().findViewById(R.id.txtVersion_1);
 //                tv.setText(getActivity().getString(R.string.app_version) + version + " ");
-        } catch (PackageManager.NameNotFoundException e) {
+        }
+        catch (PackageManager.NameNotFoundException e)
+        {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         img_test_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShowDialog();
             }
         });
-
         img_discharge_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,13 +137,35 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             }
         });
         et_body_temp.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
-
-        btn_submit.setOnClickListener(new View.OnClickListener() {
+        btn_submit.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                registration();
+            public void onClick(View v)
+            {
+                if (loc_captured.equals("Y")){
+                    registration();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please captue location", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
+
+        btn_location_lnr_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                locationpoint="1";
+                locationManager();
+                //getLocation();
+            }
+        });
+//        if (Integer.parseInt(ques_count)>0){
+//            ll_test_date.setVisibility(View.GONE);
+//        }
+//        else if (Integer.parseInt(ques_count)==0){
+//            ll_test_date.setVisibility(View.VISIBLE);
+//        }
     }
 
     public void initialize()
@@ -150,7 +226,14 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         edt_discharge_date=findViewById(R.id.edt_discharge_date);
         img_test_date=findViewById(R.id.img_test_date);
         img_discharge_date=findViewById(R.id.img_discharge_date);
+        ll_test_date=findViewById(R.id.ll_test_date);
         btn_submit=findViewById(R.id.btn_submit);
+        btn_location_lnr_1=findViewById(R.id.btn_location_lnr_1);
+
+        tv_lat1=findViewById(R.id.tv_lat_lnr1);
+        tv_long1=findViewById(R.id.tv_long_lnr1);
+
+        daily_ques_array = new ArrayList<>();
     }
 
     public void ShowDialog()
@@ -274,6 +357,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     _fever_status_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(_fever_status_nm.equals("YES")){
                         _fever_status_id = "Y";
                     }else if(_fever_status_nm.equals("NO")){
@@ -285,6 +369,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     cough_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(cough_nm.equals("YES")){
                         cough_id = "Y";
                     }else if(cough_nm.equals("NO")){
@@ -296,6 +381,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     cold_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(cold_nm.equals("YES")){
                         cold_id = "Y";
                     }else if(cold_nm.equals("NO")){
@@ -318,6 +404,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     med_kit_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(med_kit_nm.equals("YES")){
                         med_kit_id = "Y";
                     }else if(cold_nm.equals("NO")){
@@ -329,6 +416,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     family_member_positive_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(family_member_positive_nm.equals("YES")){
                         family_member_positive_id = "Y";
                     }else if(family_member_positive_nm.equals("NO")){
@@ -340,6 +428,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     cont_home_isolatn_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(cont_home_isolatn_nm.equals("YES")){
                         cont_home_isolatn_id = "Y";
                     }else if(cont_home_isolatn_nm.equals("NO")){
@@ -352,6 +441,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     med_asst_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(med_asst_nm.equals("YES")){
                         med_asst_id = "Y";
                     }else if(med_asst_nm.equals("NO")){
@@ -363,6 +453,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     yoga_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(yoga_nm.equals("YES")){
                         yoga_id = "Y";
                     }else if(yoga_nm.equals("NO")){
@@ -374,6 +465,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     separate_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(separate_nm.equals("YES")){
                         separate_id = "Y";
                     }else if(separate_nm.equals("NO")){
@@ -386,8 +478,10 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 if (position > 0) {
                     all_precaution_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
+                    ques_Id="";
                     if(all_precaution_nm.equals("YES")){
                         all_pecaution_id = "Y";
+
                     }else if(all_precaution_nm.equals("NO")){
                         all_pecaution_id = "N";
                     }
@@ -408,77 +502,88 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
         benfiList = new Questionnaire_entity();
         boolean cancelRegistration = false;
-        String isValied = "yes";
+        String isvalid = "yes";
         View focusView = null;
 
         if (TextUtils.isEmpty(_fever_status_id)) {
-            Toast.makeText(getApplicationContext(), "Please select your fever status", Toast.LENGTH_LONG).show();
+            ((TextView)sp_fever_status.getSelectedView()).setError("Please select your fever status");
+            //Toast.makeText(getApplicationContext(), "Please select your fever status", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_fever_status;
+
             cancelRegistration = true;
+
         }
 
         if (TextUtils.isEmpty(cough_id)) {
-            Toast.makeText(getApplicationContext(), "Please select your cough status", Toast.LENGTH_LONG).show();
+            ((TextView)sp_Cough.getSelectedView()).setError("Please select your cough status");
+            //  Toast.makeText(getApplicationContext(), "Please select your cough status", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_Cough;
             cancelRegistration = true;
         }
         if (TextUtils.isEmpty(cold_id)) {
-            Toast.makeText(getApplicationContext(), "Please select your cold status", Toast.LENGTH_LONG).show();
+            ((TextView)sp_cold.getSelectedView()).setError("Please select your cold status");
+            //Toast.makeText(getApplicationContext(), "Please select your cold status", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_cold;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(med_kit_id)) {
-            Toast.makeText(getApplicationContext(), "Please select your if you recieved medicine kit", Toast.LENGTH_LONG).show();
+            ((TextView)sp_medicine_kit.getSelectedView()).setError("Please select your if you recieved medicine kit");
+            // Toast.makeText(getApplicationContext(), "Please select your if you recieved medicine kit", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_medicine_kit;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(family_member_positive_id)) {
-            Toast.makeText(getApplicationContext(), "Please select your if your any family member is positive", Toast.LENGTH_LONG).show();
+            ((TextView)sp_family_covid_postive.getSelectedView()).setError("Please select your if your any family member is positive");
+            //   Toast.makeText(getApplicationContext(), "Please select your if your any family member is positive", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_family_covid_postive;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(cont_home_isolatn_nm)) {
-            Toast.makeText(getApplicationContext(), "Please select do you want to continue home isolation", Toast.LENGTH_LONG).show();
+            ((TextView)sp_continue_home_isolation.getSelectedView()).setError("Please select do you want to continue home isolation");
+            //   Toast.makeText(getApplicationContext(), "Please select do you want to continue home isolation", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_continue_home_isolation;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(med_asst_id)) {
-            Toast.makeText(getApplicationContext(), "Please select do you need medical assistance", Toast.LENGTH_LONG).show();
+            ((TextView)sp_medical_assitnce.getSelectedView()).setError("Please select do you need medical assistance");
+            //Toast.makeText(getApplicationContext(), "Please select do you need medical assistance", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_medical_assitnce;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(yoga_id)) {
-            Toast.makeText(getApplicationContext(), "Please select do you do yoga", Toast.LENGTH_LONG).show();
+            ((TextView)sp_yoga.getSelectedView()).setError("Please select do you do yoga");
+            //    Toast.makeText(getApplicationContext(), "Please select do you do yoga", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_yoga;
             cancelRegistration = true;
         }
 
         if (TextUtils.isEmpty(separate_id)) {
-            Toast.makeText(getApplicationContext(), "Please select do you stay separate at home", Toast.LENGTH_LONG).show();
+            ((TextView)sp_stay_separate.getSelectedView()).setError("Please select do you stay separate at home");
+            //   Toast.makeText(getApplicationContext(), "Please select do you stay separate at home", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_stay_separate;
             cancelRegistration = true;
         }
         if (TextUtils.isEmpty(all_pecaution_id)) {
-            Toast.makeText(getApplicationContext(), "Please select do you take all precautions", Toast.LENGTH_LONG).show();
+            ((TextView)sp_all_precaution.getSelectedView()).setError("Please select do you take all precautions");
+            //   Toast.makeText(getApplicationContext(), "Please select do you take all precautions", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_all_precaution;
             cancelRegistration = true;
         }
-
 
         if (TextUtils.isEmpty(et_body_temp.getText().toString())) {
             et_body_temp.setError("Please enter your body temperature");
@@ -491,11 +596,13 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             cancelRegistration = true;
         }
 
+        // if (Integer.parseInt(ques_count)==0) {
         if (TextUtils.isEmpty(edt_covid_test_date.getText().toString())) {
             edt_covid_test_date.setError("Please select covid test date.");
             focusView = edt_covid_test_date;
             cancelRegistration = true;
         }
+        // }
 
 //        if (TextUtils.isEmpty(edt_discharge_date.getText().toString())) {
 //            edt_discharge_date.setError("Please select discharge test date.");
@@ -508,7 +615,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             // error in login
             focusView.requestFocus();
         } else {
-            benfiList.setEntry_by("");
+            benfiList.setEntry_by(userid);
             benfiList.setFever_id(_fever_status_id);
             benfiList.setCough_id(cough_id);
             benfiList.setCold_id(cold_id);
@@ -516,15 +623,28 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             benfiList.setAny_other_posiutive_id(family_member_positive_id);
             benfiList.setCont_isolation_id(cont_home_isolatn_id);
             benfiList.setMed_asst_id(med_asst_id);
-            //benfiList.setHusbandName(benfiList.getHusbandName());
             benfiList.setYoga_id(yoga_id);
             benfiList.setSeparately_in_house_id(separate_id);
             benfiList.setAll_precautions_id(all_pecaution_id);
             benfiList.setBodyTemp(et_body_temp.getText().toString());
             benfiList.setOther_prblm(et_other_prblm.getText().toString());
             benfiList.setTest_date(edt_covid_test_date.getText().toString());
-            benfiList.setDischarge_date(edt_discharge_date.getText().toString());
+            // benfiList.setDischarge_date(edt_discharge_date.getText().toString());
+            benfiList.setLatitude(Lat1);
+            benfiList.setLongitude(Long1);
 
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"1",_fever_status_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"2",cough_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"3",cold_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"4",et_other_prblm.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"5",med_kit_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"6",family_member_positive_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"7",cont_home_isolatn_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"8",med_asst_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"9",yoga_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"10",separate_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"11",all_pecaution_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"12",et_body_temp.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
 
             if (!GlobalVariables.isOffline && !Utiilties.isOnline(this)) {
 
@@ -544,95 +664,255 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
             }else{
 
-                new Daily_Questionnaire(benfiList).execute();
+                new Daily_Questionnaire(daily_ques_array).execute();
 
 
             }
         }
     }
 
-    private class Daily_Questionnaire extends AsyncTask<String, Void, DefaultResponse> {
+    @Override
+    public void onLocationChanged(Location location) {
 
-        private final ProgressDialog dialog = new ProgressDialog(CovidQuestionnaire_Activity.this);
+    }
 
-        private final AlertDialog alertDialog = new AlertDialog.Builder(CovidQuestionnaire_Activity.this).create();
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
 
-        Questionnaire_entity info;
+    }
 
-        @Override
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    private class Daily_Questionnaire extends AsyncTask<String, Void, String> {
+
+        ArrayList<Upload_Questionnaire_entity> data;
+
+        private final ProgressDialog progressDialog = new ProgressDialog(CovidQuestionnaire_Activity.this);
+
+
+        Daily_Questionnaire(ArrayList<Upload_Questionnaire_entity> data)
+        {
+            this.data = data;
+
+        }
         protected void onPreExecute() {
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
-            this.dialog.setCanceledOnTouchOutside(false);
-            this.dialog.setMessage("Updating...");
-            this.dialog.show();
-        }
+            progressDialog.setMessage("Uploading data...");
 
-        public Daily_Questionnaire(Questionnaire_entity info) {
-            this.info = info;
         }
 
         @Override
-        protected DefaultResponse doInBackground(String... param) {
+        protected String doInBackground(String... param) {
 
-            return WebserviceHelper.RegistrationNewBen(info,version);
+            String res= WebserviceHelper.UploadAttendanceData(CovidQuestionnaire_Activity.this,data);
+
+            return res;
         }
 
         @Override
+        protected void onPostExecute(String result) {
+            try {
+                profressBar1.setVisibility(View.GONE);
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
 
-        protected void onPostExecute(DefaultResponse result) {
-
-            if (this.dialog.isShowing()) {
-                this.dialog.dismiss();
+                }
             }
-            if (result != null) {
+            catch(Exception e)
+            {
 
-                if (result.getStatus()==true) {
+            }
 
-                    AlertDialog.Builder ab = new AlertDialog.Builder(CovidQuestionnaire_Activity.this);
-                    ab.setCancelable(false);
-                    // ab.setIcon(R.drawable.biharlogo);
-                    ab.setMessage("Self diagnosis uploaded successfully");
-                    ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            Intent intent = new Intent(getBaseContext(),HqHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            //setFinishOnTouchOutside(false);
-                            finish();
-                        }
-                    });
+            try
+            {
+                if(result!=null)
+                {
 
-                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                    ab.show();
+                    if(result.equals("1"))
+                    {
 
-                } else if (result.getStatus()==false) {
+                        android.support.v7.app.AlertDialog.Builder ab = new android.support.v7.app.AlertDialog.Builder(
+                                CovidQuestionnaire_Activity.this);
+                        ab.setIcon(R.mipmap.ic_launcher);
+                        ab.setTitle("Success");
+                        ab.setMessage("Questionnaire Submitted Successfuly");
+                        ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        });
 
-                    AlertDialog.Builder ab = new AlertDialog.Builder(CovidQuestionnaire_Activity.this);
-                    ab.setMessage(Html.fromHtml(
-                            "<font color=#000000>आपने पहले ही इस बैंक खाता को पंजीकृत कर लिया है! </font>"));
-                    ab.setPositiveButton("ओके", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                        ab.show();
+
+
+                    }
+                    else {
+
+                        // Toast.makeText(getApplicationContext(), "Sorry! failed to upload Attendance for " + _aid+" \nResponse " , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Uploading failed" , Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Response:NULL, Sorry! failed to upload", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void locationManager() {
+        dialog.setMessage("ट्रैकिंग लोकेशन...");
+        dialog.show();
+
+        if (GlobalVariables.glocation == null) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            //btn_location1.setEnabled(false);
+            mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, (float) 0.01, mlistener);
+            mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, (float) 0.01, mlistener);
+        } else {
+            //btn_location1.setEnabled(true);
+            //pbar.setVisibility(View.GONE);
+            //progress_finding_location.setVisibility(View.GONE);
+
+        }
+    }
+
+
+    private void updateUILocation(Location location) {
+
+        Message.obtain(
+                mHandler,
+                UPDATE_LATLNG,
+                new DecimalFormat("#.0000000").format(location.getLatitude())
+                        + "-"
+                        + new DecimalFormat("#.0000000").format(location
+                        .getLongitude()) + "-" + location.getAccuracy() + "-" + location.getTime())
+                .sendToTarget();
+
+    }
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+
+                case UPDATE_ADDRESS:
+                case UPDATE_LATLNG:
+                    String[] LatLon = ((String) msg.obj).split("-");
+//
+                    Log.e("", "Lat-Long" + LatLon[0] + "   " + LatLon[1]);
+
+
+                    break;
+            }
+        }
+    };
+
+    private final LocationListener mlistener = new LocationListener() {
+
+        @Override
+        public void onLocationChanged(Location location) {
+
+            //A new location update is received. Do something useful with it.
+            //Update the UI with
+            //the location update.
+            if (Utiilties.isGPSEnabled(CovidQuestionnaire_Activity.this)) {
+
+                LastLocation = location;
+                GlobalVariables.glocation = location;
+                updateUILocation(GlobalVariables.glocation);
+                //   if (getIntent().getStringExtra("KEY_PIC").equals("1")) {
+                if (location.getLatitude() > 0.0) {
+                    //dialog = new ProgressDialog(CAptureFieldLocationActivity.this);
+                    //long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    if (location.getAccuracy() > 0 && location.getAccuracy() < 150) {
+                        if (dialog.isShowing()) {
                             dialog.dismiss();
                         }
-                    });
+                        //pbar.setVisibility(View.GONE);
+                        btn_location_lnr_1.setEnabled(true);
 
-                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                    ab.show();
+                        if (locationpoint.equals("1"))
+                        {
+                            Lat1 = Double.toString(location.getLatitude());
+                            Long1 = Double.toString(location.getLongitude());
 
+                            tv_lat1.setText(Lat1);
+                            tv_long1.setText(Long1);
+                            loc_captured="Y";
+                            locationManager.removeUpdates(this);
 
+                            btn_location_lnr_1.setEnabled(false);
+
+                        }
+
+                    }
+                    else
+                    {
+                        dialog.setMessage("Wait for gps to become stable");
+                        dialog.show();
+                        btn_location_lnr_1.setEnabled(false);
+
+                    }
 
                 }
 
-            }
-            else
-            {
 
-                Toast.makeText(CovidQuestionnaire_Activity.this,"इंटरनेट की स्पीड स्लो है | कृपया कुछ समय बाद प्रयास करे: ", Toast.LENGTH_SHORT).show();
+            } else {
+                Message.obtain(
+                        mHandler,
+                        UPDATE_LATLNG,
+                        new DecimalFormat("#.0000000").format(location.getLatitude())
+                                + "-"
+                                + new DecimalFormat("#.0000000").format(location
+                                .getLongitude()) + "-" + location.getAccuracy() + "-" + location.getTime())
+                        .sendToTarget();
+
             }
+
+
         }
 
+        @Override
+        public void onProviderDisabled(String provider) {
+        }
 
-    }
+        @Override
+        public void onProviderEnabled(String provider) {
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+    };
+
 }
