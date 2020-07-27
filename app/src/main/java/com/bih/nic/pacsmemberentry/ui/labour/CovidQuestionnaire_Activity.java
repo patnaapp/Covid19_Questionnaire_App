@@ -714,14 +714,14 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
                     }
                     else {
-
+                        progressDialog.dismiss();
                         // Toast.makeText(getApplicationContext(), "Sorry! failed to upload Attendance for " + _aid+" \nResponse " , Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "Uploading failed" , Toast.LENGTH_SHORT).show();
 
                     }
                 }
                 else
-                {
+                { progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Response:NULL, Sorry! failed to upload", Toast.LENGTH_SHORT).show();
 
                 }
