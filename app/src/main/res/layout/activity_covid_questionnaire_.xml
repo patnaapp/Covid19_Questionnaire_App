@@ -288,7 +288,7 @@
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginBottom="12dp"
+
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -326,7 +326,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Any other family COVID posituive: [*]"
+                                android:text="Any other family member COVID positive: [*]"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"/>
 
@@ -365,8 +365,8 @@
                             android:weightSum="2"
                             android:orientation="horizontal">
                             <LinearLayout
-                                android:layout_marginTop="16dp"
-                                android:layout_marginBottom="12dp"
+
+
                                 android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -416,8 +416,7 @@
 
 
                         <LinearLayout
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="12dp"
+
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -464,6 +463,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="12dp"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -507,7 +507,7 @@
 
 
                         <LinearLayout
-
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="12dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -529,8 +529,7 @@
                                 android:layout_height="36dp" />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="12dp"
+
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
