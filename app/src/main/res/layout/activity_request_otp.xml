@@ -11,6 +11,7 @@
         layout="@layout/header_main"/>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/iv_footer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -18,13 +19,14 @@
         android:layout_alignParentBottom="true"/>
 
     <TextView
+        android:layout_margin="8dp"
         android:id="@+id/tv_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ऐप वर्ज़न 1.0"
-        android:layout_above="@+id/iv_footer"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/color_white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,10 +40,9 @@
             <ImageView
                 android:layout_margin="20dp"
                 android:id="@+id/iv_logo1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@drawable/stay_home"
-                android:padding="12dp"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
@@ -52,42 +53,21 @@
                 android:layout_below="@id/iv_logo1"
                 android:id="@+id/tv_desc"
                 android:layout_margin="20dp"
-                android:textColor="@color/holo_green_dark"
+                android:textColor="@color/colorPrimaryText"
                 android:textAlignment="center"/>
 
             <LinearLayout
                 android:id="@+id/ll_input"
                 android:layout_below="@+id/tv_desc"
                 android:padding="12dp"
-                android:background="@drawable/textboxshape3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="रेजिस्ट्रेशन संख्या"-->
-<!--                    android:textColor="@color/black_overlay"-->
-<!--                    android:textSize="12sp"/>-->
-
-<!--                <EditText-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:id="@+id/et_reg_no"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/textboxshape"-->
-<!--                    android:hint="रेजिस्ट्रेशन संख्या डालें"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:singleLine="true"-->
-<!--                    android:inputType="number"-->
-<!--                    android:textColor="#222222"-->
-<!--                    android:focusableInTouchMode="true"-->
-<!--                    android:textSize="15sp" />-->
-
                 <TextView
+                    android:visibility="gone"
                     android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +79,7 @@
                     android:layout_marginTop="4dp"
                     android:id="@+id/et_mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="46dp"
                     android:background="@drawable/textboxshape"
                     android:hint="Enter Mobile Number"
                     android:padding="10dp"
@@ -125,12 +105,12 @@
                 <Button
                     android:id="@+id/email_sign_in_button2"
                     android:layout_width="150dp"
-                    android:layout_height="30dp"
+                    android:layout_height="36dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/buttonshape"
                     android:onClick="onRequestOtp"
-                    android:text="    Get Otp    "
+                    android:text="    GET OTP    "
                     android:textColor="#ffff"
                     android:textSize="17sp" />
 

@@ -67,7 +67,7 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:maxLength="10"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/black"
                 android:focusableInTouchMode="true"
                 android:textSize="15sp" />
         </RelativeLayout>

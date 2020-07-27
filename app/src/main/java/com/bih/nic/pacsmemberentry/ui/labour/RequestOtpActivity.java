@@ -161,7 +161,7 @@ public class RequestOtpActivity extends Activity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             //setFinishOnTouchOutside(false);
-                            finish();
+                            //finish();
                             dialog.dismiss();
                         }
                     });

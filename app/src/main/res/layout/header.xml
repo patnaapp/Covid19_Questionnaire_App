@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary">
 
     <ImageView
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_toRightOf="@+id/img"
          android:layout_marginLeft="10sp"
         android:background="@drawable/circular_shape_white"
@@ -34,7 +34,7 @@
             android:layout_height="24dp"
             android:text="COVID-19 SAATHI"
             android:textAlignment="center"
-            android:textColor="@color/holo_red_dark"
+            android:textColor="@color/secondaryColor"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
     </LinearLayout>
 
     <ImageView
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_marginRight="2dp"
         android:background="@drawable/circular_shape_white"
         android:padding="6dp"
@@ -73,6 +73,6 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_alignParentRight="true"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/bihar_logo"/>
 
 </RelativeLayout>
