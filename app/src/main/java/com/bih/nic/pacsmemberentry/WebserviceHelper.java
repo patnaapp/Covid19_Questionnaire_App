@@ -21,6 +21,7 @@ import com.bih.nic.pacsmemberentry.Model.JobListEntity;
 import com.bih.nic.pacsmemberentry.Model.JobOfferPostedEntity;
 import com.bih.nic.pacsmemberentry.Model.PacsMemeberEntity;
 import com.bih.nic.pacsmemberentry.Model.PaymentStatusEntity;
+import com.bih.nic.pacsmemberentry.Model.Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.Model.SkillMaster;
 import com.bih.nic.pacsmemberentry.Model.SubDepartmentWiseVacancy;
 import com.bih.nic.pacsmemberentry.Model.SubSkillMaster;
@@ -148,6 +149,7 @@ public class WebserviceHelper implements KvmSerializable {
     public static final  String Approve_Work_Site_By_dst = "BenApprovalbyDSTAdmUpdate";
 
     private static final String GET_SUB_DEPT_WISE_VACENCY_METHOD="rpt_DepartmentWiseVacancyORG";
+    private static final String InsertData_Ben="rpt_DepartmentWiseVacancyORG";
 
     static String rest;
 
@@ -2832,6 +2834,66 @@ public class WebserviceHelper implements KvmSerializable {
             return null;
         }
 
+    }
+
+    public static DefaultResponse RegistrationNewBen(Questionnaire_entity user, String versoin) {
+        DefaultResponse userDetails;
+        SoapObject res1;
+        try {
+            SoapObject request = new SoapObject(SERVICENAMESPACE, InsertData_Ben);
+//            request.addProperty("_Dist_Code",user.getDistCode());
+//            request.addProperty("_BlockCode",user.getProjectCode());
+//            request.addProperty("_panchayatCode",user.getPanchayatCode());
+//            request.addProperty("_Other_panchayatName",user.getOther_Pan_Name());
+//            request.addProperty("_benName",user.getBenificiaryName());
+//            request.addProperty("_Benficiary_BirthYear",user.getDate_Of_Birth());
+//            request.addProperty("_Gender",user.getGenderCode());
+//            request.addProperty("_FName_aadhaar",user.getWifeName());
+//            request.addProperty("_aadharnumber",user.getAadhaarNo());
+//            request.addProperty("_StateCode",user.getStateCode());
+//            request.addProperty("_Currentcity",user.getBen_Jagah());
+//            request.addProperty("_MoblleNo",user.getMobileNo());
+//            request.addProperty("_Ifsc",user.getIfsc());
+//            request.addProperty("_Accountnumber",user.getAccountNo());
+//            request.addProperty("_Photo",user.getPhoto1());
+//            request.addProperty("_AadharImage",user.getAadhar_Photo());
+//            request.addProperty("_AadharImgFront",user.getAadhar_front_Photo());
+//            request.addProperty("_AadharImgBack",user.getAadhar_back_Photo());
+//            request.addProperty("_latitude",user.getLatitude());
+//            request.addProperty("_Longitude",user.getLongitude());
+//            request.addProperty("_app_version",versoin);
+//            request.addProperty("_encstring",API_Key);
+            //request.addProperty("_Designation",user.getDateTime());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(SERVICENAMESPACE,
+                    Questionnaire_entity.Questionnaire_CLASS.getSimpleName(),
+                    Questionnaire_entity.Questionnaire_CLASS);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + InsertData_Ben, envelope);
+
+
+            //Object result = envelope.getResponse();
+            res1 = (SoapObject) envelope.getResponse();
+            int TotalProperty = res1.getPropertyCount();
+
+            userDetails = new DefaultResponse(res1);
+//            if (result != null) {
+//                // Log.d("", result.toString());
+//
+//                return result.toString();
+//            } else
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return userDetails;
     }
 
 }

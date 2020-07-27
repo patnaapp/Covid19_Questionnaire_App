@@ -148,7 +148,7 @@ public class HqHomeActivity extends Activity {
 
     public  void onSelfDiagonosis(View view)
     {
-        Intent i=new Intent(HqHomeActivity.this,NewPAcsMemberEntry_Activity.class);
+        Intent i=new Intent(HqHomeActivity.this,CovidQuestionnaire_Activity.class);
         startActivity(i);
     }
 

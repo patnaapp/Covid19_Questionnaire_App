@@ -157,7 +157,7 @@
                                 android:layout_marginTop="4dp"
                                 android:id="@+id/et_body_temp"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="36dp"
                                 android:background="@drawable/textboxshape"
                                 android:hint="Enter body temp"
                                 android:padding="10dp"
@@ -269,7 +269,7 @@
                                     android:layout_marginTop="4dp"
                                     android:id="@+id/et_other_prblm"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="36dp"
                                     android:background="@drawable/textboxshape"
                                     android:hint="Do you have any other problem"
                                     android:padding="10dp"
@@ -413,145 +413,154 @@
                                 android:layout_height="36dp" />
                         </LinearLayout>
 
+
+
                         <LinearLayout
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:weightSum="2"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="12dp"
-                                android:layout_weight="1"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical">
+                                android:text="Covid Test Date[*]:"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="आधार नंबर : [*]"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"/>
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
 
                                 <EditText
-                                    android:id="@+id/et_aadhaar"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:background="@drawable/textboxshape"
-                                    android:focusableInTouchMode="true"
-                                    android:hint="आधार नंबर डाले "
-                                    android:inputType="number"
-                                    android:maxLength="12"
-                                    android:padding="10dp"
-                                    android:singleLine="true"
-                                    android:textColor="#222222"
-                                    android:textSize="15sp" />
-                            </LinearLayout>
-                            <View
-                                android:layout_width="4dp"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="12dp"
-                                android:layout_weight="1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="मोबाइल नंबर : [*]"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"/>
-
-                                <EditText
-                                    android:layout_marginTop="4dp"
-                                    android:id="@+id/et_ben_mob"
+                                    android:id="@+id/edt_covid_test_date"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/textboxshape"
-                                    android:hint="मोबाइल नंबर डाले "
+                                    android:clickable="true"
+                                    android:enabled="false"
+                                    android:hint="Covid Test Date"
+                                    android:inputType="text"
+                                    android:maxLength="30"
                                     android:padding="10dp"
-                                    android:inputType="number"
-                                    android:maxLength="10"
-                                    android:singleLine="true"
-                                    android:textColor="#222222"
-                                    android:focusableInTouchMode="true"
-                                    android:textSize="15sp" />
-                            </LinearLayout>
+                                    android:textColor="#000000"
+                                    android:textColorHint="@android:color/darker_gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_test_date"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/calendar" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Covid Test Date[*]:"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <EditText
+                                    android:id="@+id/edt_discharge_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:clickable="true"
+                                    android:enabled="false"
+                                    android:hint="Discharge Date"
+                                    android:inputType="text"
+                                    android:maxLength="30"
+                                    android:padding="10dp"
+                                    android:textColor="#000000"
+                                    android:textColorHint="@android:color/darker_gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_discharge_date"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/calendar" />
+                            </RelativeLayout>
                         </LinearLayout>
 
 
                         <LinearLayout
 
-                            android:layout_width="fill_parent"
-
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-
-                            android:weightSum="2"
-                            android:orientation="horizontal">
-                            <LinearLayout
-
-                                android:layout_marginBottom="12dp"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:text="Are you staying separately in house : [*]"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="योग्यता : [*]"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"/>
-
-                                <Spinner
-                                    android:background="@drawable/spinner_bg1"
-                                    android:layout_marginTop="4dp"
-                                    android:id="@+id/sp_yogyata"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="36dp" />
-                            </LinearLayout>
-                            <View
-                                android:layout_width="4dp"
-                                android:layout_height="match_parent"/>
-                            <LinearLayout
-
-                                android:layout_marginBottom="12dp"
+                            <Spinner
+                                android:background="@drawable/spinner_bg1"
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/sp_stay_separate"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="वैवाहिक स्थिति [*]"
-                                    android:textColor="@color/black"
-                                    android:textSize="12sp"/>
-
-                                <Spinner
-                                    android:background="@drawable/spinner_bg1"
-                                    android:layout_marginTop="4dp"
-                                    android:id="@+id/sp_marital_status"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="36dp" />
-                            </LinearLayout>
+                                android:layout_height="36dp" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Taking all precautions : [*]"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <Spinner
+                                android:background="@drawable/spinner_bg1"
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/sp_all_precaution"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <Button
                         android:layout_gravity="center"
-                        android:id="@+id/btn_proceed"
+                        android:id="@+id/btn_submit"
                         android:layout_width="150dp"
                         android:layout_height="36dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/buttonshape"
-                        android:text="    आगे बढे   "
+                        android:text="    SUBMIT   "
                         android:textColor="#ffff"
                         android:textSize="17sp" />
 
