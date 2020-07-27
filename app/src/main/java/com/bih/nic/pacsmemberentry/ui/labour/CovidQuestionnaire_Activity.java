@@ -514,7 +514,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             benfiList.setCold_id(cold_id);
             benfiList.setMedicine_kit_id(med_kit_id);
             benfiList.setAny_other_posiutive_id(family_member_positive_id);
-            benfiList.setCont_isolation_id(cont_home_isolatn_nm);
+            benfiList.setCont_isolation_id(cont_home_isolatn_id);
             benfiList.setMed_asst_id(med_asst_id);
             //benfiList.setHusbandName(benfiList.getHusbandName());
             benfiList.setYoga_id(yoga_id);
