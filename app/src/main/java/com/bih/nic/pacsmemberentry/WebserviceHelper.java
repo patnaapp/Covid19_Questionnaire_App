@@ -88,8 +88,8 @@ public class WebserviceHelper implements KvmSerializable {
 
     private Context ctx;
 
-    public static final String SERVICENAMESPACE = "http://shramsadhan.bih.nic.in/";
-    public static final String SERVICEURL = "http://shramsadhan.bih.nic.in/MigrantJobSearchWebservice.asmx";
+    public static final String SERVICENAMESPACE = "http://Covid19Help.bih.nic.in/";
+    public static final String SERVICEURL = "http://www.covid19help.bih.nic.in/Covid19HelpWebservice.asmx";
 
 //    public static final String SERVICENAMESPACE = "http://10.133.20.159/";
 //    public static final String SERVICEURL = "http://10.133.20.159/TestService/MigrantJobSearchWebservice.asmx";
@@ -443,7 +443,7 @@ public class WebserviceHelper implements KvmSerializable {
         try
         {
             SoapObject res1;
-            res1=getServerData(AuthenticateUser, UserDetails.getUserClass(),"UserID","Password",User_ID,Pwd);
+            res1=getServerData(AuthenticateUser, UserDetails.getUserClass(),"_UserId","_Password",User_ID,Pwd);
             if (res1 != null)
             {
                 return new UserDetails(res1);

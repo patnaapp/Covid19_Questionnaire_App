@@ -55,17 +55,17 @@ public class Login extends Activity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, HqHomeActivity.class);
-                startActivity(intent);
-//                setvalue();
-//                if(isValidInput()){
-//                    if(Utiilties.isOnline(getApplicationContext())) {
-//                        setvalue();
-//                        new LoginTask(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
-//                    }else {
-//                        Utiilties.internetNotAvailableDialog(Login.this);
-//                    }
-//                }
+//                Intent intent = new Intent(Login.this, HqHomeActivity.class);
+//                startActivity(intent);
+                setvalue();
+                if(isValidInput()){
+                    if(Utiilties.isOnline(getApplicationContext())) {
+                        setvalue();
+                        new LoginTask(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
+                    }else {
+                        Utiilties.internetNotAvailableDialog(Login.this);
+                    }
+                }
 
             }
         });
