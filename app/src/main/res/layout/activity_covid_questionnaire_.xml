@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="COVID-19 SATHI"
+            android:text="COVID-19 SAATHI"
             android:textColor="@color/colorPrimary"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -161,7 +161,7 @@
                                 android:background="@drawable/textboxshape"
                                 android:hint="Enter body temp"
                                 android:padding="10dp"
-                                android:inputType="textCapWords"
+                                android:inputType="numberDecimal"
                                 android:maxLength="20"
                                 android:singleLine="true"
                                 android:textColor="#222222"
