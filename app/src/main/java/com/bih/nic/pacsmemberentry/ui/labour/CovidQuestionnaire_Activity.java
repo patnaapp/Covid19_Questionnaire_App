@@ -103,7 +103,6 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         superisor_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         patient_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
         //  ques_count=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
-
         initialize();
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
@@ -145,24 +144,27 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             @Override
             public void onClick(View v)
             {
-                if (loc_captured.equals("Y")){
-                    registration();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Please captue location", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
-
-        btn_location_lnr_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 locationpoint="1";
-                locationManager();
-                //getLocation();
+                registration();
+                //locationManager();
+//                if (loc_captured.equals("Y")){
+//                    registration();
+//                }
+//                else {
+//                    Toast.makeText(getApplicationContext(), "Please capture location", Toast.LENGTH_LONG).show();
+//                }
+
             }
         });
+
+//        btn_location_lnr_1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                locationpoint="1";
+//                locationManager();
+//                //getLocation();
+//            }
+//        });
 //        if (Integer.parseInt(ques_count)>0){
 //            ll_test_date.setVisibility(View.GONE);
 //        }
@@ -618,59 +620,9 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             // error in login
             focusView.requestFocus();
         } else {
-            benfiList.setEntry_by(userid);
-            benfiList.setFever_id(_fever_status_id);
-            benfiList.setCough_id(cough_id);
-            benfiList.setCold_id(cold_id);
-            benfiList.setMedicine_kit_id(med_kit_id);
-            benfiList.setAny_other_posiutive_id(family_member_positive_id);
-            benfiList.setCont_isolation_id(cont_home_isolatn_id);
-            benfiList.setMed_asst_id(med_asst_id);
-            benfiList.setYoga_id(yoga_id);
-            benfiList.setSeparately_in_house_id(separate_id);
-            benfiList.setAll_precautions_id(all_pecaution_id);
-            benfiList.setBodyTemp(et_body_temp.getText().toString());
-            benfiList.setOther_prblm(et_other_prblm.getText().toString());
-            benfiList.setTest_date(edt_covid_test_date.getText().toString());
-            // benfiList.setDischarge_date(edt_discharge_date.getText().toString());
-            benfiList.setLatitude(Lat1);
-            benfiList.setLongitude(Long1);
 
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"1",_fever_status_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"2",cough_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"3",cold_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"4",et_other_prblm.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"5",med_kit_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"6",family_member_positive_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"7",cont_home_isolatn_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"8",med_asst_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"9",yoga_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"10",separate_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"11",all_pecaution_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"12",et_body_temp.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
+            locationManager();
 
-            if (!GlobalVariables.isOffline && !Utiilties.isOnline(this)) {
-
-                AlertDialog.Builder ab = new AlertDialog.Builder(this);
-                ab.setMessage(Html.fromHtml(
-                        "<font color=#000000>Internet Connection is not avaliable..Please Turn ON Network Connection </font>"));
-                ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent I = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
-                        startActivity(I);
-                    }
-                });
-
-                ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                ab.show();
-
-            }else{
-
-                new Daily_Questionnaire(daily_ques_array).execute();
-
-
-            }
         }
     }
 
@@ -862,19 +814,77 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                         //pbar.setVisibility(View.GONE);
                         btn_location_lnr_1.setEnabled(true);
 
-                        if (locationpoint.equals("1"))
-                        {
+//                        if (locationpoint.equals("1"))
+//                        {
+
                             Lat1 = Double.toString(location.getLatitude());
                             Long1 = Double.toString(location.getLongitude());
 
-                            tv_lat1.setText(Lat1);
-                            tv_long1.setText(Long1);
+                            tv_lat1.setText("LAT: "+Lat1);
+                            tv_long1.setText("LONG: "+Long1);
                             loc_captured="Y";
                             locationManager.removeUpdates(this);
 
                             btn_location_lnr_1.setEnabled(false);
+                            if (Lat1 !=null ||Lat1 !=""){
+                                //registration();
+                                benfiList.setEntry_by(userid);
+                                benfiList.setFever_id(_fever_status_id);
+                                benfiList.setCough_id(cough_id);
+                                benfiList.setCold_id(cold_id);
+                                benfiList.setMedicine_kit_id(med_kit_id);
+                                benfiList.setAny_other_posiutive_id(family_member_positive_id);
+                                benfiList.setCont_isolation_id(cont_home_isolatn_id);
+                                benfiList.setMed_asst_id(med_asst_id);
+                                benfiList.setYoga_id(yoga_id);
+                                benfiList.setSeparately_in_house_id(separate_id);
+                                benfiList.setAll_precautions_id(all_pecaution_id);
+                                benfiList.setBodyTemp(et_body_temp.getText().toString());
+                                benfiList.setOther_prblm(et_other_prblm.getText().toString());
+                                benfiList.setTest_date(edt_covid_test_date.getText().toString());
+                                // benfiList.setDischarge_date(edt_discharge_date.getText().toString());
+                                benfiList.setLatitude(Lat1);
+                                benfiList.setLongitude(Long1);
 
-                        }
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"1",_fever_status_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"2",cough_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"3",cold_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"4",et_other_prblm.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"5",med_kit_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"6",family_member_positive_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"7",cont_home_isolatn_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"8",med_asst_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"9",yoga_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"10",separate_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"11",all_pecaution_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
+                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"12",et_body_temp.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
+
+                                if (!GlobalVariables.isOffline && !Utiilties.isOnline(CovidQuestionnaire_Activity.this)) {
+
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(CovidQuestionnaire_Activity.this);
+                                    ab.setMessage(Html.fromHtml(
+                                            "<font color=#000000>Internet Connection is not avaliable..Please Turn ON Network Connection </font>"));
+                                    ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            Intent I = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                                            startActivity(I);
+                                        }
+                                    });
+
+                                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
+                                    ab.show();
+
+                                }else{
+
+                                    new Daily_Questionnaire(daily_ques_array).execute();
+
+
+                                }
+                            }
+
+
+                       // }
 
                     }
                     else
@@ -888,7 +898,9 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 }
 
 
-            } else {
+            }
+            else
+                {
                 Message.obtain(
                         mHandler,
                         UPDATE_LATLNG,
