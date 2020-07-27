@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_height="wrap_content">
+
+    <HorizontalScrollView
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            xmlns:card_view="https://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="1400dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="9.5">
+
+                <TextView
+                    android:layout_gravity="center"
+                   android:id="@+id/tv_slno"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.4"
+                    android:text="Sl. No">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_block"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.8"
+                    android:text="खंड"/>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text1"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.9"
+                    android:text="पंजीकृत संस्था का नाम"/>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/txt_text2"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.9"
+                    android:text=" पंजीकृत संस्था का प्रकार"/>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+
+                <TextView
+                    android:id="@+id/txt_text3"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text=" पंजीकृत संस्था का जिला"/>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text4"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.9"
+                    android:text=" नाम">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text5"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text=" जिला ">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text6"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.6"
+                    android:text="स्थान">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text7"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.6"
+                    android:text="संपर्क व्यक्ति का नाम">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text8"
+
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text="मोबाइल नंबर	">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text9"
+
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text="रिक्तियों की संख्या	">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text10"
+
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text="कौशल">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></View>
+                <TextView
+                    android:id="@+id/txt_text11"
+
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.7"
+                    android:text="कुल कार्य स्थायी रूप से अस्वीकृत">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent">
+
+                </View>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </HorizontalScrollView>
+</RelativeLayout>

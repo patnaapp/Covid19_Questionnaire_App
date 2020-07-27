@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_labour"
+        android:icon="@drawable/ic_lock_black_24dp"
+        android:title="पाक्स" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_employer"-->
+<!--        android:icon="@drawable/ic_dashboard_black_24dp"-->
+<!--        android:title="संस्था" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_hq"-->
+<!--        android:icon="@drawable/ic_dashboard_black_24dp"-->
+<!--        android:title="आधिकारिक/Official" />-->
+
+</menu>

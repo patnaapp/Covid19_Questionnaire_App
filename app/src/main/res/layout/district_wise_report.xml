@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/holo_gray_light"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        tools:context=".OfficeReport.DistrictConsolidatedReport">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view"
+                    xmlns:card_view="https://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="10dp"
+                    card_view:cardElevation="5dp"
+                    card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="700dp"
+                    android:weightSum="6"
+                    android:layout_height="70dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_gravity="center"
+
+                        android:id="@+id/tv_slno"
+                        android:layout_width="0dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.4"
+                        android:gravity="center"
+                        android:text="Sl. No"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_distNam"
+                        android:textColor="@color/holo_red_dark"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.9"
+                        android:text="जिला का नाम">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_PanjiNo"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:text="	कुल पंजीकरण[ संस्था ]">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_tot_work"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.6"
+                        android:text="कुल कार्य स्थल">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_tot_work_accept"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.6"
+                        android:text="कुल कार्य स्वीकृत	">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_tot_vac"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:text="कुल रिक्तियों की संख्या">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_tot_acc_vac"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:text="कुल स्वीकृत रिक्तियों की संख्या	">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:id="@+id/tv_tot_rej"
+                        android:layout_gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:text="कुल कार्य अस्वीकृत">
+
+                    </TextView>
+                    <View
+                        android:background="@color/colorPrimary"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"></View>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/tv_tot_per_rej"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="0.7"
+                        android:text="कुल कार्य स्थायी रूप से अस्वीकृत">
+
+                    </TextView>
+                </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+</LinearLayout>

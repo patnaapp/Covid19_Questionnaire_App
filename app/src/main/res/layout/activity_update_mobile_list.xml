@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- <android.support.v7.widget.Toolbar
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/toolbar"
+
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@color/colorPrimary"
+         android:theme="@style/ThemeOverlay.AppCompat.Dark"
+         app:titleTextColor="#ffffffff"
+         app:title="Aadhar Authentication">
+         &lt;!&ndash; title text color for the Toolbar&ndash;&gt;
+     </android.support.v7.widget.Toolbar>-->
+    <LinearLayout
+        android:background="#eaeaea"
+        android:id="@+id/linfilter"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5sp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="193dp"
+            android:id="@+id/flterText"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:background="@drawable/search_button"
+            android:hint="filter data "
+            android:padding="5dip" />
+        <ImageView
+            android:id="@+id/img_search"
+            android:src="@drawable/search_icon"
+            android:padding="5dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1">
+
+            <ImageView
+                android:id="@+id/img_filter"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5sp"
+                android:src="@drawable/ic_filter" />
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.CardView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:weightSum="1"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:text="  UId"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_weight="0.4"
+                android:text="aadhaar Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

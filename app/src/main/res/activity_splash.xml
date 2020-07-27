@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6AD1F2">
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:id="@+id/rl_nav"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="#07FFFFFF"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/digital_india" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/csc" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/Niclogo"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Welcome to e-Labharthi Jeevan Praman"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="26dp"
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo3" />
+
+        <ProgressBar
+            android:id="@+id/progress1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_centerInParent="true"
+            android:secondaryProgress="10"
+            />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

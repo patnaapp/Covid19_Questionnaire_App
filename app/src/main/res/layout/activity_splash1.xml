@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/holo_gray_bright">
+
+    <LinearLayout
+        android:padding="4dp"
+        android:id="@+id/rl_nav"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="#E6FFFFFF"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/digital_india" />
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/nic" />
+    </LinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/niclogo"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="12dp"
+            android:text="E-Pacs"
+            android:textColor="#DD2424"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="12dp"
+            android:text="COOPERATIVE DEPARTMENT"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:padding="4dp"
+            android:layout_marginTop="26dp"
+            android:id="@+id/iv_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/iconpacs"
+            android:background="@drawable/circular_shape_white"/>
+
+        <ProgressBar
+            android:id="@+id/progress1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_centerInParent="true"
+            android:secondaryProgress="10"
+            />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/holo_gray_light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <HorizontalScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="1dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="800dp"
+                android:weightSum="11"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_slno"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="Sl. No"
+                    android:textColor="@color/black"
+                    android:textStyle="normal">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tv_worksite"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="2.6"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:text="work site name"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal">
+
+                </TextView>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_skillname"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1.5"
+                    android:text="skill name"/>
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_sub_skillname"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1.5"
+                    android:text="sub skill name"/>
+
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_no_perosn"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:text="no of person"/>
+
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_offered"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:text="offered"/>
+
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_accpted"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:text="Accepted"/>
+
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_rejected"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:text="Rejected"/>
+
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_appointed"
+                    android:textColor="@color/colorClickable"
+                    android:textStyle="normal"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:text="Appointed"/>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </HorizontalScrollView>
+</LinearLayout>

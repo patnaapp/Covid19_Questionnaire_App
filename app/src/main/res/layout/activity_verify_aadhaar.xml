@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerifyAadhaar"
+    android:orientation="vertical">
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:src="@drawable/nic">
+
+    </ImageView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+
+            android:text="Welcome to e-Labharthi"
+
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:text="Submit Physical Verification "
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/userdetl"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:layout_weight="0.1"
+                android:padding="5sp"
+                android:text="Center - "
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="0.1"
+                android:padding="2sp"
+                android:text="District"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/txt_dist"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="0.3"
+                android:padding="2sp"
+                android:text="District"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text=","
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="0.1"
+                android:padding="2sp"
+                android:text="Block"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" /><TextView
+            android:id="@+id/txt_block"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="0.3"
+            android:padding="2sp"
+            android:text="Block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <TextView
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:id="@+id/txt_pnchayat"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="0.3"
+                android:text="Panchayat"
+                android:padding="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:background="#DD2424"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+
+                android:padding="12sp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="4sp"
+                    android:background="#eaeaea"
+                    android:id="@+id/linfilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:inputType="number"
+                        android:layout_gravity="center"
+                        android:layout_width="183dp"
+                        android:layout_marginRight="5sp"
+                        android:id="@+id/flterText"
+                        android:layout_height="40sp"
+                        android:layout_weight="0.9"
+                        android:background="@drawable/searchboxdesign"
+                        android:hint="Search Beneficiary Detail.. "
+                        android:padding="5dip" />
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_press_style"
+                        android:id="@+id/img_search"
+                        android:padding="10dp"
+                        android:layout_width="50sp"
+                        android:layout_height="50dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/img_filter"
+                            android:layout_width="50dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="5sp"
+                            android:src="@drawable/ic_filter"
+                            android:contentDescription="TODO" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/lin_data"
+                        android:background="#39928E8E"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="3sp"
+                            android:paddingBottom="3sp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_nm"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="0.42"
+                                android:text="Beneficiary Number   "
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_No"
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_marginRight="5sp"
+                                android:textSize="16sp"
+                                android:paddingLeft="2dp"
+                                android:gravity="center_vertical"
+                                android:layout_weight="0.6"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_father_nm"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text=" Name(As Per Sanction Order) :"
+                                android:textStyle="bold" />
+
+                            <EditText
+
+                                android:layout_marginRight="5sp"
+                                android:background="@drawable/textboxshape3"
+                                android:layout_weight="0.6"
+                                android:gravity="center_vertical"
+                                android:textSize="15sp"
+                                android:paddingLeft="2dp"
+                                android:layout_width="0dp"
+                                android:id="@+id/edt_Bene_name"
+                                android:layout_height="35sp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_nameInPass"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Name(As Per Bank) :"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:textSize="15sp"
+                                android:paddingLeft="2dp"
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_nameInPass"
+                                android:layout_weight="0.6"
+                                android:layout_marginRight="5sp"
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="6sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:weightSum="1">
+
+                            <TextView
+
+                                android:id="@+id/Beneficiary_ac_no"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="0.42"
+                                android:text=" Account Number        "
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:paddingLeft="2dp"
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_ac_no"
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_marginRight="5sp"
+                                android:layout_weight="0.6"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_uid_status"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="0.42"
+                                android:text="Beneficiary Status   "
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:background="@drawable/textboxshape3"
+                                android:orientation="horizontal"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.6"
+                                android:layout_marginRight="5sp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:gravity="center_vertical"
+                                    android:textSize="16sp"
+                                    android:paddingLeft="2dp"
+                                    android:id="@+id/edt_Bene_uid_status"
+                                    android:layout_width="150sp"
+                                    android:layout_height="40dp"
+                                    android:text=""
+                                    android:textColor="@android:color/holo_green_dark" />
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/right"
+                                    android:src="@drawable/ic_right"
+                                    android:layout_width="20sp"
+                                    android:layout_height="40sp" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_aadhaarNo"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text=" Aadhaar Number        "
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:minEms="12"
+                                android:gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:paddingLeft="2dp"
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_aadhaarNo"
+                                android:layout_weight="0.6"
+                                android:layout_width="0dp"
+                                android:layout_height="35sp"
+                                android:layout_marginRight="5sp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_nameInaddhar"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Name(As Per Aadhaar) :"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_nameInadhaar"
+                                android:layout_weight="0.6"
+                                android:layout_marginRight="5sp"
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_mobileno"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text="  Mobile Number     "
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:minEms="10"
+                                android:gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:paddingLeft="2dp"
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_mobNo"
+                                android:layout_weight="0.6"
+                                android:layout_width="0dp"
+                                android:layout_height="35sp"
+                                android:layout_marginRight="5sp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_yearbirth"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text="Year Of Birth     "
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:maxLength="4"
+                                android:minEms="4"
+                                android:gravity="center_vertical"
+                                android:textSize="16sp"
+                                android:paddingLeft="2dp"
+                                android:inputType="number"
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_yearbirth"
+                                android:layout_weight="0.6"
+                                android:layout_width="0dp"
+                                android:layout_height="35sp"
+                                android:layout_marginRight="5sp"
+                                android:text=""
+                                android:textColor="@color/holo_primary" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_ward"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text=" Select Ward name :"
+                                android:textStyle="bold" />
+
+                            <Spinner
+
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Bene_ward"
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="45sp"
+                                android:layout_marginRight="5sp"
+                                android:textColor="@color/green" />
+                            <ImageView
+                                android:layout_weight="0.1"
+                                android:id="@+id/sync_ward"
+                                android:src="@drawable/button_sync_style"
+                                android:layout_width="0dp"
+                                android:layout_height="45dp"></ImageView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
+                            <TextView
+                                android:id="@+id/Beneficiary_panch"
+                                android:layout_weight="0.42"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text="  Panchayat name :"
+                                android:textStyle="bold" />
+
+                            <Spinner
+
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/spn_Bene_panch"
+                                android:layout_weight="0.5"
+                                android:layout_width="0dp"
+                                android:layout_height="45sp"
+                                android:layout_marginRight="5sp"
+                                android:textColor="@color/green" />
+                            <ImageView
+                                android:visibility="gone"
+                                android:layout_weight="0.1"
+                                android:id="@+id/sync_panch"
+                                android:src="@drawable/button_sync_style"
+                                android:layout_width="0dp"
+                                android:layout_height="45dp"></ImageView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:weightSum="1"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+                            <CheckBox
+                                android:layout_weight="0.3"
+                                android:id="@+id/checkBox1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text=" Name"
+
+                                android:layout_marginTop="16dp"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/checkBox2"
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="On Aadhar Name"
+                                android:layout_marginTop="16dp"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:layout_weight="0.4"
+                                android:id="@+id/checkBox3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Bank Name"
+                                android:layout_marginTop="16dp"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:weightSum="1"
+                            android:visibility="gone"
+                            android:id="@+id/lin_modified"
+                            android:padding="6sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/txt_Modified"
+                                android:layout_weight="0.4"
+                                android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:text="Modified Name   "
+                                android:textStyle="bold" />
+
+                            <EditText
+
+                                android:background="@drawable/textboxshape3"
+                                android:id="@+id/edt_Modified"
+                                android:layout_weight="0.6"
+                                android:layout_width="0dp"
+                                android:layout_height="35sp"
+                                android:layout_marginRight="15sp"
+                                android:text=""
+                                android:textColor="@color/green" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="71dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+
+                            <Button
+                                android:id="@+id/btn_verify"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20sp"
+                                android:layout_marginRight="20sp"
+                                android:layout_marginTop="10sp"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/buttonshape"
+                                android:text="Capture Photo"
+                                android:textColor="@android:color/white" />
+
+                            <Button
+                                android:visibility="gone"
+                                android:id="@+id/btn_upload"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20sp"
+                                android:layout_marginRight="20sp"
+                                android:layout_marginTop="10sp"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/buttonshape"
+                                android:text="Upload Update"
+                                android:textColor="@android:color/white" />
+                            <Button
+                                android:visibility="gone"
+                                android:id="@+id/btn_update"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20sp"
+                                android:layout_marginRight="20sp"
+                                android:layout_marginTop="10sp"
+                                android:layout_weight="0.5"
+                                android:background="@drawable/buttonshape"
+                                android:text="Update Aadhaar"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+                <!--<Button
+                    android:id="@+id/update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />-->
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/capturelife"
+                    android:layout_width="287dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="20sp"
+                    android:background="#009688"
+                    android:text="Capture Life Certificate"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</RelativeLayout>

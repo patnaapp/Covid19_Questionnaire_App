@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAE9E9"
+  >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/id_logo"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/logo"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/circular_shape_white"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:text="बिहार श्रम साधन"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/id_logout"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="2dp"
+            android:onClick="OnClick_goToLoginScreen"
+            android:src="@drawable/shutdown"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/circular_shape_white"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_fill"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_below="@+id/header"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_user_info"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/shape_adapter_cell">
+
+        <LinearLayout
+            android:id="@+id/ll_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="कंपनी का नाम"
+                android:textColor="@color/colorGreyDark"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_workplace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EEARWALTEST"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_div_zone"
+            android:layout_below="@+id/ll_username"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/ll_division"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="मोबाइल संख्या"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="23586362466"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/ll_zone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="यूज़र आईडी"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="asgsdg"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_dist_role"
+            android:layout_below="@+id/ll_div_zone"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/ll_district"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="पता"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_work_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arwal"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:id="@+id/ll_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EE"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_dist_role"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:id="@+id/rl_sync_panchayat"
+                android:layout_marginRight="4dp"
+                android:padding="6dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="syncSchemes"
+                android:background="@drawable/shape_white">
+
+                <ImageView
+                    android:id="@+id/iv_sync"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_toLeftOf="@+id/tv_sync"
+                    android:clickable="true"
+                    android:src="@drawable/synmain"/>
+
+                <TextView
+                    android:id="@+id/tv_sync"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sync Schemes"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="6dp"
+        android:id="@+id/ll_job"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/rl_user_info">
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:onClick="onSearchJob"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape"
+                android:id="@+id/ll_new_labours">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/search_labour" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="वर्क साइट के लिए प्रवासी वर्कर्स की खोज"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:onClick="onOfferJobReport"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/iv_upload"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/offer_job"/>
+                <TextView
+                    android:layout_below="@+id/iv_upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="जॉब ऑफर रिपोर्ट"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/iv_assign"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/assign"/>
+                <TextView
+                    android:layout_below="@+id/iv_assign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="श्रम को काम सौंपें"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/ll_job">
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:onClick="onAddWorkSite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape"
+                android:id="@+id/ll_new_worksite">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/worksite" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="वर्क साइट से सम्बंधित जानकारी की एंट्री"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:onClick="onModifyWorkSite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/iv_upload1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/change_worksite"/>
+                <TextView
+                    android:layout_below="@+id/iv_upload1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="वर्क साइट से सम्बंधित जानकारी में सुधार"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:gravity="center"
+                android:background="@drawable/textboxshape">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/iv_assign1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/assign"/>
+                <TextView
+                    android:layout_below="@+id/iv_assign1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="श्रम को काम सौंपें"
+                    android:gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:textColor="@color/colorPrimary"
+                    android:textAppearance="?android:textAppearanceSmall"/>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ऐप वर्ज़न 1.0"
+        android:layout_above="@+id/iv_footer"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary"/>
+    <ImageView
+        android:id="@+id/iv_footer"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:src="@drawable/nic"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

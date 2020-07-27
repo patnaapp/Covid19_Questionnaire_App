@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_labour">
+
+    <fragment
+        android:id="@+id/navigation_labour"
+        android:name="com.bih.nic.pacsmemberentry.ui.labour.LabourFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_labour" />
+
+    <fragment
+        android:id="@+id/navigation_employer"
+        android:name="com.bih.nic.pacsmemberentry.ui.employer.EmployerFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_employer" />
+
+    <fragment
+        android:id="@+id/navigation_hq"
+        android:name="com.bih.nic.pacsmemberentry.ui.hq.HqFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>

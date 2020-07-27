@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Pacs Member Entry</string>
+    <string name="app_not_found">App not found, please Install App .</string>
+    <string name="username">user name</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="password">password</string>
+    <string name="imagedesc">Aadhaar  </string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter password</string>
+    <string name="appTitle">श्रम शाधन</string>
+    <string name="authenticating">प्रमाणित हो रहा हैं</string>
+    <string name="select_spinner_hint"> चयन करें</string>
+    <string name="action_settings">action_settings</string>
+    <string name="action_example">action_example</string>
+    <string name="navigation_drawer_open">आँगन</string>
+    <string name="navigation_drawer_close">आँगन</string>
+    <string name="updating">updating</string>
+    <string name="loading_fail">loading_fail</string>
+    <string name="uploading">Uploading Data To Server...</string>
+    <string name="synchronizing">डेटा को सफलतापूर्वक सिंक्रनाइज़ किया गया </string>
+    <string name="ok">ओके    </string>
+    <string name="update">update</string>
+    <string name="ignore">ignore</string>
+    <string name="wrong_device_text">Wrong device</string>
+    <string name="upload_text">Upload </string>
+    <string name="do_you_want_to_upload">Do You Want TO Upload..</string>
+    <string name="save">Save</string>
+    <string name="Error_in_Network">Error in Network</string>
+    <string-array name="image_ids">
+        <item>@drawable/verify_aadhar_copy</item>
+        <item>@drawable/uploade_verifi_data</item>
+        <item>@drawable/capture</item>
+    </string-array>
+    <string name="title_activity_multi_login">MultiLoginActivity</string>
+    <string name="title_home">श्रमिक लॉगिन</string>
+    <string name="title_dashboard">नियोक्ता लॉगिन</string>
+    <string name="title_notifications">आधिकारिक लॉगिन</string>
+
+
+    <string name="invalid_email">This email address is invalid</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="invalid_password_pattern">Password must contains alphabet and numeric characters"</string>
+    <string name="incorrect_password">Password is incorrect</string>
+    <string name="field_required">This field is required</string>
+    <string name="valid_password">Enter valid Current Password</string>
+    <string name="password_not_match">Password did not match</string>
+    <string name="Invalid_Number">Mobile Number is Incorrect</string>
+</resources>

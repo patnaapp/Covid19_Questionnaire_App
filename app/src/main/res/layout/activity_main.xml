@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+   <!-- <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleTextColor="#ffffffff"
+        app:title="Aadhar Authentication">
+        &lt;!&ndash; title text color for the Toolbar&ndash;&gt;
+    </android.support.v7.widget.Toolbar>-->
+    <LinearLayout
+        android:weightSum="1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:layout_weight="0.1"
+            android:padding="5sp"
+            android:text="Center - "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_dist"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="0.3"
+            android:padding="2sp"
+            android:text="District"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=","
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txt_block"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="0.3"
+            android:padding="2sp"
+            android:text="Block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text=","
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textAllCaps="false"
+            android:id="@+id/txt_pnchayat"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="0.3"
+            android:text="Panchayat"
+            android:padding="2sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+    <LinearLayout
+        android:background="#eaeaea"
+        android:id="@+id/linfilter"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5sp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <EditText
+            android:background="@drawable/textboxshape2"
+            android:layout_width="193dp"
+            android:id="@+id/flterText"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+
+            android:hint="filter data "
+            android:padding="5dip" />
+        <ImageView
+            android:id="@+id/img_search"
+            android:src="@drawable/ic_search"
+            android:padding="5dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1">
+
+            <ImageView
+                android:id="@+id/img_filter"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5sp"
+                android:src="@drawable/ic_filter" />
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.CardView
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:weightSum="1"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="86dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:text="  Ben Id"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <TextView
+
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_weight="0.4"
+            android:text="aadhaar Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+ <TextView
+     android:visibility="gone"
+     android:id="@+id/nodata"
+     android:textSize="15sp"
+     android:textStyle="bold"
+     android:layout_gravity="center"
+     android:textColor="@android:color/holo_red_dark"
+     android:text="No Data Found In this Block"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

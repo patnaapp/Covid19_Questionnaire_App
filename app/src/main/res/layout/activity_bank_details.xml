@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/holo_gray_bright"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_below="@+id/rl_nav"
+        android:id="@+id/ll_header"
+        android:background="@color/holo_gray_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="E-Pacs"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo3" />
+
+        <TextView
+            android:visibility="gone"
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="21sp"
+            android:text="e-Labharthi"
+
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="COOPERATIVE DEPARTMENT,BIHAR"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="पैक्स सदस्य की विवरणी"
+        android:layout_below="@id/ll_header"
+
+        android:id="@+id/tv_desc"
+        android:layout_margin="8dp"
+        android:textColor="@color/holo_green_dark"
+        android:textAlignment="center"/>
+
+    <ScrollView
+
+        android:id="@+id/reg_form"
+        android:layout_below="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_margin="20dp"
+                android:visibility="gone"
+                android:id="@+id/iv_logo1"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/logo"
+                android:padding="4dp"
+                android:background="@drawable/circular_shape_white"
+                android:layout_centerHorizontal="true"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/ll_all"
+
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_marginBottom="12dp"
+                    android:layout_width="fill_parent"
+
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+
+                        android:layout_width="fill_parent"
+
+                        android:layout_height="wrap_content"
+
+
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <LinearLayout
+
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="बैंक आइ एफ एस सी(IFSC) कोड:"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/et_ifsc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="आइ एफ एस सी(IFSC) कोड  डाले "
+                                android:padding="10dp"
+                                android:inputType="textCapWords"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="fill_parent"
+
+                        android:layout_height="wrap_content"
+
+
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="खाता संख्या :"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textSize="13sp"
+                                    android:textStyle="normal"
+                                    android:textColor="@color/black"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/et_bank_acc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:hint="खाता संख्या डाले "
+                                    android:padding="10dp"
+                                    android:inputType="textCapWords"
+                                    android:maxLength="20"
+                                    android:singleLine="true"
+                                    android:textColor="#222222"
+                                    android:focusableInTouchMode="true"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="खाता संख्या फिर से डाले :"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textSize="13sp"
+                                    android:textStyle="normal"
+                                    android:textColor="@color/black"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/et_cnfrm_acc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:hint="खाता संख्या फिर से डाले "
+                                    android:padding="10dp"
+                                    android:inputType="textCapWords"
+                                    android:maxLength="20"
+                                    android:singleLine="true"
+                                    android:textColor="#222222"
+                                    android:focusableInTouchMode="true"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginBottom="12dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="मनोनीत व्यक्ति का नाम(आधार के अनुसार)[*]:"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/et_selected_per_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="मनोनीत व्यक्ति का नाम(आधार के अनुसार) डाले "
+                                android:padding="10dp"
+                                android:inputType="textCapWords"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="मनोनीत व्यक्ति का जन्म का साल (आधार के अनुसार)[*]"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/et_selected_per_yob"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="मनोनीत व्यक्ति का जन्म का साल (आधार के अनुसार) डाले "
+                                android:padding="10dp"
+                                android:inputType="textCapWords"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="मनोनीत व्यक्ति का आधार नंबर :"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/et_selected_per_aadhar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="मनोनीत व्यक्ति का आधार नंबर  डाले "
+                                android:padding="10dp"
+                                android:inputType="textCapWords"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="मनोनीत व्यक्ति का संबंध[*] :"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <Spinner
+                                    android:background="@drawable/spinner_bg1"
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/spn_relation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="सदस्य का प्रकार [*]:"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <Spinner
+                                    android:background="@drawable/spinner_bg1"
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/spn_ben_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="सदस्यता ग्रहण करने की तारीख [*]:"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content">
+
+
+                                <EditText
+                                    android:id="@+id/edt_selction_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:clickable="true"
+                                    android:enabled="false"
+                                    android:hint="मनोनीत व्यक्ति का जन्म का साल (आधार के अनुसार)"
+                                    android:inputType="text"
+                                    android:maxLength="30"
+                                    android:padding="10dp"
+                                    android:textColor="#000000"
+                                    android:textColorHint="@android:color/darker_gray" />
+
+                                <ImageView
+                                    android:id="@+id/img_selection_date"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/calendar" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="शेयर की संख्या [*]:-"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <Spinner
+                                    android:background="@drawable/spinner_bg1"
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/spin_share_no"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="रैयती भूमि का क्षेत्र (डिसमिल में):-"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <EditText
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/et_raiyat_land"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:hint="रैयती भूमि का क्षेत्र (डिसमिल में)"
+                                    android:padding="10dp"
+                                    android:inputType="textCapWords"
+                                    android:maxLength="20"
+                                    android:singleLine="true"
+                                    android:textColor="#222222"
+                                    android:focusableInTouchMode="true"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="गैर रैयती भूमि का क्षेत्र (डिसमिल में):-"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/et_non_raiyat_land"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="गैर रैयती भूमि का क्षेत्र (डिसमिल में) डाले "
+                                android:padding="10dp"
+                                android:inputType="textCapWords"
+                                android:maxLength="20"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="fill_parent"
+
+                            android:layout_height="wrap_content"
+
+
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+                            <LinearLayout
+
+                                android:layout_marginBottom="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="क्या आपके पास KCC कार्ड हैं:-"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <Spinner
+                                    android:background="@drawable/spinner_bg1"
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/spn_have_kcc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"/>
+                            <LinearLayout
+
+                                android:layout_marginBottom="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="KCC कार्ड निर्गत करने वाले बैंक नाम:"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <Spinner
+                                    android:background="@drawable/spinner_bg1"
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/spn_kcc_bank"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="36dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="क्या आप KCC कार्ड लेना चाहते हैं :"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <Spinner
+                                android:background="@drawable/spinner_bg1"
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/spn_want_kcc"
+                                android:layout_width="match_parent"
+                                android:layout_height="36dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:weightSum="2"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="\nKCC कार्ड नंबर:\n"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <EditText
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/et_kcc_no"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:hint="KCC कार्ड नंबर डाले "
+                                    android:padding="10dp"
+                                    android:inputType="textCapWords"
+                                    android:maxLength="20"
+                                    android:singleLine="true"
+                                    android:textColor="#222222"
+                                    android:focusableInTouchMode="true"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="12dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="मतदाता क्रमांक\n(गत निर्वाचन के मतदाता सुची के अनुसार)
+"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"/>
+
+                                <EditText
+                                    android:layout_marginTop="4dp"
+                                    android:id="@+id/et_voter_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/textboxshape"
+                                    android:hint="मतदाता क्रमांक डाले "
+                                    android:padding="10dp"
+                                    android:inputType="textCapWords"
+                                    android:maxLength="20"
+                                    android:singleLine="true"
+                                    android:textColor="#222222"
+                                    android:focusableInTouchMode="true"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="अभियुक्ति"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"/>
+
+                            <EditText
+                                android:layout_marginTop="4dp"
+                                android:id="@+id/edt_remarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/textboxshape"
+                                android:hint="अभियुक्ति डाले "
+                                android:padding="10dp"
+                                android:gravity="top|left"
+                                android:inputType="textMultiLine"
+                                android:minLines="3"
+                                android:maxLength="125"
+                                android:singleLine="true"
+                                android:textColor="#222222"
+                                android:focusableInTouchMode="true"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/btn_verify_new"
+                        android:layout_width="150dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/buttonshape"
+                        android:text="    पंजीकरण करेंं    "
+                        android:textColor="#ffff"
+                        android:textSize="17sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

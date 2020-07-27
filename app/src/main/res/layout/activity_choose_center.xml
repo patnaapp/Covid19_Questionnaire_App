@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseCenter">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:gravity="center"
+                android:text=" Choose Center for Inspection "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:background="@android:color/black"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+
+            <LinearLayout
+
+                android:id="@+id/sector_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:orientation="vertical"
+                android:paddingTop="0dp">
+
+                <TextView
+                    android:id="@+id/sector_Label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:text="District Name"
+                    android:textColor="#222222"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <Spinner
+
+                   android:clickable="false"
+                    android:id="@+id/distSpinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="42sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/spinner_bg"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="#222222"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:id="@+id/Block_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:orientation="vertical"
+                android:paddingTop="0dp">
+
+                <TextView
+                    android:id="@+id/Block_Label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10sp"
+                    android:text="Block Name"
+                    android:textColor="#222222"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <Spinner
+
+                    android:id="@+id/BlockSpinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="42sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/spinner_bg"
+                    android:clickable="false"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="#222222"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/Panchayat_Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:clickable="false"
+                android:orientation="vertical"
+                android:paddingTop="0dp">
+
+                <TextView
+                    android:id="@+id/panchayat_Label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10sp"
+                    android:text="Panchayat Name"
+                    android:textColor="#222222"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <Spinner
+                    android:id="@+id/PanchayatSpinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="42sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/spinner_bg"
+                    android:clickable="false"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:textColor="#222222"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/custombutton"
+                android:text="Submit"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+  </LinearLayout>
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+</RelativeLayout>

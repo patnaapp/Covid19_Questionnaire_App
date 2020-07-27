@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light">
+
+    <include
+        android:id="@+id/header"
+
+        layout="@layout/header_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:id="@+id/ll_skill"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_weight="1"
+            android:id="@+id/lin_skill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/tv_skill"
+                android:text="Text"
+                android:textAllCaps="true"
+                android:textColor="#222222"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/tv_orgname"
+                android:text="Text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/tv_total_count"
+                android:text="Text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/tv_worksite"
+                android:text="Text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.levitnudi.legacytableview.LegacyTableView
+        android:id="@+id/legacy_table_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_skill"
+        android:layout_above="@+id/ll_chkbox"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@+id/footer"
+        android:id="@+id/ll_chkbox">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:weightSum="2">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Approve"
+                android:id="@+id/chk_approve"
+                android:layout_weight="1">
+
+            </CheckBox>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chk_reject"
+                android:text="Reject"
+                android:layout_weight="1">
+
+            </CheckBox>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_weight="1"
+            android:id="@+id/lin_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_dist"
+                android:layout_marginStart="10dp"
+                android:text="Rejection Remarks :"
+                android:textColor="#222222"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+            <Spinner
+                android:background="@drawable/spinner_bg"
+                style="@style/spinner"
+                android:id="@+id/spn_remarks"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_weight="1"
+            android:id="@+id/lin_p_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_p_remarks"
+                android:layout_marginStart="10dp"
+                android:text="Remarks :"
+                android:textColor="#222222"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+            <EditText
+                android:maxLength="100"
+                android:inputType="textCapWords"
+                android:id="@+id/edt_p_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edittext_box" />
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/ll_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="vertical"
+            android:padding="4dp"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn_accpt"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:textColor="@color/color_white"
+                android:textStyle="bold"
+                android:onClick="onApprove"
+                android:textSize="15sp"
+                android:background="@drawable/buttonshapeaccept"
+                android:text="Approve" />
+
+            <Button
+                android:id="@+id/btn_rjct"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:text="Reject"
+                android:textColor="@color/color_white"
+                android:textStyle="bold"
+                android:onClick="onReject"
+                android:textSize="15sp"
+                android:background="@drawable/buttonbackshape1"
+                />
+
+            <Button
+                android:id="@+id/btn_permannet_rjct"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:text="Permanent Reject"
+                android:textColor="@color/color_white"
+                android:textStyle="bold"
+                android:onClick="onP_Reject"
+                android:textSize="15sp"
+                android:background="@drawable/buttonbackshape1"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

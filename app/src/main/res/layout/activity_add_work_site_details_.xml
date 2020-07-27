@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAE9E9">
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_main"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp" />
+
+
+    <LinearLayout
+        android:layout_below="@+id/header"
+        android:id="@+id/ll_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="वर्क साइट से सम्बंधित जानकारी की एंट्री"
+            android:textColor="@color/colorPrimary"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo3" />
+
+        <TextView
+            android:visibility="gone"
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="21sp"
+            android:text="e-Labharthi"
+
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="#DD2424"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:visibility="gone"
+            android:text="उद्योग विभाग,बिहार"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_header">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/ll_input"
+                android:layout_below="@+id/tv_desc"
+                android:padding="12dp"
+                android:background="@drawable/textboxshape3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Financial Year*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:clickable="false"
+                        android:id="@+id/spin_fin_yr"
+                        android:layout_width="fill_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/spinner_bg1"
+                        android:textColor="#222222"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Related Department*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:clickable="false"
+                        android:id="@+id/spin_dept"
+                        android:layout_width="fill_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/spinner_bg1"
+                        android:textColor="#222222"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="District*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:clickable="false"
+                        android:id="@+id/spin_district"
+                        android:layout_width="fill_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/spinner_bg1"
+                        android:textColor="#222222"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Block*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:clickable="false"
+                        android:id="@+id/spin_block"
+                        android:layout_width="fill_parent"
+                        android:layout_height="42dp"
+                        android:background="@drawable/spinner_bg1"
+                        android:textColor="#222222"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Work Site Name (In English)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_work_site_en"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Work Site Name (In English)"
+                        android:padding="10dp"
+                        android:inputType="textCapWords"
+                        android:maxLength="70"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Work Site Name (In Hindi)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_work_site_hn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Work Site Name (In Hindi)"
+                        android:padding="10dp"
+                        android:inputType="text"
+                        android:maxLength="100"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Location (In English)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_work_loc_en"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Location (In English)"
+                        android:padding="10dp"
+                        android:inputType="textCapWords"
+                        android:maxLength="70"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Location (In Hindi)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_work_loc_hn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Location (In Hindi)"
+                        android:padding="10dp"
+                        android:inputType="text"
+                        android:maxLength="70"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pin Code *"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_pincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Pin Code"
+                        android:padding="10dp"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor Name (In English)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_supervisor_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Supervisor Name (In English)"
+                        android:padding="10dp"
+                        android:inputType="textCapWords"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Supervisor Name (In Hindi)*"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_supervisor_name_hn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Supervisor Name (In Hindi)"
+                        android:padding="10dp"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile *"
+                        android:textColor="@color/black_overlay"
+                        android:textSize="12sp"/>
+
+                    <EditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/et_supervisor_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/textboxshape"
+                        android:hint="Mobile "
+                        android:padding="10dp"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="#222222"
+                        android:focusableInTouchMode="true"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="12dp"
+                    android:padding="4dp"
+                    android:background="@drawable/shape_adapter_cell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginBottom="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:text="वर्क साइट में विभिन्न कामगारों से सम्बंधित जानकारी की एंट्री (Requirements)"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_requirements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/add_requirement"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/holo_orange_dark"
+                        android:text="Add Requirement"
+                        android:textColor="#ffff"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/email_sign_in_button2"
+                    android:layout_width="150dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="    सेव करेंं    "
+                    android:onClick="SaveData"
+                    android:textColor="#ffff"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
