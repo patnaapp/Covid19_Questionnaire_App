@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="E-Pacs"
+            android:text="HOME QUARANTINE"
             android:textColor="@color/colorPrimary"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -67,7 +67,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:text="COOPERATIVE DEPARTMENT"
+            android:text="Govt. of Bihar"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -126,10 +126,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textboxshape2"
-                android:hint="यूज़र आईडी"
+                android:hint="Mobile Number"
                 android:padding="10dp"
                 android:inputType="number"
                 android:singleLine="true"
+                android:maxLength="10"
                 android:textColor="#222222"
                 android:focusableInTouchMode="true"
                 android:textSize="15sp" />
@@ -168,10 +169,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textboxshape2"
-                android:hint="पासवर्ड"
+                android:hint="Otp"
                 android:inputType="numberPassword"
                 android:padding="10dp"
-                android:maxLength="10"
+                android:maxLength="6"
                 android:singleLine="true"
                 android:textColor="#222222"
                 android:focusableInTouchMode="true"
@@ -196,50 +197,24 @@
             android:layout_height="36dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonshape"
-            android:text="    लॉगिन करें    "
+            android:text="    Login    "
             android:textColor="#ffff"
             android:textSize="17sp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp"
+    <TextView
         android:layout_below="@+id/ll_input"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_weight="1"
-            android:onClick="onChangeMobileNo"
-            android:visibility="gone"
-            android:padding="8dp"
-            android:background="@drawable/textboxshape"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="मोबाइल संख्या बदलें  "
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
-            android:textSize="15sp"/>
-
-        <TextView
-            android:layout_marginLeft="8dp"
-            android:visibility="gone"
-            android:textAlignment="center"
-            android:layout_weight="1"
-            android:onClick="onRequestOtp"
-            android:padding="8dp"
-            android:background="@drawable/textboxshape"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ओटीपी प्राप्त करें "
-            android:layout_alignParentRight="true"
-            android:textSize="15sp"/>
-
-
-    </LinearLayout>
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:onClick="onRequestOtp"
+        android:padding="8dp"
+        android:background="@drawable/textboxshape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Resend Otp "
+        android:layout_alignParentRight="true"
+        android:textSize="15sp"/>
 
     <LinearLayout
         android:visibility="gone"
@@ -283,7 +258,7 @@
         android:id="@+id/tv_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ऐप वर्ज़न 1.0"
+        android:text="App Version 1.0"
         android:layout_above="@+id/iv_footer"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimary"/>

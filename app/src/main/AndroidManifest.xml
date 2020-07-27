@@ -70,14 +70,14 @@
         <activity android:name=".ui.labour.NewPAcsMemberEntry_Activity" />
         <activity
             android:name=".ui.labour.HqHomeActivity"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SplashActivity" />
         <activity android:name=".ui.labour.PaymentStatusActivity" />
         <activity android:name=".ui.labour.JobSearchActivity" />
         <activity android:name=".ui.labour.ModifyDocumentActivity" />

@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.bih.nic.pacsmemberentry.CommonPref;
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 
+import com.bih.nic.pacsmemberentry.ui.labour.HqHomeActivity;
 import com.bih.nic.pacsmemberentry.ui.labour.Login;
 import com.bih.nic.pacsmemberentry.MarshmallowPermission;
 import com.bih.nic.pacsmemberentry.Model.Versioninfo;
@@ -63,8 +64,8 @@ public class SplashActivity extends Activity {
         try {
 
             databaseHelper.openDataBase();
-            modifyTable();
-            modifyTable1();
+            //modifyTable();
+            //modifyTable1();
         } catch (SQLException sqle) {
 
             throw sqle;
@@ -290,28 +291,17 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
+                Boolean isLogin = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isLogin", false);
+                String userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
 
-               if (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isLogin", false)==false){
+                if(isLogin && !userId.equals("")){
+                    Intent i = new Intent(SplashActivity.this, HqHomeActivity.class);
+                    startActivity(i);
+                    finish();
+                }else{
                     Intent i = new Intent(SplashActivity.this, Login.class);
                     startActivity(i);
                     finish();
-                }
-
-                else {
-
-
-                if(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "").equals("") ) {
-                    Intent i = new Intent(SplashActivity.this, Login.class);
-                    startActivity(i);
-                    finish();
-                }else {
-                    String userRole = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserRole", "");
-                    if(userRole.equals("Labour")){
-                        Intent i = new Intent(SplashActivity.this, MainHomeActivity.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }
                 }
             }
         }, SPLASH_TIME_OUT);
