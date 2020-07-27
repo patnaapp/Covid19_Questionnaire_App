@@ -32,7 +32,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="24dp"
-            android:text="Home Quarantine"
+            android:text="COVID-19 SATHI"
             android:textAlignment="center"
             android:textColor="@color/holo_red_dark"
             android:textSize="22sp"
