@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -98,8 +99,10 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         Utiilties.setStatusBarColor(this);
         dialog = new ProgressDialog(this);
         dialog.setCanceledOnTouchOutside(false);
-//        userid=getIntent().getExtras().getString("userid");
-//        ques_count=getIntent().getExtras().getString("Count");
+        userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
+        superisor_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
+        patient_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
+        //  ques_count=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
 
         initialize();
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
