@@ -497,12 +497,12 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             cancelRegistration = true;
         }
 
-        if (TextUtils.isEmpty(edt_discharge_date.getText().toString())) {
-            edt_discharge_date.setError("Please select discharge test date.");
-            focusView = edt_discharge_date;
-            cancelRegistration = true;
-        }
-
+//        if (TextUtils.isEmpty(edt_discharge_date.getText().toString())) {
+//            edt_discharge_date.setError("Please select discharge test date.");
+//            focusView = edt_discharge_date;
+//            cancelRegistration = true;
+//        }
+//
 
         if (cancelRegistration) {
             // error in login
