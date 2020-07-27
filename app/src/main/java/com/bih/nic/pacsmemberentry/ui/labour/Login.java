@@ -46,7 +46,7 @@ public class Login extends Activity {
 
         String version = Utiilties.getAppVersion(this);
         if(version != null){
-            tv_version.setText("ऐप वर्ज़न "+version);
+            tv_version.setText("App Version "+version);
         }else{
             tv_version.setText("");
         }

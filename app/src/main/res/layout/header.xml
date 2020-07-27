@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="54dp"
     android:padding="4dp"
     android:background="@color/colorPrimary">
 
-
     <ImageView
-        android:id="@+id/img"
-        android:tint="@color/color_white"
-        android:src="@drawable/ic_arrow_back"
-        android:layout_centerVertical="true"
-        android:layout_width="40dp"
-        android:layout_height="30dp"></ImageView>
-
-    <ImageView
-        android:visibility="gone"
+        android:visibility="invisible"
         android:layout_toRightOf="@+id/img"
          android:layout_marginLeft="10sp"
         android:background="@drawable/circular_shape_white"

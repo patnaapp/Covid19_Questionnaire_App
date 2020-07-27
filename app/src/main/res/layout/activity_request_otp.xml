@@ -4,50 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/holo_gray_bright">
 
-    <LinearLayout
-        android:layout_below="@+id/rl_nav"
-        android:id="@+id/ll_header"
+    <include
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="बिहार श्रम साधन"
-            android:textColor="@color/colorPrimary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:visibility="gone"
-            android:layout_marginTop="12dp"
-            android:id="@+id/iv_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo3" />
-
-        <TextView
-            android:visibility="gone"
-            android:textColor="#DD2424"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="21sp"
-            android:text="e-Labharthi"
-
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:textColor="#DD2424"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="उद्योग विभाग,बिहार"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        layout="@layout/header_main"/>
 
     <ImageView
         android:id="@+id/iv_footer"
@@ -68,7 +29,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_header">
+        android:layout_below="@+id/header">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -79,15 +40,16 @@
                 android:id="@+id/iv_logo1"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/logo"
-                android:padding="4dp"
+                android:src="@drawable/bihar_logo"
+                android:padding="12dp"
                 android:background="@drawable/circular_shape_white"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ओटीपी प्राप्त करने हेतु कृपया अपना रेजिस्ट्रेशन संख्या और रेजिस्टर्ड मोबाइल संख्या डालें"
+                android:text="Please enter your registered mobile number."
                 android:layout_below="@id/iv_logo1"
                 android:id="@+id/tv_desc"
                 android:layout_margin="20dp"
@@ -105,32 +67,32 @@
                 android:layout_marginRight="20dp"
                 android:orientation="vertical">
 
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="रेजिस्ट्रेशन संख्या"-->
+<!--                    android:textColor="@color/black_overlay"-->
+<!--                    android:textSize="12sp"/>-->
+
+<!--                <EditText-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:id="@+id/et_reg_no"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/textboxshape"-->
+<!--                    android:hint="रेजिस्ट्रेशन संख्या डालें"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:inputType="number"-->
+<!--                    android:textColor="#222222"-->
+<!--                    android:focusableInTouchMode="true"-->
+<!--                    android:textSize="15sp" />-->
+
                 <TextView
+                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="रेजिस्ट्रेशन संख्या"
-                    android:textColor="@color/black_overlay"
-                    android:textSize="12sp"/>
-
-                <EditText
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/et_reg_no"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/textboxshape"
-                    android:hint="रेजिस्ट्रेशन संख्या डालें"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    android:textColor="#222222"
-                    android:focusableInTouchMode="true"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_marginTop="16dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="मोबाइल संख्या"
+                    android:text="Mobile Number"
                     android:textColor="@color/black_overlay"
                     android:textSize="12sp"/>
 
@@ -140,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textboxshape"
-                    android:hint="मोबाइल संख्या डालें"
+                    android:hint="Enter Mobile Number"
                     android:padding="10dp"
                     android:inputType="number"
                     android:maxLength="10"
@@ -169,7 +131,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/buttonshape"
                     android:onClick="onRequestOtp"
-                    android:text="    ओटीपी प्राप्त करेंं    "
+                    android:text="    Get Otp    "
                     android:textColor="#ffff"
                     android:textSize="17sp" />
 

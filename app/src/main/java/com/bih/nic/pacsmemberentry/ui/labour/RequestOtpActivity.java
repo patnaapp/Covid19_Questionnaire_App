@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,9 +33,17 @@ public class RequestOtpActivity extends Activity {
 
         initialization();
 
+        ImageView imgBack = findViewById(R.id.img);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         String version = Utiilties.getAppVersion(this);
         if(version != null){
-            tv_version.setText("ऐप वर्ज़न "+version);
+            tv_version.setText("App Version "+version);
         }else{
             tv_version.setText("");
         }
@@ -45,6 +54,8 @@ public class RequestOtpActivity extends Activity {
         et_mobile = (EditText) findViewById(R.id.et_mobile);
 
         tv_version = (TextView) findViewById(R.id.tv_version);
+
+
     }
 
     public void onRequestOtp(View view){
@@ -61,18 +72,12 @@ public class RequestOtpActivity extends Activity {
         View focusView = null;
         boolean validate = true;
 
-        if (et_reg_no.getText().toString().equals("")) {
-            et_reg_no.setError("कृप्या सही पंजीकरण संख्या डालें");
-            focusView = et_reg_no;
-            validate = false;
-        }
-
         if (et_mobile.getText().toString().equals("")) {
-            et_mobile.setError("कृप्या सही मोबाइल नम्बर डालें");
+            et_mobile.setError("Please enter valid mobile number");
             focusView = et_mobile;
             validate = false;
         }else if (et_mobile.getText().toString().length() < 10) {
-            et_mobile.setError("मोबाइल नम्बर 10 अंक से कम हैं");
+            et_mobile.setError("Mobile number is less than 10 digit");
             focusView = et_mobile;
             validate = false;
         }
