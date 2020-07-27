@@ -120,7 +120,6 @@ public class RequestOtpActivity extends Activity {
             if (result != null) {
 
 
-
                 if (result.getStatus()==true) {
 
 
