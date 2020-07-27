@@ -1108,12 +1108,12 @@ public class WebserviceHelper implements KvmSerializable {
 
     }
 
-    public static DefaultResponse RequestOTP(String regno, String newmobile)
+    public static DefaultResponse RequestOTP(String newmobile)
     {
 
         SoapObject request = new SoapObject(SERVICENAMESPACE, Reques_tOTP);
 
-        request.addProperty("_registrationNo",regno);
+        //request.addProperty("_registrationNo",regno);
         request.addProperty("_MobileNo", newmobile);
 
         DefaultResponse userDetails;
