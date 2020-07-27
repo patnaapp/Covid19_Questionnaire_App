@@ -164,17 +164,21 @@ public class Login extends Activity {
                     DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
                     dataBaseHelper.insertUserDetails(result,str_email);
 
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("UserId",et_reg_no.getText().toString()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("UserId",result.get_UserId()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Password",et_otp.getText().toString()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("UserName",result.getUserName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("FHName",result.getFHName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientId",result.getPatientId()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientName",result.getPatientName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorId",result.getSupervisorId()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorName",result.getSupervisorName()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Mobile",result.getMobileNo()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Age",result.getAge()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Address",result.getAddress()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ProfileImg",result.getProfileImg()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("DistName",result.getDistName()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PanchayatName",result.getPanchayatName()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Covid19TestingDate",result.getCovid19TestingDate()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ImpDate",result.getImpDate()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isLogin",true).commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PanchayatName",result.getPanchayatName()).commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
 
                     Intent intent=new Intent(Login.this, HqHomeActivity.class);
                     startActivity(intent);

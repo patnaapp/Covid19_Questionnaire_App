@@ -9,16 +9,26 @@ import java.util.Hashtable;
 public class UserDetails implements KvmSerializable {
     private static Class<UserDetails> USER_CLASS = UserDetails.class;
     private boolean isAuthenticated = false;
-    private String IsAuth="";
+
     private String UserName = "";
     private String _UserId="";
     private String _Passwoed="";
+
     private String DistCode="";
     private String DistName="";
     private String BlockCode="";
     private String BlockName="";
     private String PanchayatName="";
     private String PanchayatCode="";
+
+    private String PatientId="";
+    private String FHName="";
+    private String PatientName="";
+    private String SupervisorId="";
+    private String SupervisorName="";
+    private String Covid19TestingDate="";
+    private String ImpDate="";
+
     private String Age="";
     private String MobileNo="";
     private String Address="";
@@ -28,6 +38,7 @@ public class UserDetails implements KvmSerializable {
     private String AadhaarNo;
     private String profileImg="";
 
+
     public UserDetails() {
 
     }
@@ -36,34 +47,29 @@ public class UserDetails implements KvmSerializable {
         return USER_CLASS;
     }
 
-
-   /* public UserDetails(SoapObject res1) {
-        this.setAuthenticated(Boolean.parseBoolean(res1.getProperty(
-                "isAuthenticated").toString()));
-        this._UserId=res1.getProperty("UserID").toString();
-        this.DistCode=res1.getProperty("DistrictId").toString();
-        this.BlockCode=res1.getProperty("BlockCode").toString();
-        this.DistName=res1.getProperty("_District_name").toString();
-        this.BlockName=res1.getProperty("_Block_Name").toString();
-        this.Role=res1.getProperty("Role").toString();
-
-    }*/
  public UserDetails(SoapObject res1) {
         this.setAuthenticated(Boolean.parseBoolean(res1.getProperty("Status").toString()));
-
-        this.DistCode=res1.getProperty("DistrictCode").toString();
-        this.DistName=res1.getProperty("DistrictName").toString();
-        this.BlockCode=res1.getProperty("BlockCode").toString();
-        this.BlockName=res1.getProperty("BlockName").toString();
-        this.PanchayatCode=res1.getProperty("PanchayatCode").toString();
-        this.PanchayatName=res1.getProperty("PanchayatName").toString();
         this.Message=res1.getProperty("msg").toString();
-        this._UserId=res1.getProperty("vchRegNum").toString();
-        this.UserName=res1.getProperty("vchName").toString();
-        this.Age=res1.getProperty("intAge").toString();
-        this.MobileNo=res1.getProperty("vchMobile").toString();
-        this.Address=res1.getProperty("vchAddress").toString();
-        this.profileImg=res1.getProperty("vchPhoto").toString();
+
+        this._UserId=res1.getProperty("Id").toString();
+        this.FHName=res1.getProperty("FHName").toString();
+        this.PatientId=res1.getProperty("PatientId").toString();
+        this.PatientName=res1.getProperty("PatientName").toString();
+        this.SupervisorId=res1.getProperty("SupervisorId").toString();
+        this.SupervisorName=res1.getProperty("SupervisorName").toString();
+        this.Address=res1.getProperty("Address").toString();
+        this.MobileNo=res1.getProperty("Mobile").toString();
+        this.ImpDate=res1.getProperty("ImpDate").toString();
+        this.Covid19TestingDate=res1.getProperty("Covid19TestingDate").toString();
+        this._Passwoed=res1.getProperty("OTP").toString();
+
+//        this.DistCode=res1.getProperty("DistrictCode").toString();
+//        this.DistName=res1.getProperty("DistrictName").toString();
+//        this.BlockCode=res1.getProperty("BlockCode").toString();
+//        this.BlockName=res1.getProperty("BlockName").toString();
+//        this.PanchayatCode=res1.getProperty("PanchayatCode").toString();
+//        this.PanchayatName=res1.getProperty("PanchayatName").toString();
+
 
     }
 
@@ -85,6 +91,62 @@ public class UserDetails implements KvmSerializable {
     @Override
     public void getPropertyInfo(int index, Hashtable properties, PropertyInfo info) {
 
+    }
+
+    public String getPatientId() {
+        return PatientId;
+    }
+
+    public void setPatientId(String patientId) {
+        PatientId = patientId;
+    }
+
+    public String getFHName() {
+        return FHName;
+    }
+
+    public void setFHName(String FHName) {
+        this.FHName = FHName;
+    }
+
+    public String getPatientName() {
+        return PatientName;
+    }
+
+    public void setPatientName(String patientName) {
+        PatientName = patientName;
+    }
+
+    public String getSupervisorId() {
+        return SupervisorId;
+    }
+
+    public void setSupervisorId(String supervisorId) {
+        SupervisorId = supervisorId;
+    }
+
+    public String getSupervisorName() {
+        return SupervisorName;
+    }
+
+    public void setSupervisorName(String supervisorName) {
+        SupervisorName = supervisorName;
+    }
+
+    public String getCovid19TestingDate() {
+        return Covid19TestingDate;
+    }
+
+    public void setCovid19TestingDate(String covid19TestingDate) {
+        Covid19TestingDate = covid19TestingDate;
+    }
+
+    public String getImpDate() {
+        return ImpDate;
+    }
+
+    public void setImpDate(String impDate) {
+        ImpDate = impDate;
     }
 
     public String getProfileImg() {
@@ -231,11 +293,4 @@ public class UserDetails implements KvmSerializable {
         AadhaarNo = aadhaarNo;
     }
 
-    public String getIsAuth() {
-        return IsAuth;
-    }
-
-    public void setIsAuth(String isAuth) {
-        IsAuth = isAuth;
-    }
 }
