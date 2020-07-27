@@ -74,22 +74,69 @@
             android:id="@+id/ll_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/ll_district11"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="12sp"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arwal"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_weight="1"
+                android:id="@+id/ll_role111"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EEARWALTEST"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Father's Name"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_f_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EE"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Name"-->
+<!--                android:textColor="@color/colorGreyDark"-->
+<!--                android:textSize="12sp"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="EEARWALTEST"-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="14sp"/>-->
         </LinearLayout>
 
         <LinearLayout
@@ -157,6 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ll_dist_role"
+            android:visibility="gone"
             android:layout_below="@+id/ll_div_zone"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -229,12 +277,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Village"
+                    android:text="Supervisior Name"
                     android:textColor="@color/colorGreyDark"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tv_village"
+                    android:id="@+id/tv_superviser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Arwal"

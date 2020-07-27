@@ -25,9 +25,9 @@ public class HqHomeActivity extends Activity {
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
     TextView tv_email,tv_dept_name,tv_version;
-    TextView tv_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile;
+    TextView tv_name,tv_f_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile,tv_superviser;
     LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
-    String OrgId="",user_name="",lvlthree_id="", mobile="", address="", DistName="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
+    String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,11 @@ public class HqHomeActivity extends Activity {
         Utiilties.setStatusBarColor(this);
         dataBaseHelper=new DataBaseHelper(HqHomeActivity.this);
         tv_name=findViewById(R.id.tv_name);
+        tv_f_name=findViewById(R.id.tv_f_name);
         tv_address=findViewById(R.id.tv_address);
         tv_block_name=findViewById(R.id.tv_block_name);
         tv_panchayat=findViewById(R.id.tv_panchayat);
-        tv_village=findViewById(R.id.tv_village);
+        tv_superviser=findViewById(R.id.tv_superviser);
         tv_mobile=findViewById(R.id.tv_mobile);
         tv_version=(TextView) findViewById(R.id.tv_version);
 
@@ -52,17 +53,23 @@ public class HqHomeActivity extends Activity {
             tv_version.setText("");
         }
 
-        OrgId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Name", "");
-        UserId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Address", "");
+        PatientName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientName", "");
+        Address=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Address", "");
 
 
         //DistName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistName", "");
-        Block_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Block_Name", "");
-        lvlone_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Panchayat_Name", "");
-        lvltwo_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Lvl_TwoId", "");
-        lvlthree_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("LvlThree_Id", "");
+        SupervisorName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorName", "");
+        Mobile=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
+        FHName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("FHName", "");
+        Covid19TestingDate=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Covid19TestingDate", "");
         UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserRole", "");
         String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserName", "");
+
+        tv_name.setText(PatientName);
+        tv_f_name.setText(FHName);
+        tv_address.setText(Address);
+        tv_mobile.setText(Mobile);
+        tv_superviser.setText(SupervisorName);
 
 //        if(UserRole.equals("ORGADM"))
 //        {

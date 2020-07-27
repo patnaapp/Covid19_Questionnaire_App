@@ -14,8 +14,9 @@ public class DefaultResponse implements KvmSerializable {
     private String Message="";
 
     public DefaultResponse(SoapObject res1) {
-        this.Status=Boolean.parseBoolean(res1.getProperty("Status").toString());
         this.Message=res1.getProperty("msg").toString();
+        this.Status=Boolean.parseBoolean(res1.getProperty("Status").toString());
+
 
     }
 
