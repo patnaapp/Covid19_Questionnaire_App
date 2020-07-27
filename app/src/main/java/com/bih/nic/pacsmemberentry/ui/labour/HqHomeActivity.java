@@ -25,6 +25,7 @@ public class HqHomeActivity extends Activity {
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
     TextView tv_email,tv_dept_name,tv_version;
+    TextView tv_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile;
     LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
     String OrgId="",user_name="",lvlthree_id="", mobile="", address="", DistName="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
 
@@ -36,12 +37,12 @@ public class HqHomeActivity extends Activity {
         // getActionBar().hide();
         Utiilties.setStatusBarColor(this);
         dataBaseHelper=new DataBaseHelper(HqHomeActivity.this);
-        tv_email=findViewById(R.id.tv_email);
-        tv_dept_name=findViewById(R.id.tv_dept_name);
-        ll_first=findViewById(R.id.ll_first);
-        ll_emp_reports=findViewById(R.id.ll_emp_reports);
-        aprove_rjct_worksite=findViewById(R.id.aprove_rjct_worksite);
-        ll_username=findViewById(R.id.ll_username);
+        tv_name=findViewById(R.id.tv_name);
+        tv_address=findViewById(R.id.tv_address);
+        tv_block_name=findViewById(R.id.tv_block_name);
+        tv_panchayat=findViewById(R.id.tv_panchayat);
+        tv_village=findViewById(R.id.tv_village);
+        tv_mobile=findViewById(R.id.tv_mobile);
         tv_version=(TextView) findViewById(R.id.tv_version);
 
         String version = Utiilties.getAppVersion(this);
@@ -51,13 +52,13 @@ public class HqHomeActivity extends Activity {
             tv_version.setText("");
         }
 
-        OrgId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("OrgId", "");
-        UserId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
+        OrgId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Name", "");
+        UserId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Address", "");
 
 
         //DistName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistName", "");
-        Block_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("BlockCode", "");
-        lvlone_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("LvlOne_Id", "");
+        Block_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Block_Name", "");
+        lvlone_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Panchayat_Name", "");
         lvltwo_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Lvl_TwoId", "");
         lvlthree_id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("LvlThree_Id", "");
         UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserRole", "");
@@ -109,7 +110,7 @@ public class HqHomeActivity extends Activity {
         GlobalVariables.isLogin=false;
         Intent intent = new Intent(this, Login.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("From", AppConstant.HQ);
+        //intent.putExtra("From", AppConstant.HQ);
         startActivity(intent);
         finish();
     }
@@ -145,7 +146,7 @@ public class HqHomeActivity extends Activity {
         super.onResume();
     }
 
-    public  void onPacsMemberNewEntry(View view)
+    public  void onSelfDiagonosis(View view)
     {
         Intent i=new Intent(HqHomeActivity.this,NewPAcsMemberEntry_Activity.class);
         startActivity(i);

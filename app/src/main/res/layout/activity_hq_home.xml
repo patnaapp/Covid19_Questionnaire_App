@@ -32,7 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="25dp"
-            android:text="E-Pacs"
+            android:text="Covid-19 Bihar"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -79,12 +79,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User Name"
+                android:text="Name"
                 android:textColor="@color/colorGreyDark"
                 android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/tv_dept_name"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EEARWALTEST"
@@ -136,12 +136,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pacs Name"
+                    android:text="Address"
                     android:textColor="@color/colorGreyDark"
                     android:textSize="12sp"/>
 
                 <TextView
-                    android:id="@+id/tv_email"
+                    android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="asgsdg"
@@ -171,12 +171,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="पता"
+                    android:text="Block"
                     android:textColor="@color/colorGreyDark"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tv_work_address"
+                    android:id="@+id/tv_block_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Arwal"
@@ -196,12 +196,70 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Role"
+                    android:text="Panchayat"
                     android:textColor="@color/colorGreyDark"
                     android:textSize="12sp"/>
 
                 <TextView
-                    android:id="@+id/tv_role"
+                    android:id="@+id/tv_panchayat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EE"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_dist_role1"
+            android:layout_below="@+id/ll_dist_role"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:id="@+id/ll_district1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Village"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_village"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arwal"
+                    android:maxLines="3"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_weight="1"
+                android:id="@+id/ll_role1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile"
+                    android:textColor="@color/colorGreyDark"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="EE"
@@ -266,7 +324,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:onClick="onPacsMemberNewEntry"
+                android:onClick="onSelfDiagonosis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -284,7 +342,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pacs Member Entry"
+                    android:text="self Diagnosis"
                     android:gravity="center"
                     android:textSize="13sp"
                     android:layout_marginTop="4dp"
@@ -369,7 +427,7 @@
 
 
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ll_emp_reports"
