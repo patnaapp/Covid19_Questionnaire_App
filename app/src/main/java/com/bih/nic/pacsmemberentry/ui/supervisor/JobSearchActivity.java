@@ -126,6 +126,24 @@ public class JobSearchActivity extends Activity{
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    //    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1) {
+//            if(resultCode == RESULT_OK) {
+//                Boolean inserted = data.getBooleanExtra("inserted", false);
+//                if(inserted){
+//                    new SyncJobSearchData(sprvsrId);
+//                }
+//            }
+//        }
+//    }
+
     public void showAlertForInternet(){
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
         ab.setTitle("Internet Connnection Error!!!");

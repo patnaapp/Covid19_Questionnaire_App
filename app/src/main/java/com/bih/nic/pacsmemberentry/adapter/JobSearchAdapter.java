@@ -80,7 +80,7 @@ public class JobSearchAdapter extends RecyclerView.Adapter<JobSearchAdapter.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", info.getPatientMobNo(), null));
-                activity.startActivity(intent);
+                activity.startActivityForResult(intent,1);
             }
         });
 

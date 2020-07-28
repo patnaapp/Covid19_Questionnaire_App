@@ -734,9 +734,17 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                             public void onClick(DialogInterface dialog, int whichButton) {
 
                                 dialog.dismiss();
-                                Intent i=new Intent(CovidQuestionnaire_Activity.this,HqHomeActivity.class);
-                                startActivity(i);
-                                finish();
+                                if(role.equals("SUP")){
+                                    Intent intent = new Intent();
+                                    intent.putExtra("inserted", true);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+                                }else{
+                                    Intent i=new Intent(CovidQuestionnaire_Activity.this,HqHomeActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+
                             }
                         });
 
