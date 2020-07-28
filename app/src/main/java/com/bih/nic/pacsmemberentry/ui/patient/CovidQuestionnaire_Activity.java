@@ -616,6 +616,11 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 focusView = et_body_temp;
                 cancelRegistration = true;
             }
+            else if (Float.parseFloat(et_body_temp.getText().toString())<90){
+                et_body_temp.setError("Please enter correct body temperature");
+                focusView = et_body_temp;
+                cancelRegistration = true;
+            }
         }
 
         if (TextUtils.isEmpty(et_other_prblm.getText().toString())) {
