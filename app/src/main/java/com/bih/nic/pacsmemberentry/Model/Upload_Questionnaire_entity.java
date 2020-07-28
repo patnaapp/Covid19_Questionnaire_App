@@ -16,9 +16,10 @@ public class Upload_Questionnaire_entity implements Serializable {
     private String lat="";
     private String longi="";
     private String appver="";
+    private String covidtestdate="";
 
 
-    public Upload_Questionnaire_entity(String entry_by, String supervisor_id, String patient_id, String ques_id, String answer_id, String entry_date, String lat, String longi, String appver) {
+    public Upload_Questionnaire_entity(String entry_by, String supervisor_id, String patient_id, String ques_id, String answer_id, String entry_date, String lat, String longi, String appver, String covidtestdate) {
         this.entry_by = entry_by;
         this.supervisor_id = supervisor_id;
         this.patient_id = patient_id;
@@ -28,6 +29,7 @@ public class Upload_Questionnaire_entity implements Serializable {
         this.lat = lat;
         this.longi = longi;
         this.appver = appver;
+        this.covidtestdate = covidtestdate;
     }
 
     public String getEntry_by() {
@@ -100,5 +102,13 @@ public class Upload_Questionnaire_entity implements Serializable {
 
     public void setAppver(String appver) {
         this.appver = appver;
+    }
+
+    public String getCovidtestdate() {
+        return covidtestdate;
+    }
+
+    public void setCovidtestdate(String covidtestdate) {
+        this.covidtestdate = covidtestdate;
     }
 }

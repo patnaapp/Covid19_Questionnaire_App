@@ -216,7 +216,8 @@ public class Utiilties {
 		int m = cal.get(Calendar.MINUTE);
 		int s = cal.get(Calendar.SECOND);
 
-		String date = month + "/" + day + "/" + year;
+		//String date = month + "/" + day + "/" + year;
+		String date = year + "-" + month + "-" + day;
 		return date;
 
 	}

@@ -89,7 +89,7 @@ public class WebserviceHelper implements KvmSerializable {
 
     private Context ctx;
 
-    public static final String SERVICENAMESPACE = "http://Covid19Help.bih.nic.in/";
+    public static final String SERVICENAMESPACE = "http://www.covid19help.bih.nic.in/";
     public static final String SERVICEURL = "http://www.covid19help.bih.nic.in/Covid19HelpWebservice.asmx";
 
 //    public static final String SERVICENAMESPACE = "http://10.133.20.159/";
@@ -150,7 +150,7 @@ public class WebserviceHelper implements KvmSerializable {
     public static final  String Approve_Work_Site_By_dst = "BenApprovalbyDSTAdmUpdate";
 
     private static final String GET_SUB_DEPT_WISE_VACENCY_METHOD="rpt_DepartmentWiseVacancyORG";
-    private static final String InsertData_Ben="rpt_DepartmentWiseVacancyORG";
+    private static final String InsertData_Ben="SurveyDetails";
 
     static String rest;
 
@@ -1422,7 +1422,7 @@ public class WebserviceHelper implements KvmSerializable {
             builder = factory.newDocumentBuilder();
             is = new InputSource(new StringReader(xml));
             Document doc = builder.parse(is);
-            NodeList list = doc.getElementsByTagName("InsertWorkDataNewResult");
+            NodeList list = doc.getElementsByTagName("SurveyDetailsResult");
             result = list.item(0).getTextContent();
             //System.out.println(list.item(0).getTextContent());
         } catch (ParserConfigurationException e) {
@@ -2921,31 +2921,52 @@ public class WebserviceHelper implements KvmSerializable {
         doc.setXmlStandalone(true);
 
         Element poleElement = doc.getDocumentElement();
-        Element pdlsElement = doc.createElement("studentAttendance");
+        Element pdlsElement = doc.createElement("covid19helpdtl");
         ArrayList<Upload_Questionnaire_entity> poleDetail = checkbox;
 
         for(int x=0;x<poleDetail.size();x++){
-            Element pdElement = doc.createElement("MarkAttendance");
-            Element fid = doc.createElement("_Disecode");
-            fid.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_by()));
+            Element pdElement = doc.createElement("MarkCovid19Help");
+            Element fid = doc.createElement("_SupervisorId");
+            fid.appendChild(doc.createTextNode(poleDetail.get(x).getSupervisor_id()));
             pdElement.appendChild(fid);
 
-            Element vLebel = doc.createElement("_a_Id");
-            vLebel.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_date()));
+            Element vLebel = doc.createElement("_PatientId");
+            vLebel.appendChild(doc.createTextNode(poleDetail.get(x).getPatient_id()));
             //vLebel.appendChild(doc.createTextNode("1234"));
             pdElement.appendChild(vLebel);
 
-            Element vLebel2 = doc.createElement("_Attendance_per");
+            Element vLebel2 = doc.createElement("_QueId");
             vLebel2.appendChild(doc.createTextNode(poleDetail.get(x).getQues_id()));
             pdElement.appendChild(vLebel2);
 
-            Element vLebel3 = doc.createElement("_AttendancePer_By");
+            Element vLebel3 = doc.createElement("_Answare");
             vLebel3.appendChild(doc.createTextNode(poleDetail.get(x).getAnswer_id()));
             pdElement.appendChild(vLebel3);
 
-            Element vLebel4 = doc.createElement("_AttendancePer_Date");
-            vLebel4.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_date()));
+            Element vLebel4 = doc.createElement("_EntryBy");
+            vLebel4.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_by()));
             pdElement.appendChild(vLebel4);
+
+            Element vLebel5 = doc.createElement("_EntryDate");
+            vLebel5.appendChild(doc.createTextNode(poleDetail.get(x).getEntry_date()));
+            pdElement.appendChild(vLebel5);
+
+            Element vLebel6 = doc.createElement("_Ver");
+            vLebel6.appendChild(doc.createTextNode(poleDetail.get(x).getAppver()));
+            pdElement.appendChild(vLebel6);
+
+            Element vLebel7 = doc.createElement("_Latitude");
+            vLebel7.appendChild(doc.createTextNode(poleDetail.get(x).getLat()));
+            pdElement.appendChild(vLebel7);
+
+            Element vLebel8 = doc.createElement("_Longitude");
+            vLebel8.appendChild(doc.createTextNode(poleDetail.get(x).getLongi()));
+            pdElement.appendChild(vLebel8);
+
+            Element vLebel9 = doc.createElement("_Covid19TestingDate");
+            vLebel9.appendChild(doc.createTextNode(poleDetail.get(x).getCovidtestdate()));
+            pdElement.appendChild(vLebel9);
+
             pdlsElement.appendChild(pdElement);
         }
         poleElement.appendChild(pdlsElement);
@@ -3008,22 +3029,28 @@ public class WebserviceHelper implements KvmSerializable {
             HttpClient httpclient = new DefaultHttpClient();
 
             httpResponse = (BasicHttpResponse) httpclient.execute(httppost);
+            HttpEntity entity = httpResponse.getEntity();
 
             Log.i("Responddddddddse: ", httpResponse.getStatusLine().toString());
 
             if (httpResponse.getStatusLine().getStatusCode() == 200
                     || httpResponse.getStatusLine().getReasonPhrase()
                     .toString().equals("OK")) {
-                res = "1";
+
+                String output = _getResponseBody(entity);
+                res = parseRespnse(output);
+               // res = "1";
             } else {
-                res = "0";
+                //res = "0";
+                res = "0, Server no reponse";
             }
 
         }
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return "0";
+          //  return "0";
+            return "0, Exception Caught";
         }
 
         // response.put("HTTPStatus",httpResponse.getStatusLine().toString());

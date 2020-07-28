@@ -22,9 +22,11 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,6 +55,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CovidQuestionnaire_Activity extends Activity implements AdapterView.OnItemSelectedListener, LocationListener {
 
@@ -99,7 +103,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         Utiilties.setStatusBarColor(this);
         dialog = new ProgressDialog(this);
         dialog.setCanceledOnTouchOutside(false);
-        userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
+        userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
         superisor_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         patient_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
         //  ques_count=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
@@ -227,6 +231,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
         et_body_temp=findViewById(R.id.et_body_temp);
         et_other_prblm=findViewById(R.id.et_other_prblm);
+        et_other_prblm.addTextChangedListener(inputTextWatcher1);
         edt_covid_test_date=findViewById(R.id.edt_covid_test_date);
         edt_discharge_date=findViewById(R.id.edt_discharge_date);
         img_test_date=findViewById(R.id.img_test_date);
@@ -307,7 +312,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
                 edt_covid_test_date.setText(smDay + "-" + smMonth + "-" + mYear);
                 //_DOB = mYear + "-" + smMonth + "-" + smDay + " " + newString;
-                _ed_test_date = mYear + smMonth + smDay;
+                _ed_test_date = mYear +"-"+smMonth+"-"+ smDay;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -406,13 +411,17 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 //                }
 //                break;
             case R.id.sp_medicine_kit:
-                if (position > 0) {
+                if (position > 0)
+                {
                     med_kit_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
                     ques_Id="";
-                    if(med_kit_nm.equals("YES")){
+                    if(med_kit_nm.equals("YES"))
+                    {
                         med_kit_id = "Y";
-                    }else if(cold_nm.equals("NO")){
+                    }
+                    else if(med_kit_nm.equals("NO"))
+                    {
                         med_kit_id = "N";
                     }
                 }
@@ -422,9 +431,12 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                     family_member_positive_nm = ben_type_check[position];
                     //  tv_t_status.setError(null);
                     ques_Id="";
-                    if(family_member_positive_nm.equals("YES")){
+                    if(family_member_positive_nm.equals("YES"))
+                    {
                         family_member_positive_id = "Y";
-                    }else if(family_member_positive_nm.equals("NO")){
+                    }
+                    else if(family_member_positive_nm.equals("NO"))
+                    {
                         family_member_positive_id = "N";
                     }
                 }
@@ -695,8 +707,8 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
                     if(result.equals("1"))
                     {
-
-                        android.support.v7.app.AlertDialog.Builder ab = new android.support.v7.app.AlertDialog.Builder(
+                        progressDialog.dismiss();
+                        AlertDialog.Builder ab = new AlertDialog.Builder(
                                 CovidQuestionnaire_Activity.this);
                         ab.setIcon(R.mipmap.ic_launcher);
                         ab.setTitle("Success");
@@ -704,7 +716,11 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                         ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
+
                                 dialog.dismiss();
+                                Intent i=new Intent(CovidQuestionnaire_Activity.this,HqHomeActivity.class);
+                                startActivity(i);
+                                finish();
                             }
                         });
 
@@ -734,7 +750,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
     }
 
     private void locationManager() {
-        dialog.setMessage("ट्रैकिंग लोकेशन...");
+        dialog.setMessage("Capturing location...");
         dialog.show();
 
         if (GlobalVariables.glocation == null) {
@@ -817,74 +833,76 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 //                        if (locationpoint.equals("1"))
 //                        {
 
-                            Lat1 = Double.toString(location.getLatitude());
-                            Long1 = Double.toString(location.getLongitude());
+                        Lat1 = Double.toString(location.getLatitude());
+                        Long1 = Double.toString(location.getLongitude());
 
-                            tv_lat1.setText("LAT: "+Lat1);
-                            tv_long1.setText("LONG: "+Long1);
-                            loc_captured="Y";
-                            locationManager.removeUpdates(this);
+                        tv_lat1.setText("LAT: "+Lat1);
+                        tv_long1.setText("LONG: "+Long1);
+                        //Log.d("Lat",+Lat1);
+                        loc_captured="Y";
+                        locationManager.removeUpdates(this);
 
-                            btn_location_lnr_1.setEnabled(false);
-                            if (Lat1 !=null ||Lat1 !=""){
-                                //registration();
-                                benfiList.setEntry_by(userid);
-                                benfiList.setFever_id(_fever_status_id);
-                                benfiList.setCough_id(cough_id);
-                                benfiList.setCold_id(cold_id);
-                                benfiList.setMedicine_kit_id(med_kit_id);
-                                benfiList.setAny_other_posiutive_id(family_member_positive_id);
-                                benfiList.setCont_isolation_id(cont_home_isolatn_id);
-                                benfiList.setMed_asst_id(med_asst_id);
-                                benfiList.setYoga_id(yoga_id);
-                                benfiList.setSeparately_in_house_id(separate_id);
-                                benfiList.setAll_precautions_id(all_pecaution_id);
-                                benfiList.setBodyTemp(et_body_temp.getText().toString());
-                                benfiList.setOther_prblm(et_other_prblm.getText().toString());
-                                benfiList.setTest_date(edt_covid_test_date.getText().toString());
-                                // benfiList.setDischarge_date(edt_discharge_date.getText().toString());
-                                benfiList.setLatitude(Lat1);
-                                benfiList.setLongitude(Long1);
+                        btn_location_lnr_1.setEnabled(false);
+                        Log.d("ADebugTag", "Value: " + Long1);
+                        if (Lat1 !=null ||Lat1 !=""){
+                            //registration();
+                            benfiList.setEntry_by(userid);
+                            benfiList.setFever_id(_fever_status_id);
+                            benfiList.setCough_id(cough_id);
+                            benfiList.setCold_id(cold_id);
+                            benfiList.setMedicine_kit_id(med_kit_id);
+                            benfiList.setAny_other_posiutive_id(family_member_positive_id);
+                            benfiList.setCont_isolation_id(cont_home_isolatn_id);
+                            benfiList.setMed_asst_id(med_asst_id);
+                            benfiList.setYoga_id(yoga_id);
+                            benfiList.setSeparately_in_house_id(separate_id);
+                            benfiList.setAll_precautions_id(all_pecaution_id);
+                            benfiList.setBodyTemp(et_body_temp.getText().toString());
+                            benfiList.setOther_prblm(et_other_prblm.getText().toString());
+                            benfiList.setTest_date(edt_covid_test_date.getText().toString());
+                            // benfiList.setDischarge_date(edt_discharge_date.getText().toString());
+                            benfiList.setLatitude(Lat1);
+                            benfiList.setLongitude(Long1);
 
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"1",_fever_status_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"2",cough_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"3",cold_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"4",et_other_prblm.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"5",med_kit_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"6",family_member_positive_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"7",cont_home_isolatn_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"8",med_asst_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"9",yoga_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"10",separate_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"11",all_pecaution_id,Utiilties.getCurrentDate(),Lat1,Long1,version));
-                                daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"12",et_body_temp.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"1",_fever_status_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"2",cough_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"3",cold_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"4",et_other_prblm.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"5",med_kit_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"6",family_member_positive_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"7",cont_home_isolatn_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"8",med_asst_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"9",yoga_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"10",separate_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"11",all_pecaution_id,Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
+                            daily_ques_array.add(new Upload_Questionnaire_entity(userid,superisor_id,patient_id,"12",et_body_temp.getText().toString(),Utiilties.getCurrentDate(),Lat1,Long1,version,_ed_test_date));
 
-                                if (!GlobalVariables.isOffline && !Utiilties.isOnline(CovidQuestionnaire_Activity.this)) {
+                            if (!GlobalVariables.isOffline && !Utiilties.isOnline(CovidQuestionnaire_Activity.this)) {
 
-                                    AlertDialog.Builder ab = new AlertDialog.Builder(CovidQuestionnaire_Activity.this);
-                                    ab.setMessage(Html.fromHtml(
-                                            "<font color=#000000>Internet Connection is not avaliable..Please Turn ON Network Connection </font>"));
-                                    ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            Intent I = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
-                                            startActivity(I);
-                                        }
-                                    });
+                                AlertDialog.Builder ab = new AlertDialog.Builder(CovidQuestionnaire_Activity.this);
+                                ab.setMessage(Html.fromHtml(
+                                        "<font color=#000000>Internet Connection is not avaliable..Please Turn ON Network Connection </font>"));
+                                ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent I = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                                        startActivity(I);
+                                    }
+                                });
 
-                                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                                    ab.show();
+                                ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
+                                ab.show();
 
-                                }else{
+                            }else{
 
-                                    new Daily_Questionnaire(daily_ques_array).execute();
+                                new Daily_Questionnaire(daily_ques_array).execute();
 
 
-                                }
                             }
+                        }
 
 
-                       // }
+                        // }
 
                     }
                     else
@@ -900,7 +918,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
             }
             else
-                {
+            {
                 Message.obtain(
                         mHandler,
                         UPDATE_LATLNG,
@@ -929,5 +947,41 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         }
 
     };
+
+    private TextWatcher inputTextWatcher1 = new TextWatcher() {
+
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (et_other_prblm.getText().length() >0) {
+                checkForEnglish(et_other_prblm);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {}
+    };
+
+    public void checkForEnglish(EditText etxt) {
+        if (etxt.getText().length() > 0) {
+            String s = etxt.getText().toString();
+            if (isInputInEnglish(s)) {
+                //OK
+            } else {
+                Toast.makeText(this, "कृपया अंग्रेजी में लिखे", Toast.LENGTH_SHORT).show();
+                etxt.setText("");
+            }
+        }
+    }
+    public static boolean isInputInEnglish(String txtVal) {
+
+        String regx = "^[A-Z0-9]+$";
+        Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(txtVal);
+        return matcher.find();
+    }
 
 }
