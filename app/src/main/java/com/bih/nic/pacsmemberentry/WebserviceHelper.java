@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bih.nic.pacsmemberentry.Model.AcptdRjctdJobOfferEntity;
+import com.bih.nic.pacsmemberentry.Model.AddHospitalEntity;
 import com.bih.nic.pacsmemberentry.Model.ApproveWorkSiteEntity;
 import com.bih.nic.pacsmemberentry.Model.BenDetails;
 import com.bih.nic.pacsmemberentry.Model.BlkCompanyJobDetailsEntity;
 import com.bih.nic.pacsmemberentry.Model.BlockJobOfferPostedEntity;
 import com.bih.nic.pacsmemberentry.Model.BlockWeb;
+import com.bih.nic.pacsmemberentry.Model.CategoryMaster;
 import com.bih.nic.pacsmemberentry.Model.ConsolidatedReportModel;
 import com.bih.nic.pacsmemberentry.Model.DefaultResponse;
 import com.bih.nic.pacsmemberentry.Model.DepartmentLoginEntity;
@@ -17,6 +19,7 @@ import com.bih.nic.pacsmemberentry.Model.DepartmentWiseVacancy;
 import com.bih.nic.pacsmemberentry.Model.District;
 import com.bih.nic.pacsmemberentry.Model.EmpRegDetails;
 import com.bih.nic.pacsmemberentry.Model.EmployerDetails;
+import com.bih.nic.pacsmemberentry.Model.HospitalMastar;
 import com.bih.nic.pacsmemberentry.Model.JobListEntity;
 import com.bih.nic.pacsmemberentry.Model.JobOfferPostedEntity;
 import com.bih.nic.pacsmemberentry.Model.PacsMemeberEntity;
@@ -152,6 +155,7 @@ public class WebserviceHelper implements KvmSerializable {
 
     private static final String GET_SUB_DEPT_WISE_VACENCY_METHOD="rpt_DepartmentWiseVacancyORG";
     private static final String InsertData_Ben="SurveyDetails";
+    private static final String Category="SurveyDetails";
 
     static String rest;
 
@@ -2037,6 +2041,8 @@ public class WebserviceHelper implements KvmSerializable {
         }
 
     }
+
+
     public static DefaultResponse EmpRegistration(EmpRegDetails user)
     {
         SoapObject request = new SoapObject(SERVICENAMESPACE, EmployerRegistration_METHOD);
@@ -2094,6 +2100,8 @@ public class WebserviceHelper implements KvmSerializable {
 //        }
 //        return rest;
     }
+
+
 
 
     public static ArrayList<DepartmentMaster> getDeptData()
@@ -3072,6 +3080,107 @@ public class WebserviceHelper implements KvmSerializable {
         // response.put("HTTPStatus",httpResponse.getStatusLine().toString());
 
         return res;
+
+    }
+
+    public static String Registration(AddHospitalEntity user) {
+        try {
+            SoapObject request = new SoapObject(SERVICENAMESPACE, InsertData_Ben);
+            request.addProperty("_Dist_Code",user.getDist_Code());
+            request.addProperty("_BlockCode",user.getCat_Code());
+            request.addProperty("_panchayatCode",user.getHos_Code());
+            request.addProperty("_Other_panchayatName",user.getPic());
+            request.addProperty("_benName",user.getUserId());
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(SERVICENAMESPACE,
+                    AddHospitalEntity.USER_CLASS.getSimpleName(),
+                    AddHospitalEntity.USER_CLASS);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + InsertData_Ben, envelope);
+
+            Object result = envelope.getResponse();
+
+            if (result != null) {
+                // Log.d("", result.toString());
+
+                return result.toString();
+            } else
+                return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static CategoryMaster loadCategory() {
+
+        SoapObject request = new SoapObject(SERVICENAMESPACE, Category);
+
+
+        CategoryMaster ben;
+        SoapObject res1;
+        try {
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(SERVICENAMESPACE,CategoryMaster.USER_CLASS.getSimpleName(), CategoryMaster.USER_CLASS);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + Category, envelope);
+
+            res1 = (SoapObject) envelope.getResponse();
+
+            int TotalProperty = res1.getPropertyCount();
+
+            ben = new CategoryMaster(res1);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            if(e.getLocalizedMessage()!=null) {
+                Log.e("EXC", e.getLocalizedMessage());
+            }
+            return null;
+        }
+        return ben;
+
+    }
+    public static HospitalMastar loadHospital(String Dist_Code,String Cat_Code) {
+
+        SoapObject request = new SoapObject(SERVICENAMESPACE, Category);
+
+        request.addProperty("_Dist_Code",Dist_Code);
+        request.addProperty("_CatCode",Cat_Code);
+        HospitalMastar ben;
+        SoapObject res1;
+        try {
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(SERVICENAMESPACE,HospitalMastar.USER_CLASS.getSimpleName(), HospitalMastar.USER_CLASS);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + Category, envelope);
+
+            res1 = (SoapObject) envelope.getResponse();
+
+            int TotalProperty = res1.getPropertyCount();
+
+            ben = new HospitalMastar(res1);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            if(e.getLocalizedMessage()!=null) {
+                Log.e("EXC", e.getLocalizedMessage());
+            }
+            return null;
+        }
+        return ben;
 
     }
 }

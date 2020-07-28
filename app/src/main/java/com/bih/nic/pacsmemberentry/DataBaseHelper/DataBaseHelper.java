@@ -1,5 +1,6 @@
 package com.bih.nic.pacsmemberentry.DataBaseHelper;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import com.bih.nic.pacsmemberentry.Model.BlockWeb;
 import com.bih.nic.pacsmemberentry.Model.CategoryMaster;
 import com.bih.nic.pacsmemberentry.Model.DepartmentMaster;
 import com.bih.nic.pacsmemberentry.Model.District;
+import com.bih.nic.pacsmemberentry.Model.HospitalMastar;
 import com.bih.nic.pacsmemberentry.Model.Organisation;
 import com.bih.nic.pacsmemberentry.Model.SkillMaster;
 import com.bih.nic.pacsmemberentry.Model.SubSkillMaster;
@@ -1401,7 +1403,7 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cur = db
                     .rawQuery(
-                            "SELECT * from  Districts order by DistNameHN", null);
+                            "SELECT * from  Districts order by DistName", null);
             int x = cur.getCount();
 
             while (cur.moveToNext()) {
@@ -1409,7 +1411,79 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
                 District district = new District();
                 district.set_DistCode(cur.getString(cur
                         .getColumnIndex("DistCode")));
-                district.set_DistNameHN(cur.getString(cur.getColumnIndex("DistNameHN")));
+                district.set_DistNameHN(cur.getString(cur.getColumnIndex("DistName")));
+                //district.setDistrictName(cur.getString(cur.getColumnIndex("DistName")));
+
+
+
+                districtList.add(district);
+            }
+
+            cur.close();
+            db.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+
+        }
+        return districtList;
+
+    }
+    public ArrayList<CategoryMaster> getCategoryLocal() {
+
+        ArrayList<CategoryMaster> districtList = new ArrayList<CategoryMaster>();
+
+        try {
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cur = db
+                    .rawQuery(
+                            "SELECT * from  Category order by Category_Name", null);
+            int x = cur.getCount();
+
+            while (cur.moveToNext()) {
+
+                CategoryMaster district = new CategoryMaster();
+                district.setCat_id(cur.getString(cur
+                        .getColumnIndex("Category_Code")));
+                district.setCat_name(cur.getString(cur.getColumnIndex("Category_Name")));
+                //district.setDistrictName(cur.getString(cur.getColumnIndex("DistName")));
+
+
+
+                districtList.add(district);
+            }
+
+            cur.close();
+            db.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+
+        }
+        return districtList;
+
+    }
+    public ArrayList<HospitalMastar> getHospital() {
+
+        ArrayList<HospitalMastar> districtList = new ArrayList<HospitalMastar>();
+
+        try {
+
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cur = db
+                    .rawQuery(
+                            "SELECT * from  Hospital order by Hos_Name", null);
+            int x = cur.getCount();
+
+            while (cur.moveToNext()) {
+
+                HospitalMastar district = new HospitalMastar();
+                district.setHos_Code(cur.getString(cur
+                        .getColumnIndex("Hos_Code")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("Hos_Name")));
                 //district.setDistrictName(cur.getString(cur.getColumnIndex("DistName")));
 
 
@@ -1542,6 +1616,79 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
             }
         }
         return c;
+    }
+
+//    public long insertCategory(ArrayList<CategoryMaster> result) {
+//
+//        long c = -1;
+//        try {
+//
+//            SQLiteDatabase db = this.getWritableDatabase();
+//            //db.execSQL("Delete from Shg_Village_New");
+//            // "SHG" ( `SHG_ID` TEXT, `SHG_NAME` TEXT, `PG_ID` TEXT, `PG_NAME` TEXT, `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `Village_Code` TEXT, `Village_Name` TEXT )
+//            for (CategoryMaster SHGType : result) {
+//
+//
+//                ContentValues values = new ContentValues();
+//                values.put("Category_Code", SHGType.getCat_id().trim());
+//                values.put("Category_Name", SHGType.getCat_name().trim());
+//
+//                String[] whereArgs = new String[]{SHGType.getCat_id()};
+//                c = db.update("Category", values, "Category_Code=?", whereArgs);
+//                if (!(c > 0)) {
+//                    c = db.insert("Category", null, values);
+//                }
+//
+//            }
+//            db.close();
+//            getWritableDatabase().close();
+//
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//        }
+//        return c;
+//    }
+    public long insertCategory(CategoryMaster sevikaSahaikaEntity) {
+        long c=-1;
+        try {
+            DataBaseHelper placeData = new DataBaseHelper(myContext);
+            SQLiteDatabase db = placeData.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Category_Code",sevikaSahaikaEntity.getCat_id());
+            contentValues.put("Category_Name",sevikaSahaikaEntity.getCat_name());
+            String[] whereArgs = new String[]{sevikaSahaikaEntity.getCat_id()};
+                c = db.update("Category", contentValues, "Category_Code=?", whereArgs);
+                if (!(c > 0)) {
+                    c = db.insert("Category", null, contentValues);
+                }
+            //c = db.insert("Category", null, contentValues);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+        return  c;
+    }
+    public long insertHospital(HospitalMastar sevikaSahaikaEntity) {
+        long c=-1;
+        try {
+            DataBaseHelper placeData = new DataBaseHelper(myContext);
+            SQLiteDatabase db = placeData.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Hos_Code",sevikaSahaikaEntity.getHos_Code());
+            contentValues.put("Hos_Name",sevikaSahaikaEntity.getHos_Name());
+            contentValues.put("Cat_Code",sevikaSahaikaEntity.getCat_Code());
+            contentValues.put("Dist_Code",sevikaSahaikaEntity.getDist_Code());
+            String[] whereArgs = new String[]{sevikaSahaikaEntity.getHos_Code()};
+            c = db.update("Hospital", contentValues, "Hos_Code=?", whereArgs);
+            if (!(c > 0)) {
+                c = db.insert("Hospital", null, contentValues);
+            }
+            //c = db.insert("Category", null, contentValues);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+        return  c;
     }
 
 }
