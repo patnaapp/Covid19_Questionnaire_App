@@ -69,7 +69,7 @@
         android:background="@drawable/shape_adapter_cell">
 
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/ll_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -173,6 +173,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_weight="1"
                 android:id="@+id/ll_zone"
                 android:layout_width="match_parent"
@@ -284,14 +285,14 @@
                     android:id="@+id/tv_superviser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Arwal"
+                    android:text="Text"
                     android:maxLines="3"
                     android:textColor="@android:color/black"
                     android:textSize="13sp"/>
             </LinearLayout>
 
             <LinearLayout
-
+                android:visibility="gone"
                 android:layout_weight="1"
                 android:id="@+id/ll_role1"
                 android:layout_width="match_parent"
@@ -364,6 +365,7 @@
         android:layout_below="@+id/rl_user_info">
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

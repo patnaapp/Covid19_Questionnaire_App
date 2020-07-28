@@ -14,7 +14,7 @@ public class PreLoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_login);
-
+        getActionBar().hide();
     }
 
     public void onDeptartmentLoginClick(View v)
@@ -22,7 +22,7 @@ public class PreLoginActivity extends Activity {
         Intent intent = new Intent(this, Login.class);
         intent.putExtra("role", "SUP");
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void onComplainSystemClick(View v)
@@ -30,6 +30,6 @@ public class PreLoginActivity extends Activity {
         Intent intent = new Intent(this, Login.class);
         intent.putExtra("role", "PAT");
         startActivity(intent);
-        finish();
+        //finish();
     }
 }

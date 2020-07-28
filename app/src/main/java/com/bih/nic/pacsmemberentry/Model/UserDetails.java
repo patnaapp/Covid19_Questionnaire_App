@@ -73,6 +73,27 @@ public class UserDetails implements KvmSerializable {
 
     }
 
+    public UserDetails(SoapObject res1, String type) {
+        this.setAuthenticated(Boolean.parseBoolean(res1.getProperty("Status").toString()));
+        this.Message=res1.getProperty("msg").toString();
+
+        this._UserId=res1.getProperty("UserId").toString();
+        this._Passwoed=res1.getProperty("Password").toString();
+        this.UserName=res1.getProperty("UserName").toString();
+        this.SupervisorId=res1.getProperty("SupId").toString();
+        this.SupervisorName=res1.getProperty("UserName").toString();
+        this.Role=res1.getProperty("UserRole").toString();
+
+//        this.DistCode=res1.getProperty("DistrictCode").toString();
+//        this.DistName=res1.getProperty("DistrictName").toString();
+//        this.BlockCode=res1.getProperty("BlockCode").toString();
+//        this.BlockName=res1.getProperty("BlockName").toString();
+//        this.PanchayatCode=res1.getProperty("PanchayatCode").toString();
+//        this.PanchayatName=res1.getProperty("PanchayatName").toString();
+
+
+    }
+
     @Override
     public Object getProperty(int index) {
         return null;

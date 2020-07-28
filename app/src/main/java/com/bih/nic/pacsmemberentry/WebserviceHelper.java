@@ -96,7 +96,7 @@ public class WebserviceHelper implements KvmSerializable {
 //    public static final String SERVICEURL = "http://10.133.20.159/TestService/MigrantJobSearchWebservice.asmx";
 
     private static final String AuthenticateUser = "Authenticate";
-    private static final String AuthenticateSupervisor = "Authenticate";
+    private static final String AuthenticateSupervisor = "AuthenticateSuperVisor";
     private static final String AuthenticateORGUser = "AuthenticateOrgLogin";
     private static final String AuthenticateDPTUser = "AuthenticateDPtLogin";
     private static final String GETBENEFICIARYLIST="getAadhaar";
@@ -483,7 +483,7 @@ public class WebserviceHelper implements KvmSerializable {
             SoapObject res1;
             res1=getServerData(AuthenticateSupervisor, UserDetails.getUserClass(),"_UserId","_Password",User_ID,Pwd);
             if (res1 != null) {
-                return new UserDetails(res1);
+                return new UserDetails(res1, "1");
             } else
                 return null;
 

@@ -28,14 +28,14 @@ public class Supervisor_HomeActivity extends Activity {
     TextView tv_email,tv_dept_name,tv_version;
     TextView tv_name,tv_f_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile,tv_superviser;
     LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
-    String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
+    String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="",SupervisorId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sup_home);
 
-        // getActionBar().hide();
+        getActionBar().hide();
         Utiilties.setStatusBarColor(this);
         dataBaseHelper=new DataBaseHelper(Supervisor_HomeActivity.this);
         tv_name=findViewById(R.id.tv_name);
@@ -54,22 +54,12 @@ public class Supervisor_HomeActivity extends Activity {
             tv_version.setText("");
         }
 
-        PatientName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientName", "");
-        Address=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Address", "");
 
-
-        //DistName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistName", "");
+        SupervisorId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         SupervisorName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorName", "");
-        Mobile=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
-        FHName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("FHName", "");
-        Covid19TestingDate=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Covid19TestingDate", "");
-        UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserRole", "");
-        String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserName", "");
+        UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("user_role", "");
+        //String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserName", "");
 
-        tv_name.setText(PatientName);
-        tv_f_name.setText(FHName);
-        tv_address.setText(Address);
-        tv_mobile.setText(Mobile);
         tv_superviser.setText(SupervisorName);
 
 //        if(UserRole.equals("ORGADM"))
@@ -95,18 +85,17 @@ public class Supervisor_HomeActivity extends Activity {
 //        }
     }
 
-    public void OnClick_goToLoginScreen(View view)
-    {
+    public void OnClick_goToLoginScreen(View view){
         new AlertDialog.Builder(this)
-                .setTitle("लॉग आउट ?")
-                .setMessage("क्या आप वाकई एप्लिकेशन से लॉगआउट करना चाहते हैं \n ")
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout from account? \n ")
                 .setCancelable(false)
-                .setPositiveButton("हाँ", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         confirmLogout();
                     }
                 })
-                .setNegativeButton("नहीं", null)
+                .setNegativeButton("No", null)
                 .show();
     }
 

@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -35,7 +36,7 @@ public class Login extends Activity {
     EditText et_reg_no, et_otp;
     String str_email, str_pass;
     String[] param;
-    TextView text_signup,tv_version;
+    TextView text_signup,tv_version,tv_reqst_otp;
     TelephonyManager tm;
     private static String imei;
     TextView info;
@@ -58,13 +59,17 @@ public class Login extends Activity {
         }
 
         role = getIntent().getStringExtra("role");
-
+        if (role.equals("SUP")){
+            et_reg_no.setHint("Enter Username");
+            et_reg_no.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+            et_otp.setHint("Enter Password");
+            tv_reqst_otp.setVisibility(View.GONE);
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Login.this, HqHomeActivity.class);
-//                startActivity(intent);
+
                 setvalue();
                 if(isValidInput()){
                     if(Utiilties.isOnline(getApplicationContext())) {
@@ -74,6 +79,8 @@ public class Login extends Activity {
                         }
                         else if (role.equals("SUP"))
                         {
+//                            Intent intent = new Intent(Login.this, Supervisor_HomeActivity.class);
+//                            startActivity(intent);
                             new LoginTaskSupervisor(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
                         }
 
@@ -117,6 +124,7 @@ public class Login extends Activity {
         et_reg_no = (EditText) findViewById(R.id.et_reg_no);
         et_otp = (EditText) findViewById(R.id.et_otp);
         btn_login = (Button) findViewById(R.id.btn_login);
+        tv_reqst_otp = (TextView) findViewById(R.id.tv_reqst_otp);
 
         tv_version = (TextView) findViewById(R.id.tv_version);
     }
@@ -197,6 +205,7 @@ public class Login extends Activity {
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
 
                     Intent intent=new Intent(Login.this, HqHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
 
@@ -312,15 +321,8 @@ public class Login extends Activity {
 
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("UserId",result.get_UserId()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Password",et_otp.getText().toString()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("FHName",result.getFHName()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientId",result.getPatientId()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientName",result.getPatientName()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorId",result.getSupervisorId()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorName",result.getSupervisorName()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Mobile",result.getMobileNo()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Address",result.getAddress()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Covid19TestingDate",result.getCovid19TestingDate()).commit();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ImpDate",result.getImpDate()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isLogin",true).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("user_role","SUP").commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
@@ -328,6 +330,7 @@ public class Login extends Activity {
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
 
                     Intent intent=new Intent(Login.this, Supervisor_HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
 

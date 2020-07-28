@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="end"
-    android:background="@android:color/white"
+    android:background="@color/colorPrimary"
     >
 
     <include
@@ -28,7 +28,7 @@
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/cardshape"
+            android:background="@drawable/shape_white"
             android:orientation="horizontal">
 
             <ImageView
@@ -57,7 +57,7 @@
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/cardshape"
+            android:background="@drawable/shape_white"
             android:orientation="horizontal">
 
             <ImageView
@@ -84,12 +84,14 @@
         android:layout_above="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/holo_button_normal"
+        android:textColor="@color/secondaryColor"
         android:textAlignment="center"
         android:text="App Version 1.0"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginBottom="6dp"
+        android:layout_alignParentBottom="true"/>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/footer"
         android:layout_width="wrap_content"
         android:layout_height="46dp"

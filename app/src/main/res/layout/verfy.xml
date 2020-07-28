@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textboxshape2"
-                android:hint="Otp"
+                android:hint="Enter Otp"
                 android:inputType="numberPassword"
                 android:padding="10dp"
                 android:maxLength="6"
@@ -116,6 +116,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/tv_reqst_otp"
             android:layout_marginTop="16dp"
             android:layout_below="@+id/ll_input"
             android:layout_weight="1"

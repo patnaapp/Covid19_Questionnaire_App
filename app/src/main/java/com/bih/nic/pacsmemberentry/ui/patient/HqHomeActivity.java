@@ -18,6 +18,7 @@ import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.ui.Login;
+import com.bih.nic.pacsmemberentry.ui.PreLoginActivity;
 
 
 public class HqHomeActivity extends Activity {
@@ -94,18 +95,17 @@ public class HqHomeActivity extends Activity {
 //        }
     }
 
-    public void OnClick_goToLoginScreen(View view)
-    {
+    public void OnClick_goToLoginScreen(View view){
         new AlertDialog.Builder(this)
-                .setTitle("लॉग आउट ?")
-                .setMessage("क्या आप वाकई एप्लिकेशन से लॉगआउट करना चाहते हैं \n ")
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout from account? \n ")
                 .setCancelable(false)
-                .setPositiveButton("हाँ", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         confirmLogout();
                     }
                 })
-                .setNegativeButton("नहीं", null)
+                .setNegativeButton("No", null)
                 .show();
     }
 
@@ -115,7 +115,7 @@ public class HqHomeActivity extends Activity {
         SharedPreferences settings = this.getSharedPreferences("PreferencesName", Context.MODE_PRIVATE);
         settings.edit().clear().commit();
         GlobalVariables.isLogin=false;
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, PreLoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //intent.putExtra("From", AppConstant.HQ);
         startActivity(intent);
