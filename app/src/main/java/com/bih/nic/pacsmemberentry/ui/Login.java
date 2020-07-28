@@ -1,4 +1,4 @@
-package com.bih.nic.pacsmemberentry.ui.patient;
+package com.bih.nic.pacsmemberentry.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +22,9 @@ import com.bih.nic.pacsmemberentry.Model.panchayat;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
+import com.bih.nic.pacsmemberentry.ui.patient.ChangeMobileNumberActivity;
+import com.bih.nic.pacsmemberentry.ui.patient.HqHomeActivity;
+import com.bih.nic.pacsmemberentry.ui.patient.RequestOtpActivity;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,8 @@ public class Login extends Activity {
     TelephonyManager tm;
     private static String imei;
     TextView info;
+
+    String role ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +55,8 @@ public class Login extends Activity {
         }else{
             tv_version.setText("");
         }
+
+        role = getIntent().getStringExtra("role");
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {

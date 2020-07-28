@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.bih.nic.pacsmemberentry.BenfiList;
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 
-import com.bih.nic.pacsmemberentry.ui.patient.Login;
+import com.bih.nic.pacsmemberentry.ui.Login;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;

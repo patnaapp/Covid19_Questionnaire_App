@@ -29,7 +29,6 @@ import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 
 import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.ui.patient.HqHomeActivity;
-import com.bih.nic.pacsmemberentry.ui.patient.Login;
 import com.bih.nic.pacsmemberentry.MarshmallowPermission;
 import com.bih.nic.pacsmemberentry.Model.Versioninfo;
 import com.bih.nic.pacsmemberentry.R;
@@ -310,7 +309,7 @@ public class SplashActivity extends Activity {
                     startActivity(i);
                     finish();
                 }else{
-                    Intent i = new Intent(SplashActivity.this, Login.class);
+                    Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
                     startActivity(i);
                     finish();
                 }

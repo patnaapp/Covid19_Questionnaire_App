@@ -68,6 +68,7 @@
         <activity android:name=".ui.patient.CovidQuestionnaire_Activity"></activity>
         <activity android:name=".ui.patient.BankDetailsActivity" />
         <activity android:name=".ui.patient.NewPAcsMemberEntry_Activity" />
+        <activity android:name=".ui.PreLoginActivity"/>
         <activity
             android:name=".ui.patient.HqHomeActivity"
             android:theme="@style/NoActionBar"></activity>
@@ -86,7 +87,7 @@
         <activity android:name=".ui.patient.MainHomeActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".VerifyAadhaar1" />
-        <activity android:name=".ui.patient.Login" /> <!-- <activity -->
+        <activity android:name=".ui.Login" /> <!-- <activity -->
         <!-- android:name=".UpdateAdhaar" -->
         <!-- android:exported="true"> -->
         <!-- <intent-filter> -->

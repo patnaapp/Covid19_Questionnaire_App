@@ -17,6 +17,7 @@ import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
+import com.bih.nic.pacsmemberentry.ui.Login;
 
 
 public class HqHomeActivity extends Activity {
@@ -47,7 +48,7 @@ public class HqHomeActivity extends Activity {
 
         String version = Utiilties.getAppVersion(this);
         if(version != null){
-            tv_version.setText("ऐप वर्ज़न "+version);
+            tv_version.setText("App Version "+version);
         }else{
             tv_version.setText("");
         }
