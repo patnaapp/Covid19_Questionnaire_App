@@ -86,7 +86,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
     String Lat1="",Long1="";
     ArrayList<Upload_Questionnaire_entity> daily_ques_array;
     String ques_Id="";
-    String superisor_id="",patient_id="";
+    String superisor_id="",patient_id="",role;
     ProgressBar profressBar1;
     LinearLayout ll_body_temp;
 
@@ -103,7 +103,12 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
         superisor_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         patient_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
-        //  ques_count=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
+        role=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("user_role", "");
+
+        if(role.equals("SUP")){
+            patient_id = getIntent().getStringExtra("PatientId");
+        }
+
         initialize();
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
@@ -127,6 +132,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             e.printStackTrace();
         }
 
+
         img_test_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +145,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                 ShowDialog1();
             }
         });
-        et_body_temp.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
+        et_body_temp.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,1)});
         btn_submit.setOnClickListener(new View.OnClickListener()
         {
             @Override

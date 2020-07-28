@@ -18,6 +18,7 @@ import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.ui.Login;
+import com.bih.nic.pacsmemberentry.ui.PreLoginActivity;
 import com.bih.nic.pacsmemberentry.ui.patient.CovidQuestionnaire_Activity;
 
 
@@ -108,7 +109,7 @@ public class Supervisor_HomeActivity extends Activity {
         SharedPreferences settings = this.getSharedPreferences("PreferencesName", Context.MODE_PRIVATE);
         settings.edit().clear().commit();
         GlobalVariables.isLogin=false;
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, PreLoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //intent.putExtra("From", AppConstant.HQ);
         startActivity(intent);
