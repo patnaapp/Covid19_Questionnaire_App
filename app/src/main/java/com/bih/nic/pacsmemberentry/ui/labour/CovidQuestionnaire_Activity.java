@@ -92,6 +92,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
     String ques_Id="";
     String superisor_id="",patient_id="";
     ProgressBar profressBar1;
+    LinearLayout ll_body_temp;
 
 
     @Override
@@ -242,6 +243,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
         tv_lat1=findViewById(R.id.tv_lat_lnr1);
         tv_long1=findViewById(R.id.tv_long_lnr1);
+        ll_body_temp=findViewById(R.id.ll_body_temp);
 
         daily_ques_array = new ArrayList<>();
     }
@@ -370,8 +372,10 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
                     ques_Id="";
                     if(_fever_status_nm.equals("YES")){
                         _fever_status_id = "Y";
+                        ll_body_temp.setVisibility(View.VISIBLE);
                     }else if(_fever_status_nm.equals("NO")){
                         _fever_status_id = "N";
+                        ll_body_temp.setVisibility(View.GONE);
                     }
                 }
                 break;
@@ -602,11 +606,16 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             cancelRegistration = true;
         }
 
-        if (TextUtils.isEmpty(et_body_temp.getText().toString())) {
-            et_body_temp.setError("Please enter your body temperature");
-            focusView = et_body_temp;
-            cancelRegistration = true;
+        if (_fever_status_id.equals("Y"))
+        {
+            if (TextUtils.isEmpty(et_body_temp.getText().toString()))
+            {
+                et_body_temp.setError("Please enter your body temperature");
+                focusView = et_body_temp;
+                cancelRegistration = true;
+            }
         }
+
         if (TextUtils.isEmpty(et_other_prblm.getText().toString())) {
             et_other_prblm.setError("Please enter do you have any other problems.");
             focusView = et_other_prblm;
@@ -971,14 +980,15 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             if (isInputInEnglish(s)) {
                 //OK
             } else {
-                Toast.makeText(this, "कृपया अंग्रेजी में लिखे", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please write in english and only text no numbers", Toast.LENGTH_SHORT).show();
                 etxt.setText("");
             }
         }
     }
     public static boolean isInputInEnglish(String txtVal) {
 
-        String regx = "^[A-Z0-9]+$";
+        String regx = "^[A-Z_ ]+$";
+
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(txtVal);
         return matcher.find();
