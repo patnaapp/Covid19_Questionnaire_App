@@ -145,7 +145,7 @@ public class Supervisor_HomeActivity extends Activity {
 
     public  void onView_Patient(View view)
     {
-        Intent i=new Intent(Supervisor_HomeActivity.this,CovidQuestionnaire_Activity.class);
+        Intent i=new Intent(Supervisor_HomeActivity.this,JobSearchActivity.class);
         startActivity(i);
     }
 

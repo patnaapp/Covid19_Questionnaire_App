@@ -81,11 +81,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.patient.PaymentStatusActivity" />
-        <activity android:name=".ui.patient.JobSearchActivity" />
         <activity android:name=".ui.patient.ModifyDocumentActivity" />
         <activity android:name=".ui.patient.ProfileActivity" />
         <activity android:name=".ui.patient.RequestOtpActivity" />
         <activity android:name=".ui.patient.MainHomeActivity" />
+        <activity android:name=".ui.supervisor.JobSearchActivity"/>
         <activity android:name=".HomeActivity" />
         <activity android:name=".VerifyAadhaar1" />
         <activity android:name=".ui.Login" /> <!-- <activity -->

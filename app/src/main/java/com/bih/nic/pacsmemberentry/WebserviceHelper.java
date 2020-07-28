@@ -109,6 +109,7 @@ public class WebserviceHelper implements KvmSerializable {
     private static final String Dept_METHOD="DepartmentList";
     private static final String JOB_SEARCH_METHOD="JobSearchDetails1";
     private static final String GET_JOB_REQUEST_METHOD="GetJobRequest";
+    private static final String GET_PATIENTLIST_METHOD="PatientWiseSuperVisor";
     private static final String GET_JOB_Offer_Posted_METHOD="GetJobOfferOrg";
     private static final String GET_Work_Details_Approval="BenApprovalbyOrgAdm";
     private static final String GET_Work_Details_ApprovalBy_Dst="BenApprovalbyDSTAdm";
@@ -226,8 +227,7 @@ public class WebserviceHelper implements KvmSerializable {
         return userDetails;
     }
 
-    public static ArrayList<JobListEntity> searchJobMasterData(String regId, String distId)
-    {
+    public static ArrayList<JobListEntity> searchJobMasterData(String regId, String distId){
 
         SoapObject res1;
         res1=getServerData(GET_JOB_REQUEST_METHOD, JobListEntity.JobListEntity_CLASS, "RegistrationNo", regId);
@@ -3182,5 +3182,36 @@ public class WebserviceHelper implements KvmSerializable {
         }
         return ben;
 
+    }
+
+    public static ArrayList<JobListEntity> getPatientList(String userId){
+
+        SoapObject res1;
+        res1=getServerData(GET_PATIENTLIST_METHOD, JobListEntity.JobListEntity_CLASS, "_Supid", userId);
+        int TotalProperty=0;
+        if(res1!=null) TotalProperty= res1.getPropertyCount();
+
+        ArrayList<JobListEntity> fieldList = new ArrayList<JobListEntity>();
+
+        for (int i = 0; i < TotalProperty; i++)
+        {
+            if (res1.getProperty(i) != null)
+            {
+                Object property = res1.getProperty(i);
+                if (property instanceof SoapObject)
+                {
+                    SoapObject final_object = (SoapObject) property;
+                    JobListEntity block= new JobListEntity(final_object);
+                    fieldList.add(block);
+                }
+            }
+            else
+            {
+                return fieldList;
+            }
+
+        }
+
+        return fieldList;
     }
 }

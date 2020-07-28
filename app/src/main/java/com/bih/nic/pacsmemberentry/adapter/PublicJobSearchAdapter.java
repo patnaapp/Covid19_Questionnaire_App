@@ -40,33 +40,33 @@ public class PublicJobSearchAdapter extends RecyclerView.Adapter<PublicJobSearch
         final JobListEntity info = ThrList.get(position);
 
         holder.tv_slno.setText(String.valueOf(position+1));
-        holder.tv_work_site.setText(info.getWorkSite());
-        holder.tv_skill_cat.setText(info.getSkillCategory());
-        holder.tv_skill_name.setText(info.getSkillName());
-        holder.tv_person_no.setText(info.getNumberOfPerson());
-        holder.tv_gendar.setText(info.getGendar());
-        holder.tv_start_date.setText(info.getStartDate());
-        holder.tv_exp.setText(info.getExperience());
-        holder.tv_exp_max.setText(info.getExperienceMax());
-        holder.tv_salary.setText(info.getSalary());
-        holder.tv_salary_max.setText(info.getSalaryMax());
-        holder.tv_block.setText(info.getBlock());
-        holder.tv_supervisor_name.setText(info.getContactName());
-        holder.tv_super_no.setText(info.getContactNumber());
-
-        if(info.getContactNumber() != null && info.getContactNumber() != "NA"){
-            holder.iv_call.setVisibility(View.VISIBLE);
-        }else{
-            holder.iv_call.setVisibility(View.GONE);
-        }
-
-        holder.iv_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", info.getContactNumber(), null));
-                activity.startActivity(intent);
-            }
-        });
+//        holder.tv_work_site.setText(info.getWorkSite());
+//        holder.tv_skill_cat.setText(info.getSkillCategory());
+//        holder.tv_skill_name.setText(info.getSkillName());
+//        holder.tv_person_no.setText(info.getNumberOfPerson());
+//        holder.tv_gendar.setText(info.getGendar());
+//        holder.tv_start_date.setText(info.getStartDate());
+//        holder.tv_exp.setText(info.getExperience());
+//        holder.tv_exp_max.setText(info.getExperienceMax());
+//        holder.tv_salary.setText(info.getSalary());
+//        holder.tv_salary_max.setText(info.getSalaryMax());
+//        holder.tv_block.setText(info.getBlock());
+//        holder.tv_supervisor_name.setText(info.getContactName());
+//        holder.tv_super_no.setText(info.getContactNumber());
+//
+//        if(info.getContactNumber() != null && info.getContactNumber() != "NA"){
+//            holder.iv_call.setVisibility(View.VISIBLE);
+//        }else{
+//            holder.iv_call.setVisibility(View.GONE);
+//        }
+//
+//        holder.iv_call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", info.getContactNumber(), null));
+//                activity.startActivity(intent);
+//            }
+//        });
     }
 
     @Override

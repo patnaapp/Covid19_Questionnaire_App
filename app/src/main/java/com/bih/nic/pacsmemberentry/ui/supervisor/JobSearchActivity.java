@@ -7,26 +7,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.pacsmemberentry.GlobalVariables;
-import com.bih.nic.pacsmemberentry.Model.BenDetails;
-import com.bih.nic.pacsmemberentry.Model.District;
 import com.bih.nic.pacsmemberentry.Model.JobListEntity;
-import com.bih.nic.pacsmemberentry.Model.SkillMaster;
-import com.bih.nic.pacsmemberentry.Model.SubSkillMaster;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
+import com.bih.nic.pacsmemberentry.adapter.JobSearchAdapter;
 
 import java.util.ArrayList;
 
@@ -34,15 +29,12 @@ public class JobSearchActivity extends Activity{
 
     RecyclerView listView;
     TextView tv_Norecord;
-    Spinner spn_skill,spn_sub_skill;
     ImageView img_back;
     JobSearchAdapter adaptor_showedit_listDetail;
 
     ProgressDialog dialog;
     ArrayList<JobListEntity> data;
-    BenDetails benDetails;
-
-    String DistId="", RegNo;
+    String userId;
 
     DataBaseHelper dataBaseHelper;
 
@@ -56,12 +48,10 @@ public class JobSearchActivity extends Activity{
 
         initialise();
 
-        RegNo = getIntent().getStringExtra("data");
+        userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
 
-
-        String distName = getIntent().getStringExtra("DistName");
         if(Utiilties.isOnline(this)){
-            new SyncJobSearchData().execute();
+            new SyncJobSearchData(userId).execute();
         }else{
             showAlertForInternet();
         }
@@ -92,7 +82,7 @@ public class JobSearchActivity extends Activity{
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
 
-            adaptor_showedit_listDetail = new JobSearchAdapter(this, data, RegNo);
+            adaptor_showedit_listDetail = new JobSearchAdapter(this, data);
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adaptor_showedit_listDetail);
 
@@ -106,7 +96,11 @@ public class JobSearchActivity extends Activity{
 
     private class SyncJobSearchData extends AsyncTask<String, Void, ArrayList<JobListEntity>> {
         private final ProgressDialog dialog = new ProgressDialog(JobSearchActivity.this);
-        int optionType;
+        String userId;
+
+        public SyncJobSearchData(String userId) {
+            this.userId = userId;
+        }
 
         @Override
         protected void onPreExecute() {
@@ -117,7 +111,7 @@ public class JobSearchActivity extends Activity{
 
         @Override
         protected ArrayList<JobListEntity> doInBackground(String...arg) {
-            return WebserviceHelper.searchJobMasterData(RegNo, DistId);
+            return WebserviceHelper.getPatientList(userId);
         }
 
         @Override
@@ -126,7 +120,7 @@ public class JobSearchActivity extends Activity{
                 this.dialog.dismiss();
             }
 
-            data = checkForJobSelection(result);
+            data = result;
             populateData();
 
         }
@@ -158,15 +152,15 @@ public class JobSearchActivity extends Activity{
         ab.show();
     }
 
-    public ArrayList<JobListEntity> checkForJobSelection(ArrayList<JobListEntity> list){
-        ArrayList<JobListEntity> selectedJob = new ArrayList<JobListEntity>();
-        for(JobListEntity item: list){
-            if(item.getIsSelected() != null && item.getIsSelected().equals("Y")){
-                selectedJob.add(item);
-                return selectedJob;
-            }
-        }
-
-        return list;
-    }
+//    public ArrayList<JobListEntity> checkForJobSelection(ArrayList<JobListEntity> list){
+//        ArrayList<JobListEntity> selectedJob = new ArrayList<JobListEntity>();
+//        for(JobListEntity item: list){
+//            if(item.getIsSelected() != null && item.getIsSelected().equals("Y")){
+//                selectedJob.add(item);
+//                return selectedJob;
+//            }
+//        }
+//
+//        return list;
+//    }
 }

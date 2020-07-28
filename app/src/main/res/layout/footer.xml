@@ -13,7 +13,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:paddingLeft="2dp"
-        android:text="एनआईसी बिहार द्वारा प्रदान की गई सेवाएं"
+        android:text="Service Provided by NIC Bihar"
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:textStyle="bold">
