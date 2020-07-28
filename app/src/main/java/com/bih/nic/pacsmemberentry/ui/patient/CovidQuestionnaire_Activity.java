@@ -42,6 +42,7 @@ import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.Model.DecimalDigitsInputFilter;
 import com.bih.nic.pacsmemberentry.Model.Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.Model.Upload_Questionnaire_entity;
+import com.bih.nic.pacsmemberentry.Model.checkstatus;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
@@ -89,7 +90,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
     String superisor_id="",patient_id="",role;
     ProgressBar profressBar1;
     LinearLayout ll_body_temp;
-
+    checkstatus benDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -100,6 +101,8 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         Utiilties.setStatusBarColor(this);
         dialog = new ProgressDialog(this);
         dialog.setCanceledOnTouchOutside(false);
+
+
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
         superisor_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         patient_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
@@ -107,6 +110,9 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
         if(role.equals("SUP")){
             patient_id = getIntent().getStringExtra("PatientId");
+        }
+        else if (role.equals("PAT")){
+            benDetails=(checkstatus)getIntent().getSerializableExtra("data");
         }
 
         initialize();
@@ -131,7 +137,12 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        if (Integer.parseInt(benDetails.getTotal())<1){
+            ll_test_date.setVisibility(View.VISIBLE);
+        }
+        else {
+            ll_test_date.setVisibility(View.GONE);
+        }
 
         img_test_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -630,11 +641,20 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         }
 
         // if (Integer.parseInt(ques_count)==0) {
-        if (TextUtils.isEmpty(edt_covid_test_date.getText().toString())) {
-            edt_covid_test_date.setError("Please select covid test date.");
-            focusView = edt_covid_test_date;
-            cancelRegistration = true;
+        try{
+            if (Integer.parseInt(benDetails.getTotal())<1){
+                if (TextUtils.isEmpty(edt_covid_test_date.getText().toString())) {
+                    edt_covid_test_date.setError("Please select covid test date.");
+                    focusView = edt_covid_test_date;
+                    cancelRegistration = true;
+                }
+            }
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         // }
 
 //        if (TextUtils.isEmpty(edt_discharge_date.getText().toString())) {

@@ -2,23 +2,35 @@ package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.pacsmemberentry.GlobalVariables;
+import com.bih.nic.pacsmemberentry.Model.checkstatus;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
+import com.bih.nic.pacsmemberentry.WebserviceHelper;
 import com.bih.nic.pacsmemberentry.ui.Login;
 import com.bih.nic.pacsmemberentry.ui.PreLoginActivity;
+import com.levitnudi.legacytableview.LegacyTableView;
+
+import java.util.ArrayList;
+
+import static com.levitnudi.legacytableview.LegacyTableView.BOLD;
+import static com.levitnudi.legacytableview.LegacyTableView.DEFAULT;
 
 
 public class HqHomeActivity extends Activity {
@@ -29,15 +41,21 @@ public class HqHomeActivity extends Activity {
     TextView tv_name,tv_f_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile,tv_superviser;
     LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
     String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
+    String patientid="";
+    checkstatus chk_status;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hq_home);
 
         // getActionBar().hide();
         Utiilties.setStatusBarColor(this);
         dataBaseHelper=new DataBaseHelper(HqHomeActivity.this);
+
+        chk_status=new checkstatus();
         tv_name=findViewById(R.id.tv_name);
         tv_f_name=findViewById(R.id.tv_f_name);
         tv_address=findViewById(R.id.tv_address);
@@ -54,8 +72,10 @@ public class HqHomeActivity extends Activity {
             tv_version.setText("");
         }
 
+
         PatientName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientName", "");
         Address=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Address", "");
+        patientid=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
 
 
         //DistName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistName", "");
@@ -65,6 +85,8 @@ public class HqHomeActivity extends Activity {
         Covid19TestingDate=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Covid19TestingDate", "");
         UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserRole", "");
         String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserName", "");
+
+        new CheckStatusForSurvey().execute();
 
         tv_name.setText(PatientName);
         tv_f_name.setText(FHName);
@@ -150,13 +172,38 @@ public class HqHomeActivity extends Activity {
     @Override
     protected void onResume()
     {
+        patientid=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
+        Mobile=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
+        new CheckStatusForSurvey().execute();
         super.onResume();
     }
 
     public  void onSelfDiagonosis(View view)
     {
-        Intent i=new Intent(HqHomeActivity.this,CovidQuestionnaire_Activity.class);
-        startActivity(i);
+        if (Integer.parseInt(chk_status.getToday().toString())>0){
+            AlertDialog.Builder ab = new AlertDialog.Builder(
+                    HqHomeActivity.this);
+            ab.setIcon(R.mipmap.ic_launcher);
+            ab.setTitle("Already submitted");
+            ab.setMessage("You have already submitted your diagnosis for today ");
+            ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton) {
+
+                    dialog.dismiss();
+
+                }
+            });
+
+
+            ab.show();
+        }
+        else {
+            Intent i=new Intent(HqHomeActivity.this,CovidQuestionnaire_Activity.class);
+            i.putExtra("data",chk_status);
+            startActivity(i);
+        }
+
     }
 
 //    public  void onViewDeptJobVacency(View view){
@@ -184,5 +231,48 @@ public class HqHomeActivity extends Activity {
         i.putExtra("facility_code","T");
         startActivity(i);
 
+    }
+
+    private class CheckStatusForSurvey extends AsyncTask<String, Void, checkstatus>
+    {
+        private final ProgressDialog dialog = new ProgressDialog(HqHomeActivity.this);
+        int optionType;
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setCanceledOnTouchOutside(false);
+            this.dialog.setMessage("लोड हो रहा है...");
+            this.dialog.show();
+        }
+
+        @Override
+        protected checkstatus doInBackground(String...arg)
+        {
+
+            return WebserviceHelper.checksurveystatus(patientid,Mobile);
+        }
+
+        @Override
+        protected void onPostExecute(checkstatus result)
+        {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+            Log.d("Responsevalue", "" + result);
+            if (result != null) {
+                chk_status=result;
+
+//                Intent i =new Intent(MainHomeActivity.this, ProfileActivity.class);
+//                i.putExtra("data",BenDetails);
+//                startActivity(i);
+
+
+            } else {
+
+                Toast.makeText(getApplicationContext(), "Result Null..Please Try Later", Toast.LENGTH_SHORT).show();
+            }
+
+        }
     }
 }

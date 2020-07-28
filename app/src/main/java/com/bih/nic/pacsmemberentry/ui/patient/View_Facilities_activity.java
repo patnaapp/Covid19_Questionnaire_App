@@ -72,7 +72,8 @@ public class View_Facilities_activity extends Activity
                 }
             }
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parent)
+            {
                 // TODO Auto-generated method stub
 
             }
@@ -86,7 +87,8 @@ public class View_Facilities_activity extends Activity
         districtNameArray = new ArrayList<String>();
         districtNameArray.add("-Select District-");
         int i = 1;
-        for (District district : DistrictList) {
+        for (District district : DistrictList)
+        {
             districtNameArray.add(district.get_DistNameHN());
             i++;
         }

@@ -36,6 +36,7 @@ import com.bih.nic.pacsmemberentry.Model.WorkRequirementsEntity;
 import com.bih.nic.pacsmemberentry.Model.WorkSiteEmployeeReportEntity;
 import com.bih.nic.pacsmemberentry.Model.WorkerModel;
 import com.bih.nic.pacsmemberentry.Model.WrkReqApprovalDetailsEntity;
+import com.bih.nic.pacsmemberentry.Model.checkstatus;
 import com.bih.nic.pacsmemberentry.Model.panchayat;
 import com.bih.nic.pacsmemberentry.Model.ward_model;
 import com.bih.nic.pacsmemberentry.Model.workListModel;
@@ -157,6 +158,7 @@ public class WebserviceHelper implements KvmSerializable {
     private static final String GET_SUB_DEPT_WISE_VACENCY_METHOD="rpt_DepartmentWiseVacancyORG";
     private static final String InsertData_Ben="SurveyDetails";
     private static final String Category="SurveyDetails";
+    private static final String GET_SURVEY_STATUS="CheckSurveyStatus";
 
     static String rest;
 
@@ -3273,5 +3275,39 @@ public class WebserviceHelper implements KvmSerializable {
         }
 
         return fieldList;
+    }
+
+
+    public static checkstatus checksurveystatus(String patientid,String mobile) {
+
+        SoapObject request = new SoapObject(SERVICENAMESPACE, GET_SURVEY_STATUS);
+
+        request.addProperty("_PatientId", patientid);
+        request.addProperty("_PatientMobNo", mobile);
+
+        checkstatus userDetails;
+        SoapObject res1;
+        try {
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            envelope.addMapping(SERVICENAMESPACE, checkstatus.Check_CLASS.getSimpleName(), checkstatus.Check_CLASS);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + GET_SURVEY_STATUS, envelope);
+
+            res1 = (SoapObject) envelope.getResponse();
+
+            int TotalProperty = res1.getPropertyCount();
+
+            userDetails = new checkstatus(res1);
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return userDetails;
+
     }
 }
