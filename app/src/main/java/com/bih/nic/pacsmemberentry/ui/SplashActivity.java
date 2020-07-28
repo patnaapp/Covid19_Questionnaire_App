@@ -34,6 +34,7 @@ import com.bih.nic.pacsmemberentry.Model.Versioninfo;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
+import com.bih.nic.pacsmemberentry.ui.supervisor.Supervisor_HomeActivity;
 
 import java.io.IOException;
 
@@ -303,11 +304,23 @@ public class SplashActivity extends Activity {
             public void run() {
                 Boolean isLogin = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("isLogin", false);
                 String userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
+                String userRole = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("user_role", "");
 
                 if(isLogin && !userId.equals("")){
-                    Intent i = new Intent(SplashActivity.this, HqHomeActivity.class);
-                    startActivity(i);
-                    finish();
+                    if(userRole.equals("PAT")){
+                        Intent i = new Intent(SplashActivity.this, HqHomeActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else if (userRole.equals("SUP")){
+                        Intent i = new Intent(SplashActivity.this, Supervisor_HomeActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else{
+                        Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+
                 }else{
                     Intent i = new Intent(SplashActivity.this, PreLoginActivity.class);
                     startActivity(i);
