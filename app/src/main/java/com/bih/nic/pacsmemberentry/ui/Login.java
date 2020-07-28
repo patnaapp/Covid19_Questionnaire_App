@@ -51,6 +51,7 @@ public class Login extends Activity {
         Utiilties.setStatusBarColor(Login.this);
         Initialization();
 
+
         String version = Utiilties.getAppVersion(this);
         if(version != null){
             tv_version.setText("App Version "+version);

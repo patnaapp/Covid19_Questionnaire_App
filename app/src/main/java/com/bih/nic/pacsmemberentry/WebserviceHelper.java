@@ -1505,7 +1505,7 @@ public class WebserviceHelper implements KvmSerializable {
     public static DefaultResponse UploadAcceptedRecordsFromPacs(JobListEntity data, String regNo) {
 
         SoapObject request = new SoapObject(SERVICENAMESPACE, AcceptRjctRecordsFromPacs);
-        request.addProperty("_RequestId", data.getId());
+        request.addProperty("_RequestId", data.getPatientId());
         request.addProperty("_RegistrationNo",regNo);
         request.addProperty("_Status","Y");
 
@@ -1541,7 +1541,7 @@ public class WebserviceHelper implements KvmSerializable {
     public static DefaultResponse UploadRejectedRecordsFromPacs(JobListEntity data, String regNo) {
 
         SoapObject request = new SoapObject(SERVICENAMESPACE, AcceptRjctRecordsFromPacs);
-        request.addProperty("_RequestId", data.getId());
+        request.addProperty("_RequestId", data.getPatientId());
         request.addProperty("_RegistrationNo",regNo);
         request.addProperty("_Status","R");
 
