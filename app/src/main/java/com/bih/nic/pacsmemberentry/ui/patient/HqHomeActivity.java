@@ -125,17 +125,17 @@ public class HqHomeActivity extends Activity {
     public void onExit()
     {
         new AlertDialog.Builder(this)
-                .setTitle("अलर्ट!!")
-                .setMessage("क्या आप ऐप बन्द करना चाहते हैं??\n ")
+                .setTitle("Alert!!")
+                .setMessage("Do you want to exit app??\n ")
                 .setCancelable(false)
-                .setPositiveButton("हाँ", new DialogInterface.OnClickListener()
+                .setPositiveButton("OK", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
                         finish();
                     }
                 })
-                .setNegativeButton("नहीं", null)
+                .setNegativeButton("YES", null)
                 .show();
     }
 
@@ -159,22 +159,25 @@ public class HqHomeActivity extends Activity {
         startActivity(i);
     }
 
-    public  void onViewDeptJobVacency(View view){
+//    public  void onViewDeptJobVacency(View view){
+//
+//    }
 
+    public void  on_ViewHospitals(View view){
+
+        Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        startActivity(i);
     }
 
-    public void  onJobOfferReport(View view){
-
-
+    public void on_IsolationCentres(View view){
+        Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        startActivity(i);
     }
 
-    public void onViewWorkOrgDetail(View view){
+    public void onTestCentres(View view){
 
-    }
-
-    public void onApproveWorkSite(View view){
-
-
+        Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        startActivity(i);
 
     }
 }

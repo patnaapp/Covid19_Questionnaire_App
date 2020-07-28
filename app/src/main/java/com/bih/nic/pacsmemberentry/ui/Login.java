@@ -22,7 +22,7 @@ import com.bih.nic.pacsmemberentry.Model.UserDetails;
 import com.bih.nic.pacsmemberentry.Model.panchayat;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
-import com.bih.nic.pacsmemberentry.WebserviceHelper;
+
 import com.bih.nic.pacsmemberentry.ui.patient.ChangeMobileNumberActivity;
 import com.bih.nic.pacsmemberentry.ui.patient.HqHomeActivity;
 import com.bih.nic.pacsmemberentry.ui.patient.RequestOtpActivity;

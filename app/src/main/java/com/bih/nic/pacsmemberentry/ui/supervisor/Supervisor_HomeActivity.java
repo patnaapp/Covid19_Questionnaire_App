@@ -85,17 +85,20 @@ public class Supervisor_HomeActivity extends Activity {
 //        }
     }
 
-    public void OnClick_goToLoginScreen(View view){
+    public void OnClick_goToLoginScreen(View view)
+    {
         new AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to logout from account? \n ")
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton("YES", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
                         confirmLogout();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton("NO", null)
                 .show();
     }
 
@@ -116,7 +119,7 @@ public class Supervisor_HomeActivity extends Activity {
     {
         new AlertDialog.Builder(this)
                 .setTitle("अलर्ट!!")
-                .setMessage("क्या आप ऐप बन्द करना चाहते हैं??\n ")
+                .setMessage("क्या आप ऐप बन्द करना चाहते हैं??")
                 .setCancelable(false)
                 .setPositiveButton("हाँ", new DialogInterface.OnClickListener()
                 {
@@ -149,22 +152,23 @@ public class Supervisor_HomeActivity extends Activity {
         startActivity(i);
     }
 
-    public  void onViewDeptJobVacency(View view){
+    public  void onViewDeptJobVacency(View view)
+    {
 
     }
 
-    public void  onJobOfferReport(View view){
-
-
-    }
-
-    public void onViewWorkOrgDetail(View view){
+    public void  onJobOfferReport(View view)
+    {
 
     }
 
-    public void onApproveWorkSite(View view){
+    public void onViewWorkOrgDetail(View view)
+    {
 
+    }
 
+    public void onApproveWorkSite(View view)
+    {
 
     }
 }

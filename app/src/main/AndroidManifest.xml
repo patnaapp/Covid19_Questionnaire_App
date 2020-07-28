@@ -65,7 +65,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.supervisor.PatientListActivity"></activity>
+        <activity android:name=".ui.patient.View_Facilities_activity"></activity>
+        <activity android:name=".ui.supervisor.PatientListActivity" />
         <activity android:name=".ui.patient.CovidQuestionnaire_Activity" />
         <activity android:name=".ui.patient.BankDetailsActivity" />
         <activity android:name=".ui.patient.NewPAcsMemberEntry_Activity" />
