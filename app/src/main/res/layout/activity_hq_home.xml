@@ -19,7 +19,7 @@
             android:id="@+id/id_logo"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:src="@drawable/iconpacs"
+            android:src="@drawable/bihar_logo"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:background="@drawable/circular_shape_white"/>
