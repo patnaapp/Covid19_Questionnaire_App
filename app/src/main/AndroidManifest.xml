@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bih.nic.pacsmemberentry">
+    package="com.bih.nic.covidsaathi">
 
     <uses-feature
         android:name="android.hardware.usb.host"
@@ -65,31 +65,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.patient.View_Facilities_activity"></activity>
-        <activity android:name=".ui.supervisor.PatientListActivity" />
-        <activity android:name=".ui.patient.CovidQuestionnaire_Activity" />
-        <activity android:name=".ui.patient.BankDetailsActivity" />
-        <activity android:name=".ui.patient.NewPAcsMemberEntry_Activity" />
-        <activity android:name=".ui.PreLoginActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.View_Facilities_activity"></activity>
+        <activity android:name="com.bih.nic.covidsaathi.ui.supervisor.PatientListActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.CovidQuestionnaire_Activity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.BankDetailsActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.NewPAcsMemberEntry_Activity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.PreLoginActivity" />
         <activity
-            android:name=".ui.patient.HqHomeActivity"
+            android:name="com.bih.nic.covidsaathi.ui.patient.HqHomeActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".ui.SplashActivity">
+        <activity android:name="com.bih.nic.covidsaathi.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.patient.PaymentStatusActivity" />
-        <activity android:name=".ui.patient.ModifyDocumentActivity" />
-        <activity android:name=".ui.patient.ProfileActivity" />
-        <activity android:name=".ui.patient.RequestOtpActivity" />
-        <activity android:name=".ui.patient.MainHomeActivity" />
-        <activity android:name=".ui.supervisor.JobSearchActivity"/>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".VerifyAadhaar1" />
-        <activity android:name=".ui.Login" /> <!-- <activity -->
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.PaymentStatusActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.ModifyDocumentActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.ProfileActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.RequestOtpActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.MainHomeActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.supervisor.JobSearchActivity"/>
+        <activity android:name="com.bih.nic.covidsaathi.HomeActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.VerifyAadhaar1" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.Login" /> <!-- <activity -->
         <!-- android:name=".UpdateAdhaar" -->
         <!-- android:exported="true"> -->
         <!-- <intent-filter> -->
@@ -97,23 +97,23 @@
         <!-- <category android:name="android.intent.category.DEFAULT" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-        <activity android:name=".UpdateAdhaarMobile" />
-        <activity android:name=".ui.supervisor.Supervisor_HomeActivity" />
-        <activity android:name=".ChooseCenter" />
-        <activity android:name=".VerifyAadhaar" />
-        <activity android:name=".MultiplePhotoActivity" />
-        <activity android:name=".ui.patient.ChangeMobileNumberActivity" />
-        <activity android:name=".CameraActivity" />
-        <activity android:name=".ui.patient.UpdateMobileNumberActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.UpdateAdhaarMobile" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.supervisor.Supervisor_HomeActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ChooseCenter" />
+        <activity android:name="com.bih.nic.covidsaathi.VerifyAadhaar" />
+        <activity android:name="com.bih.nic.covidsaathi.MultiplePhotoActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.ChangeMobileNumberActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.CameraActivity" />
+        <activity android:name="com.bih.nic.covidsaathi.ui.patient.UpdateMobileNumberActivity" />
         <activity
-            android:name=".ui.MultiLoginActivity"
+            android:name="com.bih.nic.covidsaathi.ui.MultiLoginActivity"
             android:theme="@style/Theme.AppCompat.Light" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".VerifyAadhaarGlobally" />
+        <activity android:name="com.bih.nic.covidsaathi.VerifyAadhaarGlobally" />
     </application>
 
 </manifest>
