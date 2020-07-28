@@ -2524,6 +2524,66 @@ public class WebserviceHelper implements KvmSerializable {
     }
 
 
+    public static ArrayList<ApproveWorkSiteEntity> GetQuarantineFacility_List(String facilitycode, String distcode)
+    {
+        SoapObject request = new SoapObject(SERVICENAMESPACE, GET_Work_Details_Approval);
+
+        request.addProperty("_Block", facilitycode);
+        request.addProperty("_deptid", distcode);
+
+
+        SoapObject res1;
+        try
+        {
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+
+            envelope.addMapping(SERVICENAMESPACE, ApproveWorkSiteEntity.Approval_CLASS.getSimpleName(), ApproveWorkSiteEntity.Approval_CLASS);
+
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(
+                    SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + GET_Work_Details_Approval,
+                    envelope);
+
+            res1 = (SoapObject) envelope.getResponse();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        int TotalProperty = res1.getPropertyCount();
+
+        ArrayList<ApproveWorkSiteEntity> pvmArrayList = new ArrayList<ApproveWorkSiteEntity>();
+
+        for (int ii = 0; ii < TotalProperty; ii++)
+        {
+            if (res1.getProperty(ii) != null)
+            {
+                Object property = res1.getProperty(ii);
+                if (property instanceof SoapObject)
+                {
+                    SoapObject final_object = (SoapObject) property;
+                    ApproveWorkSiteEntity panchayat = new ApproveWorkSiteEntity(final_object,"1");
+                    pvmArrayList.add(panchayat);
+                }
+            }
+            else
+            {
+                return pvmArrayList;
+            }
+
+        }
+        return pvmArrayList;
+    }
+
+
+
+
     public static ArrayList<WrkReqApprovalDetailsEntity> WorkRequirementForApproval(String workid) {
 
 

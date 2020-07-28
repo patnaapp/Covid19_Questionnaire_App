@@ -163,20 +163,25 @@ public class HqHomeActivity extends Activity {
 //
 //    }
 
-    public void  on_ViewHospitals(View view){
+    public void  on_ViewHospitals(View view)
+    {
 
         Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        i.putExtra("facility_code","H");
         startActivity(i);
     }
 
-    public void on_IsolationCentres(View view){
+    public void on_IsolationCentres(View view)
+    {
         Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        i.putExtra("facility_code","I");
         startActivity(i);
     }
 
-    public void onTestCentres(View view){
-
+    public void onTestCentres(View view)
+    {
         Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
+        i.putExtra("facility_code","T");
         startActivity(i);
 
     }
