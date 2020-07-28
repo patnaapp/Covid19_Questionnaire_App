@@ -955,36 +955,46 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
     private TextWatcher inputTextWatcher1 = new TextWatcher() {
 
-        public void beforeTextChanged(CharSequence s, int start, int count,
-                                      int after) {
+        public void beforeTextChanged(CharSequence s, int start, int count,int after)
+        {
 
         }
 
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (et_other_prblm.getText().length() >0) {
+        public void onTextChanged(CharSequence s, int start, int before, int count)
+        {
+            if (et_other_prblm.getText().length() >0)
+            {
                 checkForEnglish(et_other_prblm);
             }
         }
 
         @Override
-        public void afterTextChanged(Editable s) {}
+        public void afterTextChanged(Editable s)
+        {
+
+        }
     };
 
-    public void checkForEnglish(EditText etxt) {
-        if (etxt.getText().length() > 0) {
+    public void checkForEnglish(EditText etxt)
+    {
+        if (etxt.getText().length() > 0)
+        {
             String s = etxt.getText().toString();
-            if (isInputInEnglish(s)) {
+            if (isInputInEnglish(s))
+            {
                 //OK
-            } else {
-                Toast.makeText(this, "Please write in english and only text no numbers", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(this, "Please write in english and only text ,no numbers", Toast.LENGTH_SHORT).show();
                 etxt.setText("");
             }
         }
     }
-    public static boolean isInputInEnglish(String txtVal) {
 
+    public static boolean isInputInEnglish(String txtVal)
+    {
         String regx = "^[A-Z_ ]+$";
-
         Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(txtVal);
         return matcher.find();
