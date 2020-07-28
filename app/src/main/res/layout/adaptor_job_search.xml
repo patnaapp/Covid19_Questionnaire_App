@@ -385,142 +385,6 @@
                         android:tint="@color/holo_green_dark"/>
                 </LinearLayout>
 
-
-
-                <LinearLayout
-                    android:layout_marginTop="2dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimary"/>
-
-                <LinearLayout
-                    android:layout_marginTop="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
-
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textAlignment="center"
-                            android:text="अनुभव"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"/>
-
-                        <TextView
-                            android:id="@+id/tv_exp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:lines="1"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:text="New Text"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-
-                    <!--                    <RelativeLayout-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_weight="1">-->
-                    <!--                        -->
-                    <!--                        -->
-
-                    <!--                        <LinearLayout-->
-                    <!--                            android:layout_alignParentRight="true"-->
-                    <!--                            android:layout_centerVertical="true"-->
-                    <!--                            android:layout_width="1dp"-->
-                    <!--                            android:layout_height="30dp"-->
-                    <!--                            android:background="@color/colorPrimary"/>-->
-                    <!--                    </RelativeLayout>-->
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="11sp"
-                            android:lines="1"
-                            android:text="अधिकतम अनुभव"
-                            android:textAlignment="center"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"/>
-
-                        <TextView
-                            android:id="@+id/tv_exp_max"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:lines="1"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:text="New Text"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textSize="12sp"
-                            android:text="वेतन"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"/>
-
-                        <TextView
-                            android:id="@+id/tv_salary"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:lines="1"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:text="New Text"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textSize="12sp"
-                            android:text="अधिकतम वेतन"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"/>
-
-                        <TextView
-                            android:id="@+id/tv_salary_max"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:lines="1"
-                            android:textSize="14sp"
-                            android:textStyle="normal"
-                            android:text="New Text"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="4dp"
@@ -590,9 +454,10 @@
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:background="@drawable/buttonshapeaccept"
-                    android:text="स्वीकार करें" />
+                    android:text="Do Diagnosis" />
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/btn_rjct"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
