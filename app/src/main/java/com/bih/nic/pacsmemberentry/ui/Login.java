@@ -25,6 +25,7 @@ import com.bih.nic.pacsmemberentry.WebserviceHelper;
 import com.bih.nic.pacsmemberentry.ui.patient.ChangeMobileNumberActivity;
 import com.bih.nic.pacsmemberentry.ui.patient.HqHomeActivity;
 import com.bih.nic.pacsmemberentry.ui.patient.RequestOtpActivity;
+import com.bih.nic.pacsmemberentry.ui.supervisor.Supervisor_HomeActivity;
 
 import java.util.ArrayList;
 
@@ -68,7 +69,14 @@ public class Login extends Activity {
                 if(isValidInput()){
                     if(Utiilties.isOnline(getApplicationContext())) {
                         setvalue();
-                        new LoginTask(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
+                        if (role.equals("PAT")){
+                            new LoginTask(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
+                        }
+                        else if (role.equals("SUP"))
+                        {
+                            new LoginTaskSupervisor(et_reg_no.getText().toString(),et_otp.getText().toString()).execute();
+                        }
+
                     }else {
                         Utiilties.internetNotAvailableDialog(Login.this);
                     }
@@ -183,6 +191,7 @@ public class Login extends Activity {
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Covid19TestingDate",result.getCovid19TestingDate()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ImpDate",result.getImpDate()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isLogin",true).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("user_role","PAT").commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PanchayatName",result.getPanchayatName()).commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
@@ -258,5 +267,76 @@ public class Login extends Activity {
 
         }
 
+    }
+
+    private class LoginTaskSupervisor extends AsyncTask<String, Void, UserDetails> {
+
+        private final ProgressDialog dialog = new ProgressDialog(Login.this);
+
+        private final AlertDialog alertDialog = new AlertDialog.Builder(
+                Login.this).create();
+
+        String regN0,otp;
+
+        public LoginTaskSupervisor(String regN0, String otp) {
+            this.regN0 = regN0;
+            this.otp = otp;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            this.dialog.setCanceledOnTouchOutside(false);
+            this.dialog.setMessage(getResources().getString(R.string.authenticating));
+            this.dialog.show();
+        }
+
+        @Override
+        protected UserDetails doInBackground(String... param) {
+
+            return WebserviceHelper.loginSupervisor(regN0,otp);
+
+
+        }
+
+        @Override
+        protected void onPostExecute( UserDetails result) {
+
+            if (this.dialog.isShowing()) this.dialog.dismiss();
+
+            if(result!=null) {
+                if(result.isAuthenticated()) {
+                    result.set_Passwoed(et_otp.getText().toString());
+                    DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+                    dataBaseHelper.insertUserDetails(result,str_email);
+
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("UserId",result.get_UserId()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Password",et_otp.getText().toString()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("FHName",result.getFHName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientId",result.getPatientId()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PatientName",result.getPatientName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorId",result.getSupervisorId()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorName",result.getSupervisorName()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Mobile",result.getMobileNo()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Address",result.getAddress()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Covid19TestingDate",result.getCovid19TestingDate()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ImpDate",result.getImpDate()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isLogin",true).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("user_role","SUP").commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PanchayatName",result.getPanchayatName()).commit();
+//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
+
+                    Intent intent=new Intent(Login.this, Supervisor_HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else {
+                    Toast.makeText(getApplicationContext(),result.getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(getApplicationContext(),"Null Response: Check Network and try again!!",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
