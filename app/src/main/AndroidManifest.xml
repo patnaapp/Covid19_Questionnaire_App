@@ -65,11 +65,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.labour.CovidQuestionnaire_Activity"></activity>
-        <activity android:name=".ui.labour.BankDetailsActivity" />
-        <activity android:name=".ui.labour.NewPAcsMemberEntry_Activity" />
+        <activity android:name=".ui.patient.CovidQuestionnaire_Activity"></activity>
+        <activity android:name=".ui.patient.BankDetailsActivity" />
+        <activity android:name=".ui.patient.NewPAcsMemberEntry_Activity" />
         <activity
-            android:name=".ui.labour.HqHomeActivity"
+            android:name=".ui.patient.HqHomeActivity"
             android:theme="@style/NoActionBar"></activity>
         <activity android:name=".ui.SplashActivity">
             <intent-filter>
@@ -78,15 +78,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.labour.PaymentStatusActivity" />
-        <activity android:name=".ui.labour.JobSearchActivity" />
-        <activity android:name=".ui.labour.ModifyDocumentActivity" />
-        <activity android:name=".ui.labour.ProfileActivity" />
-        <activity android:name=".ui.labour.RequestOtpActivity" />
-        <activity android:name=".ui.labour.MainHomeActivity" />
+        <activity android:name=".ui.patient.PaymentStatusActivity" />
+        <activity android:name=".ui.patient.JobSearchActivity" />
+        <activity android:name=".ui.patient.ModifyDocumentActivity" />
+        <activity android:name=".ui.patient.ProfileActivity" />
+        <activity android:name=".ui.patient.RequestOtpActivity" />
+        <activity android:name=".ui.patient.MainHomeActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".VerifyAadhaar1" />
-        <activity android:name=".ui.labour.Login" /> <!-- <activity -->
+        <activity android:name=".ui.patient.Login" /> <!-- <activity -->
         <!-- android:name=".UpdateAdhaar" -->
         <!-- android:exported="true"> -->
         <!-- <intent-filter> -->
@@ -101,9 +101,9 @@
         <activity android:name=".ChooseCenter" />
         <activity android:name=".VerifyAadhaar" />
         <activity android:name=".MultiplePhotoActivity" />
-        <activity android:name=".ui.labour.ChangeMobileNumberActivity" />
+        <activity android:name=".ui.patient.ChangeMobileNumberActivity" />
         <activity android:name=".CameraActivity" />
-        <activity android:name=".ui.labour.UpdateMobileNumberActivity" />
+        <activity android:name=".ui.patient.UpdateMobileNumberActivity" />
         <activity
             android:name=".ui.MultiLoginActivity"
             android:theme="@style/Theme.AppCompat.Light" />

@@ -1,4 +1,4 @@
-package com.bih.nic.pacsmemberentry.ui.labour;
+package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.app.Activity;
 import android.preference.PreferenceManager;

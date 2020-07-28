@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/holo_gray_bright"
-    tools:context=".ui.labour.HqHomeActivity">
+    tools:context=".ui.patient.HqHomeActivity">
 
     <RelativeLayout
         android:id="@+id/header"

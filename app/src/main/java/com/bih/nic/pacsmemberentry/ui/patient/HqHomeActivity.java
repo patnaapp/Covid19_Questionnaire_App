@@ -1,4 +1,4 @@
-package com.bih.nic.pacsmemberentry.ui.labour;
+package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bih.nic.pacsmemberentry.AppConstant;
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.R;

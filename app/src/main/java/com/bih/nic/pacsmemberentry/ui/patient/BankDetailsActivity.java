@@ -1,8 +1,7 @@
-package com.bih.nic.pacsmemberentry.ui.labour;
+package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;

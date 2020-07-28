@@ -1,4 +1,4 @@
-package com.bih.nic.pacsmemberentry.ui.labour;
+package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,12 +6,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.Service;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,7 +18,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -43,7 +40,6 @@ import android.widget.Toast;
 
 import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.Model.DecimalDigitsInputFilter;
-import com.bih.nic.pacsmemberentry.Model.DefaultResponse;
 import com.bih.nic.pacsmemberentry.Model.Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.Model.Upload_Questionnaire_entity;
 import com.bih.nic.pacsmemberentry.R;

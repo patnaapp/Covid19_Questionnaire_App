@@ -1,4 +1,4 @@
-package com.bih.nic.pacsmemberentry.ui.labour;
+package com.bih.nic.pacsmemberentry.ui.patient;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,32 +22,33 @@ import com.bih.nic.pacsmemberentry.GlobalVariables;
 import com.bih.nic.pacsmemberentry.Model.DefaultResponse;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
-import com.bih.nic.pacsmemberentry.Verhoeff;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
 
 import java.util.ArrayList;
 
-public class ChangeMobileNumberActivity extends Activity {
+public class UpdateMobileNumberActivity extends Activity {
 
-    EditText reg_no,et_aadhar_No,et_ben_Name;
+    EditText edt_reg_no,et_ben_Nameas_aadhar,et_mobile_No,et_mobile_No_cnfrm;
     Spinner spin_gender;
     String ben_type_aangan[] = {"-चयन करे-","पुरुष","महिला","अन्य"};
     String Gender_Name="",Gender_Code="";
     ArrayAdapter ben_type_aangan_aaray;
     ArrayList<String> statusOfEncroachmentArray;
-    String _ben_reg_no="",_ben_aadhar_no="",_ben_Name="";
+    String _ben_mob_no="",_cnfrm_mob_no="",_ben_Name="";
     private boolean validAadhaar;
-    Button email_sign_in_button2;
+    String regNo="",Name="";
+    Button btn_update_mobile;
     TextView tv_version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_mobile_number);
+        setContentView(R.layout.activity_update_mobile_number);
 
         getActionBar().hide();
         Utiilties.setStatusBarColor(this);
-
+        regNo=getIntent().getStringExtra("Reg_No");
+        Name=getIntent().getStringExtra("Migrant_Name");
         Initialize();
 
         String version = Utiilties.getAppVersion(this);
@@ -58,107 +58,77 @@ public class ChangeMobileNumberActivity extends Activity {
             tv_version.setText("");
         }
 
-        spin_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        edt_reg_no.setEnabled(false);
+        et_ben_Nameas_aadhar.setEnabled(false);
+        edt_reg_no.setText(regNo);
+        et_ben_Nameas_aadhar.setText(Name);
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("arg2",""+position);
-                if (position > 0) {
-                    Gender_Name = ben_type_aangan[position].toString();
 
-                    if (Gender_Name.equals("पुरुष")) {
-
-                        Gender_Code = "1";
-                    } else if (Gender_Name.equals("महिला")) {
-
-                        Gender_Code = "2";
-                    }
-                    else if (Gender_Name.equals("अन्य")) {
-
-                        Gender_Code = "3";
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-
-        email_sign_in_button2.setOnClickListener(new View.OnClickListener() {
+        btn_update_mobile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registration();
+                updateMob();
             }
         });
+
     }
 
 
 
     public void Initialize(){
-        reg_no=findViewById(R.id.reg_no);
-        et_aadhar_No=findViewById(R.id.et_aadhar_No);
-        et_ben_Name=findViewById(R.id.et_ben_Name);
-        email_sign_in_button2=findViewById(R.id.email_sign_in_button2);
-
+        edt_reg_no=findViewById(R.id.edt_reg_no);
+        et_ben_Nameas_aadhar=findViewById(R.id.et_ben_Nameas_aadhar);
+        et_mobile_No=findViewById(R.id.et_mobile_No);
+        et_mobile_No_cnfrm=findViewById(R.id.et_mobile_No_cnfrm);
+        btn_update_mobile=findViewById(R.id.btn_update_mobile);
         tv_version=findViewById(R.id.tv_version);
-
-        spin_gender=findViewById(R.id.spin_gender);
-        ben_type_aangan_aaray = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ben_type_aangan);
-        spin_gender.setAdapter(ben_type_aangan_aaray);
     }
 
 
-    public void registration() {
+    public void updateMob() {
         //Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show();
-        _ben_reg_no = reg_no.getText().toString();
-        _ben_aadhar_no = et_aadhar_No.getText().toString();
-        _ben_Name = et_ben_Name.getText().toString();
+        _ben_mob_no = et_mobile_No.getText().toString();
+        _cnfrm_mob_no = et_mobile_No_cnfrm.getText().toString();
+
 
         boolean cancelRegistration = false;
         String isValied = "yes";
         View focusView = null;
 
-        if (TextUtils.isEmpty(_ben_reg_no)) {
-            reg_no.setError("कृपया लाभार्थी का पंजीकरण संख्या डाले |");
-            focusView = reg_no;
+        if (TextUtils.isEmpty(_ben_mob_no)) {
+            et_mobile_No.setError("कृपया मोबाइल नंबर  डाले |");
+            focusView = et_mobile_No;
             cancelRegistration = true;
         }
-        if (TextUtils.isEmpty(_ben_aadhar_no)) {
-            et_aadhar_No.setError("कृपया आधार नंबर डाले |");
-            focusView = et_aadhar_No;
+        else if (et_mobile_No.getText().toString().length() != 10) {
+            et_mobile_No.setError("मोबाइल नंबर सही नहीं है |");
+            focusView = et_mobile_No;
             cancelRegistration = true;
         }
-
-        if (TextUtils.isEmpty(Gender_Code)) {
-            Toast.makeText(getApplicationContext(), "कृपया लाभार्थी अपना लिंग का चयन करे |", Toast.LENGTH_LONG).show();
-            //sp_panchayat.setError("कृपया पंचायत का नाम का चयन करे |");
-            focusView = spin_gender;
+        if (TextUtils.isEmpty(_cnfrm_mob_no)) {
+            et_mobile_No_cnfrm.setError("कृपया मोबाइल नंबर कन्फर्म करे |");
+            focusView = et_mobile_No_cnfrm;
             cancelRegistration = true;
-        }
-
-        if (TextUtils.isEmpty(_ben_Name)) {
-            et_ben_Name.setError("कृपया पिता /पति का नाम डाले |");
-            focusView = et_ben_Name;
+        }else if (et_mobile_No_cnfrm.getText().toString().length() != 10) {
+            et_mobile_No_cnfrm.setError("मोबाइल नंबर सही नहीं है |");
+            focusView = et_mobile_No_cnfrm;
             cancelRegistration = true;
         }
 
-        if(!validAadhaar){
-            if(!Verhoeff.validateVerhoeff(_ben_aadhar_no)){
-                et_aadhar_No.setError("कृपया आधार नंबर सही डाले |");
-                focusView = et_aadhar_No;
-                cancelRegistration = true;
-            }
+        if (!(_cnfrm_mob_no.equals(_ben_mob_no)))
+        {
+            et_mobile_No_cnfrm.setError("कृपया मोबाइल नंबर सही डाले |");
+            focusView = et_mobile_No_cnfrm;
+            cancelRegistration = true;
         }
+
+
+
         if (cancelRegistration) {
             // error in login
             focusView.requestFocus();
-        } else {
+        }
+        else {
 
             if (!GlobalVariables.isOffline && !Utiilties.isOnline(this)) {
 
@@ -177,7 +147,7 @@ public class ChangeMobileNumberActivity extends Activity {
                 ab.show();
 
             }else{
-                new UPLOADDATA().execute();
+                new UopdateMobile().execute();
                 //new ValidateAdhhar(benfiList).execute();
             }
 
@@ -185,25 +155,19 @@ public class ChangeMobileNumberActivity extends Activity {
     }
 
 
-    private class UPLOADDATA extends AsyncTask<String, Void, DefaultResponse> {
+    private class UopdateMobile extends AsyncTask<String, Void, DefaultResponse> {
         DefaultResponse data;
         String _uid;
-        private final ProgressDialog dialog = new ProgressDialog(ChangeMobileNumberActivity.this);
-        private final android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(ChangeMobileNumberActivity.this).create();
+        private final ProgressDialog dialog = new ProgressDialog(UpdateMobileNumberActivity.this);
+        private final AlertDialog alertDialog = new AlertDialog.Builder(UpdateMobileNumberActivity.this).create();
 
-//
-//        UPLOADDATA(BarcodeEntity data) {
-//            this.data = data;
-//            this._uid = data.getUniqueNo();
-//
-//        }
 
         @Override
         protected void onPreExecute() {
 
             this.dialog.setCanceledOnTouchOutside(false);
             this.dialog.setMessage("UpLoading...");
-            if (!ChangeMobileNumberActivity.this.isFinishing()) {
+            if (!UpdateMobileNumberActivity.this.isFinishing()) {
                 this.dialog.show();
             }
         }
@@ -211,11 +175,7 @@ public class ChangeMobileNumberActivity extends Activity {
         @Override
         protected DefaultResponse doInBackground(String... param) {
 
-//
-//            String res = WebServiceHelper.UploadFinalData(data, PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("USERID", ""));
-//            return res;
-
-            return WebserviceHelper.UploadFinalData(_ben_reg_no,_ben_aadhar_no,_ben_Name,Gender_Code);
+            return WebserviceHelper.UpdateMobileNumber(regNo,_cnfrm_mob_no);
 
         }
 
@@ -228,31 +188,55 @@ public class ChangeMobileNumberActivity extends Activity {
             if (result != null) {
 
 
-                //   if (result.getStatus().equals("true")) {
+
                 if (result.getStatus()==true) {
 
-                    Intent i=new Intent(ChangeMobileNumberActivity.this, UpdateMobileNumberActivity.class);
-                    i.putExtra("Reg_No", _ben_reg_no);
-                    i.putExtra("Migrant_Name", _ben_Name);
-                    startActivity(i);
-
-                }
-                // else  if (result.getStatus().equals("false")){
-                else  if (result.getStatus()==false){
-                    AlertDialog.Builder ab = new AlertDialog.Builder(ChangeMobileNumberActivity.this);
+                    AlertDialog.Builder ab = new AlertDialog.Builder(UpdateMobileNumberActivity.this);
                     ab.setCancelable(false);
-                    ab.setTitle("Failed");
-                   // ab.setIcon(R.drawable.labour1);
+                    ab.setTitle("Updated");
+                    //ab.setIcon(R.drawable.labour1);
                     ab.setMessage(result.getMessage());
                     ab.setPositiveButton("[OK]", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
+                            Intent intent = new Intent(getBaseContext(), Login.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            //setFinishOnTouchOutside(false);
+                            finish();
                             dialog.dismiss();
                         }
                     });
 
                     ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
                     ab.show();
+
+
+                }
+                else  if (result.getStatus()==false){
+                    // Toast.makeText(getApplicationContext(), "Uploading data failed ", Toast.LENGTH_SHORT).show();
+
+
+                    AlertDialog.Builder ab = new AlertDialog.Builder(UpdateMobileNumberActivity.this);
+                    ab.setCancelable(false);
+                    ab.setTitle("Failed");
+                  //  ab.setIcon(R.drawable.labour1);
+                    ab.setMessage(result.getMessage());
+                    ab.setPositiveButton("[OK]", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            Intent intent = new Intent(getBaseContext(),Login.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            //setFinishOnTouchOutside(false);
+                            finish();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
+                    ab.show();
+
 
 
                 }

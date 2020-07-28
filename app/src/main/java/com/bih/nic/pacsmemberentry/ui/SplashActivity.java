@@ -28,15 +28,13 @@ import com.bih.nic.pacsmemberentry.CommonPref;
 import com.bih.nic.pacsmemberentry.DataBaseHelper.DataBaseHelper;
 
 import com.bih.nic.pacsmemberentry.GlobalVariables;
-import com.bih.nic.pacsmemberentry.ui.labour.HqHomeActivity;
-import com.bih.nic.pacsmemberentry.ui.labour.Login;
+import com.bih.nic.pacsmemberentry.ui.patient.HqHomeActivity;
+import com.bih.nic.pacsmemberentry.ui.patient.Login;
 import com.bih.nic.pacsmemberentry.MarshmallowPermission;
 import com.bih.nic.pacsmemberentry.Model.Versioninfo;
 import com.bih.nic.pacsmemberentry.R;
 import com.bih.nic.pacsmemberentry.Utiilties;
 import com.bih.nic.pacsmemberentry.WebserviceHelper;
-
-import com.bih.nic.pacsmemberentry.ui.labour.MainHomeActivity;
 
 import java.io.IOException;
 
