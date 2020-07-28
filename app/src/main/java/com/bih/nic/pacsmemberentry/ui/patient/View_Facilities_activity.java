@@ -79,14 +79,15 @@ public class View_Facilities_activity extends Activity
         });
     }
 
-    public void loadDistrictSpinnerdata() {
+    public void loadDistrictSpinnerdata()
+    {
 
         DistrictList = localDBHelper.getDistrictLocal();
         districtNameArray = new ArrayList<String>();
-        //districtNameArray.add("-Select District-");
+        districtNameArray.add("-Select District-");
         int i = 1;
         for (District district : DistrictList) {
-            districtNameArray.add(district.get_DistName());
+            districtNameArray.add(district.get_DistNameHN());
             i++;
         }
         //districtadapter = new ArrayAdapter<String>(this, R.layout.dropdownlist, districtNameArray);
