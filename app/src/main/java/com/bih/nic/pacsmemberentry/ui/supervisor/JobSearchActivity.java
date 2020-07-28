@@ -34,7 +34,7 @@ public class JobSearchActivity extends Activity{
 
     ProgressDialog dialog;
     ArrayList<JobListEntity> data;
-    String userId;
+    String sprvsrId;
 
     DataBaseHelper dataBaseHelper;
 
@@ -48,10 +48,10 @@ public class JobSearchActivity extends Activity{
 
         initialise();
 
-        userId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
+        sprvsrId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
 
         if(Utiilties.isOnline(this)){
-            new SyncJobSearchData(userId).execute();
+            new SyncJobSearchData(sprvsrId).execute();
         }else{
             showAlertForInternet();
         }
