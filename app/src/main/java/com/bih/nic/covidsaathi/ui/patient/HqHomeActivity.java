@@ -150,7 +150,7 @@ public class HqHomeActivity extends Activity {
                         finish();
                     }
                 })
-                .setNegativeButton("YES", null)
+
                 .show();
     }
 
@@ -173,34 +173,34 @@ public class HqHomeActivity extends Activity {
 
     public  void onSelfDiagonosis(View view)
     {
-        if(!chk_status.getToday().equals("NA")) {
-            if (Integer.parseInt(chk_status.getToday().toString()) > 0) {
-                AlertDialog.Builder ab = new AlertDialog.Builder(
-                        HqHomeActivity.this);
-                ab.setIcon(R.mipmap.ic_launcher);
-                ab.setTitle("Already submitted");
-                ab.setMessage("You have already submitted your diagnosis for today ");
-                ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
+        // if(!chk_status.getToday().equals("NA")) {
+        if (Integer.parseInt(chk_status.getToday().toString()) > 0) {
+            AlertDialog.Builder ab = new AlertDialog.Builder(
+                    HqHomeActivity.this);
+            ab.setIcon(R.mipmap.ic_launcher);
+            ab.setTitle("Already submitted");
+            ab.setMessage("You have already submitted your diagnosis for today ");
+            ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton) {
 
-                        dialog.dismiss();
+                    dialog.dismiss();
 
-                    }
-                });
+                }
+            });
 
 
-                ab.show();
-            } else {
-                Intent i = new Intent(HqHomeActivity.this, CovidQuestionnaire_Activity.class);
-                i.putExtra("data", chk_status);
-                startActivity(i);
-            }
-        }else {
+            ab.show();
+        } else {
             Intent i = new Intent(HqHomeActivity.this, CovidQuestionnaire_Activity.class);
             i.putExtra("data", chk_status);
             startActivity(i);
         }
+//        }else {
+//            Intent i = new Intent(HqHomeActivity.this, CovidQuestionnaire_Activity.class);
+//            i.putExtra("data", chk_status);
+//            startActivity(i);
+//        }
     }
 
 //    public  void onViewDeptJobVacency(View view){
