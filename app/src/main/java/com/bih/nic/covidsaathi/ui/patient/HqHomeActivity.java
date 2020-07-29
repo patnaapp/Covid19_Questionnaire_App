@@ -19,11 +19,20 @@ import android.widget.Toast;
 
 import com.bih.nic.covidsaathi.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.covidsaathi.GlobalVariables;
+import com.bih.nic.covidsaathi.Model.CovidDataEntity;
+import com.bih.nic.covidsaathi.Model.CovidDataResponse;
 import com.bih.nic.covidsaathi.Model.checkstatus;
 import com.bih.nic.covidsaathi.R;
 import com.bih.nic.covidsaathi.Utiilties;
 import com.bih.nic.covidsaathi.WebserviceHelper;
 import com.bih.nic.covidsaathi.ui.PreLoginActivity;
+import com.bih.nic.covidsaathi.ui.supervisor.Supervisor_HomeActivity;
+import com.bih.nic.covidsaathi.webservice.Api;
+import com.bih.nic.covidsaathi.webservice.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HqHomeActivity extends Activity {
@@ -32,7 +41,8 @@ public class HqHomeActivity extends Activity {
     SQLiteDatabase db;
     TextView tv_email,tv_dept_name,tv_version;
     TextView tv_name,tv_f_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile,tv_superviser;
-    LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
+    TextView tv_confirmed,tv_recovered,tv_death;
+    LinearLayout ll_updates;
     String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="";
     String patientid="";
     checkstatus chk_status;
@@ -57,6 +67,11 @@ public class HqHomeActivity extends Activity {
         tv_superviser=findViewById(R.id.tv_superviser);
         tv_mobile=findViewById(R.id.tv_mobile);
         tv_version=(TextView) findViewById(R.id.tv_version);
+
+        tv_confirmed=findViewById(R.id.tv_confirmed);
+        tv_recovered=findViewById(R.id.tv_recovered);
+        tv_death=findViewById(R.id.tv_death);
+        ll_updates= findViewById(R.id.ll_updates);
 
         String version = Utiilties.getAppVersion(this);
         if(version != null){
@@ -86,6 +101,8 @@ public class HqHomeActivity extends Activity {
         tv_address.setText(Address);
         tv_mobile.setText(Mobile);
         tv_superviser.setText(SupervisorName);
+
+        fetchCovidData();
 
 //        if(UserRole.equals("ORGADM"))
 //        {
@@ -169,6 +186,8 @@ public class HqHomeActivity extends Activity {
         Mobile=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
         new CheckStatusForSurvey().execute();
         super.onResume();
+
+        //fetchCovidData();
     }
 
     public  void onSelfDiagonosis(View view)
@@ -271,5 +290,36 @@ public class HqHomeActivity extends Activity {
             }
 
         }
+    }
+
+    public void fetchCovidData(){
+        final ProgressDialog dialog = new ProgressDialog(this);
+        //dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Fetching Covid Updates...");
+        dialog.show();
+
+        final Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
+        Call<CovidDataResponse> call = request.getCovidData();
+
+        call.enqueue(new Callback<CovidDataResponse>() {
+            @Override
+            public void onResponse(Call<CovidDataResponse> call, Response<CovidDataResponse> response) {
+                if (dialog.isShowing()) dialog.dismiss();
+
+                CovidDataEntity covidData = response.body().getBR().getTotal();
+
+                tv_confirmed.setText(covidData.getConfirmed());
+                tv_recovered.setText(covidData.getRecovered());
+                tv_death.setText(covidData.getDeceased());
+                ll_updates.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<CovidDataResponse> call, Throwable t) {
+                if (dialog.isShowing()) dialog.dismiss();
+                Toast.makeText(HqHomeActivity.this, "Failed to updated Covide Data...", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

@@ -259,6 +259,14 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
         ll_body_temp=findViewById(R.id.ll_body_temp);
 
         daily_ques_array = new ArrayList<>();
+
+        ImageView img_back= findViewById(R.id.img);
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void ShowDialog()

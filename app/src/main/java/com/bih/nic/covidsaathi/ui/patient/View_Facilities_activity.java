@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -58,6 +59,14 @@ public class View_Facilities_activity extends Activity
         listView=findViewById(R.id.listviewshow);
        // loadDistrictSpinnerdata();
         facility_code = getIntent().getStringExtra("facility_code");
+
+        ImageView img_back= findViewById(R.id.img);
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         sp_level_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
