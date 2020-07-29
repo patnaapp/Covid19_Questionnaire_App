@@ -37,8 +37,8 @@ import com.bih.nic.covidsaathi.WebserviceHelper;
 import java.util.ArrayList;
 
 public class AddHospitalActivity extends AppCompatActivity {
-    Spinner sp_Dist,sp_category,sp_hospital;
-    String User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
+    Spinner sp_Dist,sp_category,sp_hospital,sp_level_type,sp_type;
+    String level_type_Id="",level_type_Name="",type_Id="",type_Name="",User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
     ArrayList<District> DistrictList = new ArrayList<District>();
     ArrayList<CategoryMaster> CategoryList = new ArrayList<CategoryMaster>();
     ArrayList<HospitalMastar> HospitalList = new ArrayList<HospitalMastar>();
@@ -55,6 +55,9 @@ public class AddHospitalActivity extends AppCompatActivity {
     Bitmap bmp;
     AddHospitalEntity benfiList;;
     Button btn_reg;
+    String level_type[] = {"-select-","District","Subdivision","Block"};
+    String type[] = {"-select-","Goverment","Private"};
+    ArrayAdapter ben_aaray_level_type,ben_aaray_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +70,18 @@ public class AddHospitalActivity extends AppCompatActivity {
         sp_Dist=findViewById(R.id.sp_Dist);
         sp_category=findViewById(R.id.sp_category);
         sp_hospital=findViewById(R.id.sp_hospital);
+        sp_level_type=findViewById(R.id.sp_level_type);
+        sp_type=findViewById(R.id.sp_type);
         img1 = findViewById(R.id.img1);
         btn_reg = findViewById(R.id.btn_reg);
 
         loadDistrictSpinnerdata();
         loadCategorySpinnerdata();
+        ben_aaray_level_type = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, level_type);
+        sp_level_type.setAdapter(ben_aaray_level_type);
+        ben_aaray_type = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, type);
+        sp_type.setAdapter(ben_aaray_type);
+
 
         sp_Dist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -93,6 +103,39 @@ public class AddHospitalActivity extends AppCompatActivity {
                 } else {
                     Dist_Code = "";
                     Dist_Name = "";
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        sp_level_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                if (position > 0) {
+
+                    level_type_Name = level_type[position];
+                    if(level_type_Name.equals("District"))
+                    {
+                        level_type_Id = "D";
+                    }
+                    else if(level_type_Name.equals("Subdivision"))
+                    {
+                        level_type_Id = "S";
+                    }
+                    else if(level_type_Name.equals("Block"))
+                    {
+                        level_type_Id = "B";
+                    }
+
+                } else {
+                    level_type_Id = "";
+                    level_type_Name = "";
 
                 }
             }
@@ -145,6 +188,35 @@ public class AddHospitalActivity extends AppCompatActivity {
                 } else {
                     Hos_Code = "";
                     Hos_Name = "";
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+        sp_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                if (position > 0) {
+
+                    type_Name = type[position];
+                    if(type_Name.equals("Goverment"))
+                    {
+                        type_Id = "G";
+                    }
+                    else if(type_Name.equals("Private"))
+                    {
+                        type_Id = "P";
+                    }
+
+                } else {
+                    type_Id = "";
+                    type_Name = "";
 
                 }
             }
@@ -305,8 +377,14 @@ public class AddHospitalActivity extends AppCompatActivity {
             cancelRegistration = true;
         }
 
+        if (TextUtils.isEmpty(level_type_Id)) {
+            Toast.makeText(getApplicationContext(), "Please Select Lebel Type !", Toast.LENGTH_LONG).show();
+            // sp_district.setError("कृपया जिला का नाम का चयन करे |");
+            focusView = sp_level_type;
+            cancelRegistration = true;
+        }
         if (TextUtils.isEmpty(Cat_Code)) {
-            Toast.makeText(getApplicationContext(), "Please Select Category !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please Select Centre Type !", Toast.LENGTH_LONG).show();
             // sp_district.setError("कृपया जिला का नाम का चयन करे |");
             focusView = sp_category;
             cancelRegistration = true;
@@ -315,6 +393,12 @@ public class AddHospitalActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please Select Hospital", Toast.LENGTH_LONG).show();
             //sp_block.setError("कृपया प्रखंड का नाम का चयन करे |");
             focusView = sp_hospital;
+            cancelRegistration = true;
+        }
+        if (TextUtils.isEmpty(type_Id)) {
+            Toast.makeText(getApplicationContext(), "Please Select Type", Toast.LENGTH_LONG).show();
+            //sp_block.setError("कृपया प्रखंड का नाम का चयन करे |");
+            focusView = sp_type;
             cancelRegistration = true;
         }
         if(img == null){
@@ -328,9 +412,13 @@ public class AddHospitalActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             benfiList.setDist_Code(Dist_Code);
+            benfiList.setLevelType_Id(level_type_Id);
             benfiList.setCat_Code(Cat_Code);
             benfiList.setHos_Code(Hos_Code);
+            benfiList.setType_Id(type_Id);
             benfiList.setPic(img);
+            benfiList.setLatitude(latitude);
+            benfiList.setLongitude(longitude);
             benfiList.setUserId(User_Id);
 
             if (!GlobalVariables.isOffline && !Utiilties.isOnline(this)) {

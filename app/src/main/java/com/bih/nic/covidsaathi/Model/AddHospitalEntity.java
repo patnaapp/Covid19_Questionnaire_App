@@ -10,6 +10,10 @@ public class AddHospitalEntity {
     private String Hos_Code = "";
     private String Hos_Name = "";
     private String Image = "";
+    private String Latitude = "";
+    private String Longitude = "";
+    private String LevelType_Id = "";
+    private String Type_Id = "";
     byte[] pic;
     private String UserId;
     public static Class<AddHospitalEntity> USER_CLASS = AddHospitalEntity.class;
@@ -89,5 +93,37 @@ public class AddHospitalEntity {
 
     public void setPic(byte[] pic) {
         this.pic = pic;
+    }
+
+    public String getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        Latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return Longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        Longitude = longitude;
+    }
+
+    public String getLevelType_Id() {
+        return LevelType_Id;
+    }
+
+    public void setLevelType_Id(String levelType_Id) {
+        LevelType_Id = levelType_Id;
+    }
+
+    public String getType_Id() {
+        return Type_Id;
+    }
+
+    public void setType_Id(String type_Id) {
+        Type_Id = type_Id;
     }
 }

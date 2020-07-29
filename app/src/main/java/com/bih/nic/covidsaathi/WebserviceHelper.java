@@ -3149,9 +3149,13 @@ public class WebserviceHelper implements KvmSerializable {
         try {
             SoapObject request = new SoapObject(SERVICENAMESPACE, InsertData_Ben);
             request.addProperty("_Dist_Code",user.getDist_Code());
+            request.addProperty("_Dist_Code",user.getLevelType_Id());
             request.addProperty("_BlockCode",user.getCat_Code());
             request.addProperty("_panchayatCode",user.getHos_Code());
+            request.addProperty("_panchayatCode",user.getType_Id());
             request.addProperty("_Other_panchayatName",user.getPic());
+            request.addProperty("_Other_panchayatName",user.getLatitude());
+            request.addProperty("_Other_panchayatName",user.getLongitude());
             request.addProperty("_benName",user.getUserId());
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
