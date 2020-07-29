@@ -2526,12 +2526,12 @@ public class WebserviceHelper implements KvmSerializable {
     }
 
 
-    public static ArrayList<ApproveWorkSiteEntity> GetQuarantineFacility_List(String facilitycode, String distcode)
+    public static ArrayList<ApproveWorkSiteEntity> GetQuarantineFacility_List(String facilitycode, String leveltype)
     {
         SoapObject request = new SoapObject(SERVICENAMESPACE, GET_Work_Details_Approval);
 
         request.addProperty("_Block", facilitycode);
-        request.addProperty("_deptid", distcode);
+        request.addProperty("_deptid", leveltype);
 
 
         SoapObject res1;

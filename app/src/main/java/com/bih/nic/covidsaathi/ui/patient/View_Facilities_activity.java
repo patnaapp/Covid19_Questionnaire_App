@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class View_Facilities_activity extends Activity
 {
-    Spinner sp_Dist;
+    Spinner sp_Dist,sp_level_type;
     ArrayList<District> DistrictList = new ArrayList<District>();
     String User_Id="",Dist_Code="",Dist_Name="";
     String facility_code="";
@@ -36,6 +36,9 @@ public class View_Facilities_activity extends Activity
     TextView tv_Norecord;
     RecyclerView listView;
     WorkApprovalAdapter adaptor_showedit_listDetail;
+    String ben_type_centre[] = {"-select-","District Level","Block Level","Sub-Divison Level"};
+    ArrayAdapter ben_aaray_centre;
+    String level_type_name="",level_type_id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,37 +49,77 @@ public class View_Facilities_activity extends Activity
 
         getActionBar().hide();
         Utiilties.setStatusBarColor(this);
-        sp_Dist=findViewById(R.id.sp_Dist);
+       // sp_Dist=findViewById(R.id.sp_Dist);
+        sp_level_type=findViewById(R.id.sp_level_type);
+        ben_aaray_centre = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ben_type_centre);
+        sp_level_type.setAdapter(ben_aaray_centre);
         tv_Norecord=findViewById(R.id.tv_Norecord);
         listView=findViewById(R.id.listviewshow);
-        loadDistrictSpinnerdata();
+       // loadDistrictSpinnerdata();
         facility_code = getIntent().getStringExtra("facility_code");
 
-        sp_Dist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sp_level_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // TODO Auto-generated method stub
-                if (position >= 0) {
+                Log.e("arg2",""+position);
+                if (position > 0) {
 
-                    District district = DistrictList.get(position);
-                    Dist_Code = district.get_DistCode();
-                    Dist_Name = district.get_DistName();
+                    level_type_name = ben_type_centre[position].toString();
+
+                    if (level_type_name.equals("District Level")) {
+
+                        level_type_id = "D";
+
+                    } else if (level_type_name.equals("Block Level")) {
+
+                        level_type_id = "B";
+
+                    }
+                    else if (level_type_name.equals("Sub-Divison Level")) {
+
+                        level_type_id = "S";
+
+                    }
                     new GetQuarantineFacilitiesList().execute();
-
-                } else {
-                    Dist_Code = "";
-                    Dist_Name = "";
-
                 }
+
+
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
 
             }
+
         });
+
+//        sp_Dist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                // TODO Auto-generated method stub
+//                if (position >= 0) {
+//
+//                    District district = DistrictList.get(position);
+//                    Dist_Code = district.get_DistCode();
+//                    Dist_Name = district.get_DistName();
+//                    new GetQuarantineFacilitiesList().execute();
+//
+//                } else {
+//                    Dist_Code = "";
+//                    Dist_Name = "";
+//
+//                }
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent)
+//            {
+//                // TODO Auto-generated method stub
+//
+//            }
+//        });
     }
 
     public void loadDistrictSpinnerdata()
@@ -116,7 +159,7 @@ public class View_Facilities_activity extends Activity
         @Override
         protected ArrayList<ApproveWorkSiteEntity> doInBackground(String...arg)
         {
-            return WebserviceHelper.GetQuarantineFacility_List(facility_code,Dist_Code);
+            return WebserviceHelper.GetQuarantineFacility_List(facility_code,level_type_id);
         }
 
         @Override
