@@ -459,7 +459,7 @@ public class WebserviceHelper implements KvmSerializable {
                 return new UserDetails(res1);
             }
             else
-                {
+            {
                 return null;
             }
         }
@@ -2534,7 +2534,7 @@ public class WebserviceHelper implements KvmSerializable {
 
         request.addProperty("_CenterType", facilitycode);
         request.addProperty("_LevelType", leveltype);
-
+        request.addProperty("_DistCode", "0");
 
         SoapObject res1;
         try
@@ -2584,8 +2584,6 @@ public class WebserviceHelper implements KvmSerializable {
         }
         return pvmArrayList;
     }
-
-
 
 
     public static ArrayList<WrkReqApprovalDetailsEntity> WorkRequirementForApproval(String workid) {
@@ -3127,7 +3125,7 @@ public class WebserviceHelper implements KvmSerializable {
 
                 String output = _getResponseBody(entity);
                 res = parseRespnse(output);
-               // res = "1";
+                // res = "1";
             } else {
                 //res = "0";
                 res = "0, Server no reponse";
@@ -3137,7 +3135,7 @@ public class WebserviceHelper implements KvmSerializable {
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-          //  return "0";
+            //  return "0";
             return "0, Exception Caught";
         }
 
