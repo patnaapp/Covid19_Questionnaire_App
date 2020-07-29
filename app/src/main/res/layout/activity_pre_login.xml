@@ -34,8 +34,8 @@
             <ImageView
                 android:id="@+id/iv_ps"
                 android:layout_centerHorizontal="true"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:padding="4dp"
                 android:src="@drawable/dept_login1" />
 
@@ -44,7 +44,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Supervisor Login"
+                android:text="Department Login"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
@@ -62,10 +62,10 @@
 
             <ImageView
                 android:layout_centerHorizontal="true"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:padding="4dp"
-                android:src="@drawable/dept_login1" />
+                android:src="@drawable/patient" />
 
             <TextView
                 android:layout_gravity="center_vertical"

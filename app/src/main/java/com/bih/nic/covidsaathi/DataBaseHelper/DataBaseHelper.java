@@ -589,22 +589,23 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
 
             ContentValues values = new ContentValues();
 
-            values.put("UseId", userid);
+            values.put("Patitent_Id", userid);
             values.put("password", result.get_Passwoed());
-            values.put("distcode", result.getDistCode());
-            values.put("distname", result.getDistName());
-            values.put("blockcode", result.getBlockCode());
-            values.put("blockname", result.getBlockName());
-            values.put("PanchayatCode", result.getPanchayatCode());
-            values.put("PanchayatName", result.getPanchayatName());
-            values.put("UserName", result.getUserName());
-            values.put("Age", result.getAge());
-            values.put("Mobile", result.getMobileNo());
+            values.put("Dist_Code", result.getDistCode());
+            values.put("Dist_Name", result.getDistName());
+            values.put("Block_Code", result.getBlockCode());
+            values.put("Block_Name", result.getBlockName());
+            values.put("Pan_Code", result.getPanchayatCode());
+            values.put("Pan_Name", result.getPanchayatName());
+            values.put("Patitent_Name", result.getUserName());
+            //values.put("Age", result.getAge());
+            values.put("Mobile_Number", result.getMobileNo());
             values.put("Address", result.getAddress());
+            values.put("Role", result.getRole());
           //  values.put("Email", result.getE());
             String[] whereArgs = new String[]{userid.toLowerCase()};
 
-            c = db.update("UserDetails", values, "UseId=? ", whereArgs);
+            c = db.update("UserDetails", values, "Patitent_Id=? ", whereArgs);
 
             if (!(c > 0)) {
 

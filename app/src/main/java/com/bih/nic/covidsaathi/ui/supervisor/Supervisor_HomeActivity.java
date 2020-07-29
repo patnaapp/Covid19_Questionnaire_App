@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,15 +19,16 @@ import com.bih.nic.covidsaathi.GlobalVariables;
 import com.bih.nic.covidsaathi.R;
 import com.bih.nic.covidsaathi.Utiilties;
 import com.bih.nic.covidsaathi.ui.PreLoginActivity;
+import com.bih.nic.covidsaathi.ui.patient.AddHospitalActivity;
 
 
 public class Supervisor_HomeActivity extends Activity {
 
     DataBaseHelper dataBaseHelper;
     SQLiteDatabase db;
-    TextView tv_email,tv_dept_name,tv_version;
+    TextView tv_email,tv_dept_name,tv_version,tv_name_sup;
     TextView tv_name,tv_f_name,tv_address,tv_block_name,tv_panchayat,tv_village,tv_mobile,tv_superviser;
-    LinearLayout ll_first,ll_username,aprove_rjct_worksite,ll_emp_reports;
+    LinearLayout ll_upload_photo,ll_view_patient;
     String PatientName="",Address="",SupervisorName="", Mobile="", FHName="", Covid19TestingDate="", ProfileImg="",CompanyName="", UserId,UserRole="",Block_Code="",lvlone_id="",lvltwo_id="",SupervisorId="";
 
     @Override
@@ -44,7 +46,11 @@ public class Supervisor_HomeActivity extends Activity {
         tv_panchayat=findViewById(R.id.tv_panchayat);
         tv_superviser=findViewById(R.id.tv_superviser);
         tv_mobile=findViewById(R.id.tv_mobile);
-        tv_version=(TextView) findViewById(R.id.tv_version);
+        tv_name_sup=findViewById(R.id.tv_name_sup);
+
+        tv_version= findViewById(R.id.tv_version);
+        ll_upload_photo= findViewById(R.id.ll_upload_photo);
+        ll_view_patient= findViewById(R.id.ll_view_patient);
 
         String version = Utiilties.getAppVersion(this);
         if(version != null){
@@ -57,31 +63,22 @@ public class Supervisor_HomeActivity extends Activity {
         SupervisorId=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
         SupervisorName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorName", "");
         UserRole=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("user_role", "");
+
+        Log.e("Role", UserRole);
         //String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserName", "");
 
         tv_superviser.setText(SupervisorName);
 
-//        if(UserRole.equals("ORGADM"))
-//        {
-//            ll_first.setVisibility(View.GONE);
-//            ll_username.setVisibility(View.VISIBLE);
-//            aprove_rjct_worksite.setVisibility(View.VISIBLE);
-//
-//        }
-//        else if (UserRole.equals("DSTADM"))
-//        {
-//            ll_first.setVisibility(View.GONE);
-//            ll_emp_reports.setVisibility(View.GONE);
-//            ll_username.setVisibility(View.VISIBLE);
-//            aprove_rjct_worksite.setVisibility(View.VISIBLE);
-//
-//        }
-//
-//        else
-//        {
-//            ll_username.setVisibility(View.GONE);
-//            aprove_rjct_worksite.setVisibility(View.GONE);
-//        }
+        if(UserRole.equals("SUP"))
+        {
+            tv_name_sup.setText("Supervisior Name");
+            ll_upload_photo.setVisibility(View.GONE);
+        }
+        else if (UserRole.equals("DSTGPS"))
+        {
+            tv_name_sup.setText("Username");
+            ll_view_patient.setVisibility(View.GONE);
+        }
     }
 
     public void OnClick_goToLoginScreen(View view)
@@ -148,6 +145,11 @@ public class Supervisor_HomeActivity extends Activity {
     public  void onView_Patient(View view)
     {
         Intent i=new Intent(Supervisor_HomeActivity.this,JobSearchActivity.class);
+        startActivity(i);
+    }
+
+    public void onGeoTagCentres(View view) {
+        Intent i=new Intent(Supervisor_HomeActivity.this, AddHospitalActivity.class);
         startActivity(i);
     }
 

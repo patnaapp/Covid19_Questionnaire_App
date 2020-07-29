@@ -275,6 +275,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_name_sup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Supervisior Name"
@@ -327,147 +328,69 @@
         android:layout_below="@+id/rl_user_info">
 
         <LinearLayout
-            android:visibility="gone"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="vertical"
-            android:background="@drawable/new_home_count_back">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="6dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Live Updates"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/color_white"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="About Corona Virus"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/secondaryColor"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/ll_first"
             android:layout_margin="10dp"
+            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:onClick="onView_Patient"
+                android:id="@+id/ll_view_patient"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="4dp"
+                android:background="@drawable/shape_white"
                 android:gravity="center"
-                android:background="@drawable/textboxshape"
-                android:id="@+id/ll_new_labours">
+                android:onClick="onView_Patient"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/report" />
+                    android:background="@drawable/patient" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:text="View Patient"
-                    android:gravity="center"
-                    android:textSize="13sp"
-                    android:layout_marginTop="4dp"
-                    android:textStyle="normal"
+                    android:textAppearance="?android:textAppearanceSmall"
                     android:textColor="@color/colorPrimary"
-                    android:textAppearance="?android:textAppearanceSmall"/>
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="8dp"
-                android:layout_height="match_parent"/>
-
-            <RelativeLayout
-                android:onClick="onViewDeptJobVacency"
-                android:visibility="invisible"
+            <LinearLayout
+                android:id="@+id/ll_upload_photo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="4dp"
+                android:background="@drawable/shape_white"
                 android:gravity="center"
-                android:background="@drawable/textboxshape">
+                android:onClick="onGeoTagCentres"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
                 <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/iv_upload"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/offer_job"/>
+                    android:background="@drawable/locate_hospital" />
+
                 <TextView
-                    android:layout_below="@+id/iv_upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Report"
-                    android:gravity="center"
-                    android:layout_marginTop="6dp"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
+                    android:layout_marginLeft="8dp"
+                    android:text="Centres Geo Tagging"
+                    android:textAppearance="?android:textAppearanceSmall"
                     android:textColor="@color/colorPrimary"
-                    android:textAppearance="?android:textAppearanceSmall"/>
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
 
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <View
-                android:layout_width="8dp"
-                android:layout_height="match_parent"/>
-
-            <RelativeLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="4dp"
-                android:gravity="center"
-                android:background="@drawable/textboxshape">
-
-                <ImageView
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/iv_assign"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/assign"/>
-                <TextView
-                    android:layout_below="@+id/iv_assign"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="श्रम को काम सौंपें"
-                    android:gravity="center"
-                    android:layout_marginTop="6dp"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorPrimary"
-                    android:textAppearance="?android:textAppearanceSmall"/>
-
-
-            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -50,14 +50,6 @@ public class JobSearchActivity extends Activity{
 
         sprvsrId = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("SupervisorId", "");
 
-        if(Utiilties.isOnline(this)){
-            new SyncJobSearchData(sprvsrId).execute();
-        }else{
-            showAlertForInternet();
-        }
-
-
-
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +57,16 @@ public class JobSearchActivity extends Activity{
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(Utiilties.isOnline(this)){
+            new SyncJobSearchData(sprvsrId).execute();
+        }else{
+            showAlertForInternet();
+        }
     }
 
     public void initialise(){

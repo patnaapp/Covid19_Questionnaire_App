@@ -66,7 +66,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.View_Facilities_activity"></activity>
-        <activity android:name="com.bih.nic.covidsaathi.ui.supervisor.PatientListActivity" />
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.CovidQuestionnaire_Activity" />
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.BankDetailsActivity" />
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.NewPAcsMemberEntry_Activity" />
