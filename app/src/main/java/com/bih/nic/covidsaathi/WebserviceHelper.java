@@ -2539,18 +2539,14 @@ public class WebserviceHelper implements KvmSerializable {
         SoapObject res1;
         try
         {
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-                    SoapEnvelope.VER11);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.dotNet = true;
             envelope.setOutputSoapObject(request);
 
             envelope.addMapping(SERVICENAMESPACE, FacilitiesEntity.Facility_CLASS.getSimpleName(), FacilitiesEntity.Facility_CLASS);
 
-            HttpTransportSE androidHttpTransport = new HttpTransportSE(
-                    SERVICEURL);
-            androidHttpTransport.call(SERVICENAMESPACE + Facility_centre,
-                    envelope);
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + Facility_centre,envelope);
 
             res1 = (SoapObject) envelope.getResponse();
 
