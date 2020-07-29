@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bih.nic.covidsaathi.DataBaseHelper.DataBaseHelper;
@@ -28,7 +29,7 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
     WorkReqrmntListener listener;
     String keyid;
     DataBaseHelper dataBaseHelper;
-    String UserRole="";
+    String UserRole="",facility_code="";
 
     // public WorkApprovalAdapter(Activity listViewshowedit, ArrayList<ApproveWorkSiteEntity> rlist, WorkReqrmntListener listener, String isEdit) {
     public WorkApprovalAdapter(Activity listViewshowedit, ArrayList<FacilitiesEntity> rlist, String isEdit) {
@@ -53,6 +54,12 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
 
         dataBaseHelper = new DataBaseHelper(activity);
         UserRole= PreferenceManager.getDefaultSharedPreferences(activity).getString("UserRole", "");
+        facility_code = activity.getIntent().getStringExtra("facility_code");
+        if (facility_code.equals("T"))
+        {
+            holder.ll_beds.setVisibility(View.GONE);
+            holder.ll_hsptl_id.setVisibility(View.GONE);
+        }
         holder.tv_slno.setText(String.valueOf(position+1));
 
         holder.tv_beds.setText(info.getBed());
@@ -104,6 +111,7 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tv_slno,tv_beds,tv_avlbl_bed,tv_hsptl_id,tv_type,tv_hn_hospital,tv_hsptl_ene,tv_lvl_type,tv_cntr_type;
         ImageView iv_delete,iv_edit;
+        LinearLayout ll_beds,ll_hsptl_id;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -119,6 +127,8 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
 
             iv_delete=itemView.findViewById(R.id.iv_delete);
             iv_edit=itemView.findViewById(R.id.iv_edit);
+            ll_beds=itemView.findViewById(R.id.ll_beds);
+            ll_hsptl_id=itemView.findViewById(R.id.ll_hsptl_id);
 
 
         }

@@ -132,7 +132,8 @@ public class HqHomeActivity extends Activity {
 //        }
     }
 
-    public void OnClick_goToLoginScreen(View view){
+    public void OnClick_goToLoginScreen(View view)
+    {
         new AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to logout from account? \n ")
@@ -198,24 +199,25 @@ public class HqHomeActivity extends Activity {
     public  void onSelfDiagonosis(View view)
     {
         // if(!chk_status.getToday().equals("NA")) {
-        if (Integer.parseInt(chk_status.getToday().toString()) > 0) {
-            AlertDialog.Builder ab = new AlertDialog.Builder(
-                    HqHomeActivity.this);
+        if (Integer.parseInt(chk_status.getToday().toString()) > 0)
+        {
+            AlertDialog.Builder ab = new AlertDialog.Builder(HqHomeActivity.this);
             ab.setIcon(R.mipmap.ic_launcher);
             ab.setTitle("Already submitted");
             ab.setMessage("You have already submitted your diagnosis for today ");
-            ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener() {
+            ab.setNegativeButton("[ OK ]", new DialogInterface.OnClickListener()
+            {
                 @Override
-                public void onClick(DialogInterface dialog, int whichButton) {
-
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
                     dialog.dismiss();
 
                 }
             });
-
-
             ab.show();
-        } else {
+        }
+        else
+        {
             Intent i = new Intent(HqHomeActivity.this, CovidQuestionnaire_Activity.class);
             i.putExtra("data", chk_status);
             startActivity(i);
@@ -233,7 +235,6 @@ public class HqHomeActivity extends Activity {
 
     public void  on_ViewHospitals(View view)
     {
-
         Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
         i.putExtra("facility_code","H");
         startActivity(i);
@@ -251,7 +252,6 @@ public class HqHomeActivity extends Activity {
         Intent i=new Intent(HqHomeActivity.this,View_Facilities_activity.class);
         i.putExtra("facility_code","T");
         startActivity(i);
-
     }
 
     private class CheckStatusForSurvey extends AsyncTask<String, Void, checkstatus>
@@ -277,21 +277,20 @@ public class HqHomeActivity extends Activity {
         @Override
         protected void onPostExecute(checkstatus result)
         {
-            if (this.dialog.isShowing()) {
+            if (this.dialog.isShowing())
+            {
                 this.dialog.dismiss();
             }
             Log.d("Responsevalue", "" + result);
-            if (result != null) {
+            if (result != null)
+            {
                 chk_status=result;
 
-//                Intent i =new Intent(MainHomeActivity.this, ProfileActivity.class);
-//                i.putExtra("data",BenDetails);
-//                startActivity(i);
+            }
+            else
+            {
 
-
-            } else {
-
-                Toast.makeText(getApplicationContext(), "Result Null..Please Try Later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Result Null..Please Try Later...", Toast.LENGTH_SHORT).show();
             }
 
         }
