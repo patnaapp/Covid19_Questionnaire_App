@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bih.nic.covidsaathi.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.covidsaathi.Model.ApproveWorkSiteEntity;
 import com.bih.nic.covidsaathi.Model.District;
+import com.bih.nic.covidsaathi.Model.FacilitiesEntity;
 import com.bih.nic.covidsaathi.R;
 import com.bih.nic.covidsaathi.Utiilties;
 import com.bih.nic.covidsaathi.WebserviceHelper;
@@ -32,11 +33,11 @@ public class View_Facilities_activity extends Activity
     DataBaseHelper localDBHelper;
     ArrayList<String> districtNameArray;
     ArrayAdapter<String> districtadapter;
-    ArrayList<ApproveWorkSiteEntity> data;
+    ArrayList<FacilitiesEntity> data;
     TextView tv_Norecord;
     RecyclerView listView;
     WorkApprovalAdapter adaptor_showedit_listDetail;
-    String ben_type_centre[] = {"-select-","District Level","Block Level","Sub-Divison Level"};
+    String ben_type_centre[] = {"-select-","All","District Level","Block Level","Sub-Divison Level"};
     ArrayAdapter ben_aaray_centre;
     String level_type_name="",level_type_id="";
 
@@ -79,6 +80,11 @@ public class View_Facilities_activity extends Activity
                     else if (level_type_name.equals("Sub-Divison Level")) {
 
                         level_type_id = "S";
+
+                    }
+                    else if (level_type_name.equals("All")) {
+
+                        level_type_id = "0";
 
                     }
                     new GetQuarantineFacilitiesList().execute();
@@ -143,7 +149,7 @@ public class View_Facilities_activity extends Activity
 
     }
 
-    private class GetQuarantineFacilitiesList extends AsyncTask<String, Void, ArrayList<ApproveWorkSiteEntity>>
+    private class GetQuarantineFacilitiesList extends AsyncTask<String, Void, ArrayList<FacilitiesEntity>>
     {
         private final ProgressDialog dialog = new ProgressDialog(View_Facilities_activity.this);
         int optionType;
@@ -157,13 +163,13 @@ public class View_Facilities_activity extends Activity
         }
 
         @Override
-        protected ArrayList<ApproveWorkSiteEntity> doInBackground(String...arg)
+        protected ArrayList<FacilitiesEntity> doInBackground(String...arg)
         {
             return WebserviceHelper.GetQuarantineFacility_List(facility_code,level_type_id);
         }
 
         @Override
-        protected void onPostExecute(ArrayList<ApproveWorkSiteEntity> result)
+        protected void onPostExecute(ArrayList<FacilitiesEntity> result)
         {
             if (this.dialog.isShowing())
             {

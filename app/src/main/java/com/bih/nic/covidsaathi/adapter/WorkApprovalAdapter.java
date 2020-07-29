@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bih.nic.covidsaathi.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.covidsaathi.Model.ApproveWorkSiteEntity;
+import com.bih.nic.covidsaathi.Model.FacilitiesEntity;
 import com.bih.nic.covidsaathi.R;
 import com.bih.nic.covidsaathi.listener.WorkReqrmntListener;
 
@@ -21,7 +22,7 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
 
     Activity activity;
     LayoutInflater mInflater;
-    ArrayList<ApproveWorkSiteEntity> ThrList=new ArrayList<>();
+    ArrayList<FacilitiesEntity> ThrList=new ArrayList<>();
 
     Boolean isShowDetail = false;
     WorkReqrmntListener listener;
@@ -30,7 +31,7 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
     String UserRole="";
 
     // public WorkApprovalAdapter(Activity listViewshowedit, ArrayList<ApproveWorkSiteEntity> rlist, WorkReqrmntListener listener, String isEdit) {
-    public WorkApprovalAdapter(Activity listViewshowedit, ArrayList<ApproveWorkSiteEntity> rlist, String isEdit) {
+    public WorkApprovalAdapter(Activity listViewshowedit, ArrayList<FacilitiesEntity> rlist, String isEdit) {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -48,18 +49,20 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final ApproveWorkSiteEntity info = ThrList.get(position);
+        final FacilitiesEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
         UserRole= PreferenceManager.getDefaultSharedPreferences(activity).getString("UserRole", "");
         holder.tv_slno.setText(String.valueOf(position+1));
 
-        holder.tv_block.setText(info.getBlockName());
-        holder.tv_workstatus.setText(info.getBenStatus());
-        holder.tv_org_name.setText(info.getComanyNameEn());
-        holder.tv_work_site.setText(info.getWorkSiteName());
-        holder.tv_location.setText(info.getLocation());
-        holder.tv_pincode.setText(info.getPinNo());
+        holder.tv_beds.setText(info.getBed());
+        holder.tv_avlbl_bed.setText(info.getAvailable());
+        holder.tv_hsptl_id.setText(info.getHostpitalId());
+        holder.tv_type.setText(info.getType());
+        holder.tv_hn_hospital.setText(info.getNameHn());
+        holder.tv_hsptl_ene.setText(info.getName());
+        holder.tv_lvl_type.setText(info.getLevelType());
+        holder.tv_cntr_type.setText(info.getCenterType());
 
         holder.iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,18 +102,20 @@ public class WorkApprovalAdapter extends RecyclerView.Adapter<WorkApprovalAdapte
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tv_slno,tv_block,tv_workstatus,tv_org_name,tv_work_site,tv_location,tv_pincode;
+        TextView tv_slno,tv_beds,tv_avlbl_bed,tv_hsptl_id,tv_type,tv_hn_hospital,tv_hsptl_ene,tv_lvl_type,tv_cntr_type;
         ImageView iv_delete,iv_edit;
 
         ViewHolder(View itemView) {
             super(itemView);
             tv_slno=itemView.findViewById(R.id.tv_slno);
-            tv_block=itemView.findViewById(R.id.tv_block);
-            tv_workstatus=itemView.findViewById(R.id.tv_workstatus);
-            tv_org_name=itemView.findViewById(R.id.tv_org_name);
-            tv_work_site=itemView.findViewById(R.id.tv_work_site);
-            tv_location=itemView.findViewById(R.id.tv_location);
-            tv_pincode=itemView.findViewById(R.id.tv_pincode);
+            tv_beds=itemView.findViewById(R.id.tv_beds);
+            tv_avlbl_bed=itemView.findViewById(R.id.tv_avlbl_bed);
+            tv_hsptl_id=itemView.findViewById(R.id.tv_hsptl_id);
+            tv_type=itemView.findViewById(R.id.tv_type);
+            tv_hn_hospital=itemView.findViewById(R.id.tv_hn_hospital);
+            tv_hsptl_ene=itemView.findViewById(R.id.tv_hsptl_ene);
+            tv_lvl_type=itemView.findViewById(R.id.tv_lvl_type);
+            tv_cntr_type=itemView.findViewById(R.id.tv_cntr_type);
 
             iv_delete=itemView.findViewById(R.id.iv_delete);
             iv_edit=itemView.findViewById(R.id.iv_edit);

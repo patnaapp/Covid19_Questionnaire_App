@@ -19,6 +19,7 @@ import com.bih.nic.covidsaathi.Model.DepartmentWiseVacancy;
 import com.bih.nic.covidsaathi.Model.District;
 import com.bih.nic.covidsaathi.Model.EmpRegDetails;
 import com.bih.nic.covidsaathi.Model.EmployerDetails;
+import com.bih.nic.covidsaathi.Model.FacilitiesEntity;
 import com.bih.nic.covidsaathi.Model.HospitalMastar;
 import com.bih.nic.covidsaathi.Model.JobListEntity;
 import com.bih.nic.covidsaathi.Model.JobOfferPostedEntity;
@@ -159,6 +160,7 @@ public class WebserviceHelper implements KvmSerializable {
     private static final String InsertData_Ben="SurveyDetails";
     private static final String Category="SurveyDetails";
     private static final String GET_SURVEY_STATUS="CheckSurveyStatus";
+    private static final String Facility_centre="LevelWiseHospitalList";
 
     static String rest;
 
@@ -2526,12 +2528,12 @@ public class WebserviceHelper implements KvmSerializable {
     }
 
 
-    public static ArrayList<ApproveWorkSiteEntity> GetQuarantineFacility_List(String facilitycode, String leveltype)
+    public static ArrayList<FacilitiesEntity> GetQuarantineFacility_List(String facilitycode, String leveltype)
     {
-        SoapObject request = new SoapObject(SERVICENAMESPACE, GET_Work_Details_Approval);
+        SoapObject request = new SoapObject(SERVICENAMESPACE, Facility_centre);
 
-        request.addProperty("_Block", facilitycode);
-        request.addProperty("_deptid", leveltype);
+        request.addProperty("_CenterType", facilitycode);
+        request.addProperty("_LevelType", leveltype);
 
 
         SoapObject res1;
@@ -2543,11 +2545,11 @@ public class WebserviceHelper implements KvmSerializable {
             envelope.dotNet = true;
             envelope.setOutputSoapObject(request);
 
-            envelope.addMapping(SERVICENAMESPACE, ApproveWorkSiteEntity.Approval_CLASS.getSimpleName(), ApproveWorkSiteEntity.Approval_CLASS);
+            envelope.addMapping(SERVICENAMESPACE, FacilitiesEntity.Facility_CLASS.getSimpleName(), FacilitiesEntity.Facility_CLASS);
 
             HttpTransportSE androidHttpTransport = new HttpTransportSE(
                     SERVICEURL);
-            androidHttpTransport.call(SERVICENAMESPACE + GET_Work_Details_Approval,
+            androidHttpTransport.call(SERVICENAMESPACE + Facility_centre,
                     envelope);
 
             res1 = (SoapObject) envelope.getResponse();
@@ -2560,7 +2562,7 @@ public class WebserviceHelper implements KvmSerializable {
         }
         int TotalProperty = res1.getPropertyCount();
 
-        ArrayList<ApproveWorkSiteEntity> pvmArrayList = new ArrayList<ApproveWorkSiteEntity>();
+        ArrayList<FacilitiesEntity> pvmArrayList = new ArrayList<FacilitiesEntity>();
 
         for (int ii = 0; ii < TotalProperty; ii++)
         {
@@ -2570,7 +2572,7 @@ public class WebserviceHelper implements KvmSerializable {
                 if (property instanceof SoapObject)
                 {
                     SoapObject final_object = (SoapObject) property;
-                    ApproveWorkSiteEntity panchayat = new ApproveWorkSiteEntity(final_object,"1");
+                    FacilitiesEntity panchayat = new FacilitiesEntity(final_object,"1");
                     pvmArrayList.add(panchayat);
                 }
             }
