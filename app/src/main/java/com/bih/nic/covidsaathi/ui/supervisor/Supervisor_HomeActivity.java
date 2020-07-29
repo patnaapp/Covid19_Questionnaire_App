@@ -141,17 +141,17 @@ public class Supervisor_HomeActivity extends Activity {
     public void onExit()
     {
         new AlertDialog.Builder(this)
-                .setTitle("अलर्ट!!")
-                .setMessage("क्या आप ऐप बन्द करना चाहते हैं??")
+                .setTitle("Exit From App!!")
+                .setMessage("Are you sure??")
                 .setCancelable(false)
-                .setPositiveButton("हाँ", new DialogInterface.OnClickListener()
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
                         finish();
                     }
                 })
-                .setNegativeButton("नहीं", null)
+                .setNegativeButton("No", null)
                 .show();
     }
 

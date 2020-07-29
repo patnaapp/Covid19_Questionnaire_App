@@ -163,17 +163,17 @@ public class HqHomeActivity extends Activity {
     public void onExit()
     {
         new AlertDialog.Builder(this)
-                .setTitle("Alert!!")
-                .setMessage("Do you want to exit app??\n ")
+                .setTitle("Exit From App!!")
+                .setMessage("Are you sure??")
                 .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
                         finish();
                     }
                 })
-
+                .setNegativeButton("No", null)
                 .show();
     }
 
@@ -191,6 +191,10 @@ public class HqHomeActivity extends Activity {
         patientid=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("PatientId", "");
         Mobile=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Mobile", "");
         new CheckStatusForSurvey().execute();
+
+//        if(Utiilties.isOnline(this)){
+//            fetchCovidData();
+//        }
         super.onResume();
 
         //fetchCovidData();
