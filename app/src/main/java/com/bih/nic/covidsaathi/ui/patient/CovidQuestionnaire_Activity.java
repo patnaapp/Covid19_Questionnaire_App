@@ -112,7 +112,7 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             patient_id = getIntent().getStringExtra("PatientId");
         }
         else if (role.equals("PAT")){
-            benDetails=(checkstatus)getIntent().getSerializableExtra("data");
+            //benDetails=(checkstatus)getIntent().getSerializableExtra("data");
         }
 
         initialize();
@@ -137,12 +137,12 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if (Integer.parseInt(benDetails.getTotal())<1){
-            ll_test_date.setVisibility(View.VISIBLE);
-        }
-        else {
-            ll_test_date.setVisibility(View.GONE);
-        }
+//        if (Integer.parseInt(benDetails.getTotal())<1){
+//            ll_test_date.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            ll_test_date.setVisibility(View.GONE);
+//        }
 
         img_test_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -642,13 +642,13 @@ public class CovidQuestionnaire_Activity extends Activity implements AdapterView
 
         // if (Integer.parseInt(ques_count)==0) {
         try{
-            if (Integer.parseInt(benDetails.getTotal())<1){
+            //if (Integer.parseInt(benDetails.getTotal())<1){
                 if (TextUtils.isEmpty(edt_covid_test_date.getText().toString())) {
                     edt_covid_test_date.setError("Please select covid test date.");
                     focusView = edt_covid_test_date;
                     cancelRegistration = true;
                 }
-            }
+            //}
         }
         catch (Exception e){
             e.printStackTrace();

@@ -71,9 +71,11 @@
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.BankDetailsActivity" />
         <activity android:name="com.bih.nic.covidsaathi.ui.patient.NewPAcsMemberEntry_Activity" />
         <activity android:name="com.bih.nic.covidsaathi.ui.PreLoginActivity" />
+
         <activity
             android:name="com.bih.nic.covidsaathi.ui.patient.HqHomeActivity"
             android:theme="@style/NoActionBar" />
+
         <activity android:name="com.bih.nic.covidsaathi.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
