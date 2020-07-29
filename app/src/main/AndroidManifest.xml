@@ -90,6 +90,7 @@
         <activity android:name="com.bih.nic.covidsaathi.ui.supervisor.JobSearchActivity"/>
         <activity android:name="com.bih.nic.covidsaathi.HomeActivity" />
         <activity android:name="com.bih.nic.covidsaathi.VerifyAadhaar1" />
+        <activity android:name=".ui.patient.AddHospitalActivity"/>
         <activity android:name="com.bih.nic.covidsaathi.ui.Login" /> <!-- <activity -->
         <!-- android:name=".UpdateAdhaar" -->
         <!-- android:exported="true"> -->

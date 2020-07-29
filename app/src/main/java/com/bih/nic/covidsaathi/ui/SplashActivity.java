@@ -311,7 +311,7 @@ public class SplashActivity extends Activity {
                         Intent i = new Intent(SplashActivity.this, HqHomeActivity.class);
                         startActivity(i);
                         finish();
-                    }else if (userRole.equals("SUP")){
+                    }else if (userRole.equals("SUP") || userRole.equals("DSTGPS")){
                         Intent i = new Intent(SplashActivity.this, Supervisor_HomeActivity.class);
                         startActivity(i);
                         finish();

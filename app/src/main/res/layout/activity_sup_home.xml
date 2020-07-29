@@ -25,13 +25,12 @@
 
         <TextView
             android:id="@+id/tv_title"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="25dp"
-            android:text="COVID-19 SAATHI"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -336,6 +335,40 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="vertical"
+                android:background="@drawable/new_home_count_back">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="54dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Live Updates"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About Corona Virus"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        android:textColor="@color/secondaryColor"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/ll_view_patient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -364,6 +397,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="12dp"
                 android:id="@+id/ll_upload_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

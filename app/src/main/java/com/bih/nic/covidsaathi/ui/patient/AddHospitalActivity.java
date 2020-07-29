@@ -1,5 +1,6 @@
 package com.bih.nic.covidsaathi.ui.patient;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,7 +37,7 @@ import com.bih.nic.covidsaathi.WebserviceHelper;
 
 import java.util.ArrayList;
 
-public class AddHospitalActivity extends AppCompatActivity {
+public class AddHospitalActivity extends Activity {
     Spinner sp_Dist,sp_category,sp_hospital,sp_level_type,sp_type;
     String level_type_Id="",level_type_Name="",type_Id="",type_Name="",User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
     ArrayList<District> DistrictList = new ArrayList<District>();
