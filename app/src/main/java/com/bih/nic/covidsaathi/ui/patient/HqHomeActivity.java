@@ -102,7 +102,12 @@ public class HqHomeActivity extends Activity {
         tv_mobile.setText(Mobile);
         tv_superviser.setText(SupervisorName);
 
-        fetchCovidData();
+        if(Utiilties.isOnline(this)){
+            fetchCovidData();
+        }else{
+            Utiilties.internetNotAvailableDialog(this);
+        }
+
 
 //        if(UserRole.equals("ORGADM"))
 //        {
