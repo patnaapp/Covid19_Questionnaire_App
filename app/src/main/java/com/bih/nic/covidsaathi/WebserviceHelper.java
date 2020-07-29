@@ -2528,13 +2528,13 @@ public class WebserviceHelper implements KvmSerializable {
     }
 
 
-    public static ArrayList<FacilitiesEntity> GetQuarantineFacility_List(String facilitycode, String leveltype)
+    public static ArrayList<FacilitiesEntity> GetQuarantineFacility_List(String facilitycode, String leveltype, String distCode)
     {
         SoapObject request = new SoapObject(SERVICENAMESPACE, Facility_centre);
 
         request.addProperty("_CenterType", facilitycode);
         request.addProperty("_LevelType", leveltype);
-        request.addProperty("_DistCode", "0");
+        request.addProperty("_DistCode", distCode);
 
         SoapObject res1;
         try

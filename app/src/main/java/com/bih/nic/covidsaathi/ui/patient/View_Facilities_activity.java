@@ -174,7 +174,7 @@ public class View_Facilities_activity extends Activity
         @Override
         protected ArrayList<FacilitiesEntity> doInBackground(String...arg)
         {
-            return WebserviceHelper.GetQuarantineFacility_List(facility_code,level_type_id);
+            return WebserviceHelper.GetQuarantineFacility_List(facility_code,level_type_id,"0");
         }
 
         @Override

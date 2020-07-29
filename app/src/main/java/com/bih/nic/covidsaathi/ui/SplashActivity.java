@@ -45,7 +45,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 
 public class SplashActivity extends Activity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2000;
     ProgressBar progressBar;
     DataBaseHelper databaseHelper;
     MarshmallowPermission permission;

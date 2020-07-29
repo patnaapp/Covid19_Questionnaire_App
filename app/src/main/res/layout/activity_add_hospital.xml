@@ -3,62 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/holo_gray_bright"
+    android:background="@color/secondaryColor"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_below="@+id/rl_nav"
-        android:id="@+id/ll_header"
+    <include
         android:layout_width="match_parent"
-        android:background="@color/holo_gray_light"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="COVID-19 SAATHI"
-            android:textColor="@color/colorPrimary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:visibility="gone"
-            android:layout_marginTop="12dp"
-            android:id="@+id/iv_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo3" />
-
-        <TextView
-            android:visibility="gone"
-            android:textColor="#DD2424"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="21sp"
-            android:text="e-Labharthi"
-
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:textColor="#DD2424"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="GOVERNMENT OF BIHAR"
-            android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
+        android:id="@+id/header"
+        layout="@layout/header_main"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="List"
-        android:layout_below="@id/ll_header"
-
+        android:text="Geo-tagging of Centres"
+        android:layout_below="@id/header"
+        android:textSize="15sp"
         android:id="@+id/tv_desc"
         android:layout_margin="8dp"
         android:textColor="@color/holo_green_dark"
@@ -98,8 +56,7 @@
 
                 <LinearLayout
                     android:layout_marginBottom="12dp"
-                    android:layout_width="fill_parent"
-
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
@@ -112,6 +69,7 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="12dp"
                             android:layout_width="match_parent"
@@ -132,6 +90,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="36dp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="12dp"
@@ -142,7 +101,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Lebel Type : [*]"
+                                android:text="Level Type : [*]"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -207,6 +166,7 @@
                                 android:layout_height="36dp" />
                         </LinearLayout>
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="12dp"
                             android:layout_width="match_parent"

@@ -32,6 +32,7 @@ import com.bih.nic.covidsaathi.GlobalVariables;
 import com.bih.nic.covidsaathi.Model.AddHospitalEntity;
 import com.bih.nic.covidsaathi.Model.CategoryMaster;
 import com.bih.nic.covidsaathi.Model.District;
+import com.bih.nic.covidsaathi.Model.FacilitiesEntity;
 import com.bih.nic.covidsaathi.Model.HospitalMastar;
 import com.bih.nic.covidsaathi.R;
 import com.bih.nic.covidsaathi.Utiilties;
@@ -45,7 +46,7 @@ public class AddHospitalActivity extends Activity {
     String level_type_Id="",level_type_Name="",type_Id="",type_Name="",User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
     ArrayList<District> DistrictList = new ArrayList<District>();
     ArrayList<CategoryMaster> CategoryList = new ArrayList<CategoryMaster>();
-    ArrayList<HospitalMastar> HospitalList = new ArrayList<HospitalMastar>();
+    ArrayList<FacilitiesEntity> HospitalList = new ArrayList<FacilitiesEntity>();
     DataBaseHelper localDBHelper;
     ArrayList<String> districtNameArray;
     ArrayList<String> categoryNameArray;
@@ -74,7 +75,9 @@ public class AddHospitalActivity extends Activity {
         localDBHelper=new DataBaseHelper(AddHospitalActivity.this);
 
         User_Id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
-        Dist_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Dist_Code", "");
+        Dist_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistCode", "");
+
+        Log.e("DistCode", Dist_Code);
 
         sp_Dist=findViewById(R.id.sp_Dist);
         sp_category=findViewById(R.id.sp_category);
@@ -85,6 +88,14 @@ public class AddHospitalActivity extends Activity {
         btn_reg = findViewById(R.id.btn_reg);
         rl_photo = findViewById(R.id.rl_photo);
 
+        ImageView img = findViewById(R.id.img);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         loadDistrictSpinnerdata();
         loadCategorySpinnerdata();
         ben_aaray_level_type = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, level_type);
@@ -94,6 +105,7 @@ public class AddHospitalActivity extends Activity {
 
         ben_cen_type_type = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, center_type);
         sp_category.setAdapter(ben_cen_type_type);
+
 
 
         sp_Dist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -175,7 +187,7 @@ public class AddHospitalActivity extends Activity {
 //                    HospitalList = localDBHelper.getHospital();
 
 
-                    level_type_Name = level_type[position];
+                    Cat_Name = center_type[position];
                     if (Cat_Name.equals("Hospital")) {
                         Cat_Code = "H";
                     } else if (Cat_Name.equals("Isolation Center")) {
@@ -209,11 +221,11 @@ public class AddHospitalActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                if (position >= 0) {
+                if (position > 0) {
 
-                    HospitalMastar district = HospitalList.get(position);
-                    Hos_Code = district.getHos_Code();
-                    Hos_Name = district.getHos_Name();
+                    FacilitiesEntity district = HospitalList.get(position-1);
+                    Hos_Code = district.getHostpitalId();
+                    Hos_Name = district.getName();
 
                 } else {
                     Hos_Code = "";
@@ -314,7 +326,7 @@ public class AddHospitalActivity extends Activity {
 
             Intent iCamera = new Intent(getApplicationContext(), CameraActivity.class);
             if (view.equals(img1))
-                // iCamera.putExtra("KEY_PIC", "2");
+                iCamera.putExtra("KEY_PIC", "2");
                 startActivityForResult(iCamera,CAMERA_PIC);
 
 
@@ -377,14 +389,15 @@ public class AddHospitalActivity extends Activity {
         sp_Dist.setAdapter(categoryadapter);
 
     }
-    public void loadHospitaldata(ArrayList<HospitalMastar> result) {
+    public void loadHospitaldata(ArrayList<FacilitiesEntity> result) {
 
 //        HospitalList = localDBHelper.getHospital(distCode,LevelType,CentreType);
-//        hospitalNameArray = new ArrayList<String>();
+        hospitalNameArray = new ArrayList<String>();
+        hospitalNameArray.add("-select-");
         //districtNameArray.add("-Select District-");
         int i = 1;
-        for (HospitalMastar district : result) {
-            hospitalNameArray.add(district.getHos_Name());
+        for (FacilitiesEntity district : result) {
+            hospitalNameArray.add(district.getName());
             i++;
         }
         hospitaladapter = new ArrayAdapter<String>(this,android. R.layout.simple_spinner_dropdown_item, hospitalNameArray);
@@ -716,7 +729,7 @@ public class AddHospitalActivity extends Activity {
 //
 //    }
 
-    public class loadHospital extends AsyncTask<String, Void, ArrayList<HospitalMastar>> {
+    public class loadHospital extends AsyncTask<String, Void, ArrayList<FacilitiesEntity>> {
         String PanchayatCode = "",User_Id = "";
 
         public loadHospital() {
@@ -730,39 +743,43 @@ public class AddHospitalActivity extends Activity {
         @Override
         protected void onPreExecute() {
             this.dialog.setCanceledOnTouchOutside(false);
-            this.dialog.setMessage("लोडिंग...");
+            this.dialog.setMessage("Loading...");
             this.dialog.show();
         }
 
         @Override
-        protected ArrayList<HospitalMastar> doInBackground(String... params) {
+        protected ArrayList<FacilitiesEntity> doInBackground(String... params) {
 
-            ArrayList<HospitalMastar> res1 = WebserviceHelper.loadHospital(Dist_Code,Cat_Code,level_type_Id);
+            ArrayList<FacilitiesEntity> res1 = WebserviceHelper.GetQuarantineFacility_List(Cat_Code,level_type_Id,Dist_Code);
 
             return res1;
         }
 
         @Override
-        protected void onPostExecute(final ArrayList<HospitalMastar> result) {
+        protected void onPostExecute(final ArrayList<FacilitiesEntity> result) {
 
             if (this.dialog.isShowing()) {
-                if (result != null) {
-                    if (result.size() > 0) {
-                        loadHospitaldata(result);
-                    } else {
-                        Toast.makeText(AddHospitalActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                    }
+                this.dialog.dismiss();
+
+                //loadSHGSpinnerData(SHGList);
+
+                //new PsLoader(GlobalVariables.LoggedUser.get_DistrictCode(),GlobalVariables.LoggedUser.get_StateCode()).execute();
+
+            }
+
+            if (result != null) {
+                if (result.size() > 0) {
+                    HospitalList = result;
+                    loadHospitaldata(result);
+                } else {
+                    Toast.makeText(AddHospitalActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                }
 
 
 //                if(c>0)
 //                {
 //                    setSHG_VillageSpinnerData(_varpanchayatID,CommonPref.getUserDetails(PhasuLevelActivity.this).getUserID());
 //                }
-                    this.dialog.dismiss();
-                }
-                //loadSHGSpinnerData(SHGList);
-
-                //new PsLoader(GlobalVariables.LoggedUser.get_DistrictCode(),GlobalVariables.LoggedUser.get_StateCode()).execute();
 
             }
         }

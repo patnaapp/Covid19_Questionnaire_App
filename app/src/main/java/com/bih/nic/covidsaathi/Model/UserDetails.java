@@ -83,6 +83,7 @@ public class UserDetails implements KvmSerializable {
         this.SupervisorId=res1.getProperty("SupId").toString();
         this.SupervisorName=res1.getProperty("UserName").toString();
         this.Role=res1.getProperty("UserRole").toString();
+        this.DistCode=res1.getProperty("DistrictCode").toString();
 
 //        this.DistCode=res1.getProperty("DistrictCode").toString();
 //        this.DistName=res1.getProperty("DistrictName").toString();

@@ -326,6 +326,7 @@ public class Login extends Activity {
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SupervisorName",result.getSupervisorName()).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isLogin",true).commit();
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("user_role",result.getRole()).commit();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("DistCode",result.getDistCode()).commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("BlockName",result.getBlockName()).commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("PanchayatName",result.getPanchayatName()).commit();
 //                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("Photo",result.getProfileImg()).commit();
