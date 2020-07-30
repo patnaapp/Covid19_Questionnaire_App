@@ -161,6 +161,7 @@ public class WebserviceHelper implements KvmSerializable {
     private static final String Category="SurveyDetails";
     private static final String GET_SURVEY_STATUS="CheckSurveyStatus";
     private static final String Facility_centre="LevelWiseHospitalList";
+    private static final String Hospital="LevelWiseHospitalList";
 
     static String rest;
 
@@ -3144,14 +3145,14 @@ public class WebserviceHelper implements KvmSerializable {
     public static String Registration(AddHospitalEntity user) {
         try {
             SoapObject request = new SoapObject(SERVICENAMESPACE, InsertData_Ben);
-            request.addProperty("_Dist_Code",user.getDist_Code());
-            request.addProperty("_Dist_Code",user.getLevelType_Id());
-            request.addProperty("_BlockCode",user.getCat_Code());
-            request.addProperty("_panchayatCode",user.getHos_Code());
-            request.addProperty("_panchayatCode",user.getType_Id());
-            request.addProperty("_Other_panchayatName",user.getPic());
-            request.addProperty("_Other_panchayatName",user.getLatitude());
-            request.addProperty("_Other_panchayatName",user.getLongitude());
+            request.addProperty("_DistCode",user.getDist_Code());
+           // request.addProperty("_Dist_Code",user.getLevelType_Id());
+            //request.addProperty("_BlockCode",user.getCat_Code());
+            request.addProperty("_HospitalId",user.getHos_Code());
+            //request.addProperty("_panchayatCode",user.getType_Id());
+            request.addProperty("_Image",user.getPic());
+            request.addProperty("_Latlong",user.getLatitude());
+            request.addProperty("_Longitude",user.getLongitude());
             request.addProperty("_benName",user.getUserId());
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
@@ -3211,39 +3212,91 @@ public class WebserviceHelper implements KvmSerializable {
         return ben;
 
     }
-    public static HospitalMastar loadHospital(String Dist_Code,String Cat_Code) {
+//    public static HospitalMastar loadHospital(String Dist_Code,String Cat_Code,String typeid) {
+//
+//        SoapObject request = new SoapObject(SERVICENAMESPACE, Hospital);
+//
+//        request.addProperty("_CenterType",Cat_Code);
+//        request.addProperty("_LevelType",typeid);
+//        request.addProperty("_DistCode",Dist_Code);
+//        HospitalMastar ben;
+//        SoapObject res1;
+//        try {
+//
+//            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+//            envelope.dotNet = true;
+//            envelope.setOutputSoapObject(request);
+//            envelope.addMapping(SERVICENAMESPACE,HospitalMastar.USER_CLASS.getSimpleName(), HospitalMastar.USER_CLASS);
+//            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
+//            androidHttpTransport.call(SERVICENAMESPACE + Hospital, envelope);
+//
+//            res1 = (SoapObject) envelope.getResponse();
+//
+//            int TotalProperty = res1.getPropertyCount();
+//
+//            ben = new HospitalMastar(res1);
+//
+//        } catch (Exception e) {
+//
+//            e.printStackTrace();
+//            if(e.getLocalizedMessage()!=null) {
+//                Log.e("EXC", e.getLocalizedMessage());
+//            }
+//            return null;
+//        }
+//        return ben;
+//
+//    }
 
-        SoapObject request = new SoapObject(SERVICENAMESPACE, Category);
+    public static ArrayList<HospitalMastar> loadHospital(String Dist_Code,String Cat_Code,String typeid) {
 
-        request.addProperty("_Dist_Code",Dist_Code);
-        request.addProperty("_CatCode",Cat_Code);
-        HospitalMastar ben;
+
+
+        SoapObject request = new SoapObject(SERVICENAMESPACE, Hospital);
+
+        request.addProperty("_CenterType",Cat_Code);
+        request.addProperty("_LevelType",typeid);
+        request.addProperty("_DistCode",Dist_Code);
+
         SoapObject res1;
         try {
 
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
+                    SoapEnvelope.VER11);
             envelope.dotNet = true;
             envelope.setOutputSoapObject(request);
+
             envelope.addMapping(SERVICENAMESPACE,HospitalMastar.USER_CLASS.getSimpleName(), HospitalMastar.USER_CLASS);
-            HttpTransportSE androidHttpTransport = new HttpTransportSE(SERVICEURL);
-            androidHttpTransport.call(SERVICENAMESPACE + Category, envelope);
+
+            HttpTransportSE androidHttpTransport = new HttpTransportSE(
+                    SERVICEURL);
+            androidHttpTransport.call(SERVICENAMESPACE + Hospital,
+                    envelope);
 
             res1 = (SoapObject) envelope.getResponse();
 
-            int TotalProperty = res1.getPropertyCount();
-
-            ben = new HospitalMastar(res1);
-
         } catch (Exception e) {
-
             e.printStackTrace();
-            if(e.getLocalizedMessage()!=null) {
-                Log.e("EXC", e.getLocalizedMessage());
-            }
             return null;
         }
-        return ben;
+        int TotalProperty = res1.getPropertyCount();
 
+        ArrayList<HospitalMastar> pvmArrayList = new ArrayList<HospitalMastar>();
+
+        for (int ii = 0; ii < TotalProperty; ii++) {
+            if (res1.getProperty(ii) != null) {
+                Object property = res1.getProperty(ii);
+                if (property instanceof SoapObject) {
+                    SoapObject final_object = (SoapObject) property;
+                    HospitalMastar block = new HospitalMastar(final_object);
+                    pvmArrayList.add(block);
+                }
+            } else
+                return pvmArrayList;
+        }
+
+
+        return pvmArrayList;
     }
 
     public static ArrayList<JobListEntity> getPatientList(String userId){

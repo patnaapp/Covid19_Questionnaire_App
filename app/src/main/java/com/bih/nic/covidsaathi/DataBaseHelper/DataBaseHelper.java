@@ -1466,24 +1466,32 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
         return districtList;
 
     }
-    public ArrayList<HospitalMastar> getHospital() {
+    public ArrayList<HospitalMastar> getHospital(String DistCode,String LevelType,String Centretype) {
 
         ArrayList<HospitalMastar> districtList = new ArrayList<HospitalMastar>();
 
         try {
-
+            String[] param = {DistCode,LevelType,Centretype};
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cur = db
                     .rawQuery(
-                            "SELECT * from  Hospital order by Hos_Name", null);
+                            "SELECT * from  Hospital Where DistCode =? AND LevelType =? AND CenterType =? ", param);
             int x = cur.getCount();
 
             while (cur.moveToNext()) {
 
                 HospitalMastar district = new HospitalMastar();
                 district.setHos_Code(cur.getString(cur
-                        .getColumnIndex("Hos_Code")));
-                district.setHos_Name(cur.getString(cur.getColumnIndex("Hos_Name")));
+                        .getColumnIndex("HostpitalId")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("Type")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("NameHn")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("Name")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("Bed")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("Available")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("MapGroup")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("LevelType")));
+                district.setHos_Name(cur.getString(cur.getColumnIndex("CenterType")));
+                district.setDist_Code(cur.getString(cur.getColumnIndex("DistCode")));
                 //district.setDistrictName(cur.getString(cur.getColumnIndex("DistName")));
 
 
@@ -1668,16 +1676,22 @@ public class DataBaseHelper  extends SQLiteOpenHelper {
         }
         return  c;
     }
-    public long insertHospital(HospitalMastar sevikaSahaikaEntity) {
+    public long insertHospital_new(HospitalMastar sevikaSahaikaEntity) {
         long c=-1;
         try {
             DataBaseHelper placeData = new DataBaseHelper(myContext);
             SQLiteDatabase db = placeData.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            contentValues.put("Hos_Code",sevikaSahaikaEntity.getHos_Code());
-            contentValues.put("Hos_Name",sevikaSahaikaEntity.getHos_Name());
-            contentValues.put("Cat_Code",sevikaSahaikaEntity.getCat_Code());
-            contentValues.put("Dist_Code",sevikaSahaikaEntity.getDist_Code());
+            contentValues.put("HostpitalId",sevikaSahaikaEntity.getHos_Code());
+            contentValues.put("Type",sevikaSahaikaEntity.getType());
+            contentValues.put("NameHn",sevikaSahaikaEntity.getNameHn());
+            contentValues.put("Name",sevikaSahaikaEntity.getHos_Name());
+            contentValues.put("Bed",sevikaSahaikaEntity.getBed());
+            contentValues.put("Available",sevikaSahaikaEntity.getAvailable());
+            contentValues.put("MapGroup",sevikaSahaikaEntity.getMapGroup());
+            contentValues.put("LevelType",sevikaSahaikaEntity.getLevelType());
+            contentValues.put("CenterType",sevikaSahaikaEntity.getCenterType());
+            contentValues.put("DistCode",sevikaSahaikaEntity.getDist_Code());
             String[] whereArgs = new String[]{sevikaSahaikaEntity.getHos_Code()};
             c = db.update("Hospital", contentValues, "Hos_Code=?", whereArgs);
             if (!(c > 0)) {

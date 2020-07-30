@@ -11,16 +11,30 @@ public class HospitalMastar implements KvmSerializable {
     private String Hos_Name="";
     private String Cat_Code="";
     private String Dist_Code="";
+    private String Type="";
+    private String NameHn="";
+    private String Bed="";
+    private String Available="";
+    private String MapGroup="";
+    private String LevelType="";
+    private String CenterType="";
+
 
     public static Class<CategoryMaster> USER_CLASS = CategoryMaster.class;
 
     public HospitalMastar(SoapObject sobj)
     {
 
-        this.Hos_Code=sobj.getProperty("Hos_Code").toString();
-        this.Hos_Name=sobj.getProperty("Hos_Name").toString();
-        this.Cat_Code=sobj.getProperty("Cat_Code").toString();
-        this.Dist_Code=sobj.getProperty("Dist_Code").toString();
+        this.Hos_Code=sobj.getProperty("HostpitalId").toString();
+        this.Type=sobj.getProperty("Type").toString();
+        this.NameHn=sobj.getProperty("NameHn").toString();
+        this.Hos_Name=sobj.getProperty("Name").toString();
+        this.Bed=sobj.getProperty("Bed").toString();
+        this.Available=sobj.getProperty("Available").toString();
+        this.MapGroup=sobj.getProperty("MapGroup").toString();
+        this.LevelType=sobj.getProperty("LevelType").toString();
+        this.CenterType=sobj.getProperty("CenterType").toString();
+        this.Dist_Code=sobj.getProperty("DistCode").toString();
 
 
     }
@@ -79,5 +93,61 @@ public class HospitalMastar implements KvmSerializable {
 
     public void setDist_Code(String dist_Code) {
         Dist_Code = dist_Code;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
+
+    public String getNameHn() {
+        return NameHn;
+    }
+
+    public void setNameHn(String nameHn) {
+        NameHn = nameHn;
+    }
+
+    public String getBed() {
+        return Bed;
+    }
+
+    public void setBed(String bed) {
+        Bed = bed;
+    }
+
+    public String getAvailable() {
+        return Available;
+    }
+
+    public void setAvailable(String available) {
+        Available = available;
+    }
+
+    public String getMapGroup() {
+        return MapGroup;
+    }
+
+    public void setMapGroup(String mapGroup) {
+        MapGroup = mapGroup;
+    }
+
+    public String getLevelType() {
+        return LevelType;
+    }
+
+    public void setLevelType(String levelType) {
+        LevelType = levelType;
+    }
+
+    public String getCenterType() {
+        return CenterType;
+    }
+
+    public void setCenterType(String centerType) {
+        CenterType = centerType;
     }
 }

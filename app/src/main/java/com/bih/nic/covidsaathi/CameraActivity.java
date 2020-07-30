@@ -126,11 +126,11 @@ public class CameraActivity extends Activity {
         btnCamType = (Button) findViewById(R.id.btnCamType);
         progress_finding_location = (ProgressBar) findViewById(R.id.progress_finding_location);
 
-        if (Utiilties.isfrontCameraAvalable() && getIntent().getStringExtra("KEY_PIC").equals("2")) {
+//        if (Utiilties.isfrontCameraAvalable() && getIntent().getStringExtra("KEY_PIC").equals("2")) {
             camType = CameraInfo.CAMERA_FACING_BACK;
-        } else {
-            camType = CameraInfo.CAMERA_FACING_FRONT;
-        }
+//        } else {
+//            camType = CameraInfo.CAMERA_FACING_FRONT;
+//        }
         preview = (FrameLayout) findViewById(R.id.camera_preview);
 
 
@@ -413,8 +413,8 @@ public class CameraActivity extends Activity {
         Date d = new Date(GlobalVariables.glocation.getTime());
         String dat = d.toLocaleString();
         returnIntent.putExtra("GPSTime", dat);
-        returnIntent.putExtra("KEY_PIC",
-                Integer.parseInt(getIntent().getStringExtra("KEY_PIC")));
+        //returnIntent.putExtra("KEY_PIC",
+                //Integer.parseInt(getIntent().getStringExtra("KEY_PIC")));
         // returnIntent.putExtra("ss", 0);
         setResult(RESULT_OK, returnIntent);
         Log.e("Set camera image", "Yes");
