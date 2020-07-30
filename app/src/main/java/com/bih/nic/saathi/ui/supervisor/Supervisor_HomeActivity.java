@@ -25,6 +25,7 @@ import com.bih.nic.saathi.R;
 import com.bih.nic.saathi.Utiilties;
 import com.bih.nic.saathi.ui.PreLoginActivity;
 import com.bih.nic.saathi.ui.patient.AddHospitalActivity;
+import com.bih.nic.saathi.ui.patient.SwasthyaDistrictDataActivity;
 import com.bih.nic.saathi.webservice.Api;
 import com.bih.nic.saathi.webservice.RetrofitClient;
 
@@ -212,5 +213,11 @@ public class Supervisor_HomeActivity extends Activity {
 
             }
         });
+    }
+
+    public void onViewMore(View view) {
+        Intent intent = new Intent(this, SwasthyaDistrictDataActivity.class);
+        intent.putExtra("data", covidDistrictData);
+        startActivity(intent);
     }
 }

@@ -111,9 +111,11 @@ public class Questionnaire_Activity extends Activity implements AdapterView.OnIt
         if(role.equals("SUP")){
             patient_id = getIntent().getStringExtra("PatientId");
         }
-        else if (role.equals("PAT")){
-            benDetails=(checkstatus)getIntent().getSerializableExtra("data");
-        }
+
+        benDetails=(checkstatus)getIntent().getSerializableExtra("data");
+//        else if (role.equals("PAT")){
+//
+//        }
 
         initialize();
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

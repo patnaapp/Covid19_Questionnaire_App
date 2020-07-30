@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bih.nic.saathi.Model.JobListEntity;
+import com.bih.nic.saathi.Model.checkstatus;
 import com.bih.nic.saathi.R;
 import com.bih.nic.saathi.Utiilties;
 import com.bih.nic.saathi.ui.patient.Questionnaire_Activity;
@@ -87,8 +88,18 @@ public class JobSearchAdapter extends RecyclerView.Adapter<JobSearchAdapter.View
             @Override
             public void onClick(View v) {
                 if(Utiilties.isOnline(activity)) {
+                    checkstatus benDetails = new checkstatus();
+                    benDetails.setToday(info.getToday());
+                    benDetails.setTotal(info.getTotal());
+                    benDetails.setPatientId(info.getPatientId());
+                    benDetails.setPatientName(info.getPatientName());
+                    benDetails.setFHName(info.getFHName());
+                    benDetails.setPatientMobNo(info.getPatientMobNo());
+                    benDetails.setAddress(info.getAddress());
+                    benDetails.setImpDate(info.getImpDate());
                     Intent intent = new Intent(activity, Questionnaire_Activity.class);
                     intent.putExtra("PatientId", info.getPatientId());
+                    intent.putExtra("data", benDetails);
                     activity.startActivity(intent);
 
                 }

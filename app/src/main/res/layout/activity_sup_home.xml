@@ -371,12 +371,16 @@
                     </LinearLayout>
 
                     <TextView
-                        android:visibility="gone"
+                        android:onClick="onViewMore"
+                        android:visibility="visible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="View More"
+                        android:textSize="13sp"
                         android:layout_alignParentRight="true"
-                        android:layout_margin="8dp"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/colorwhite"
+                        android:textStyle="bold"
                         android:layout_centerVertical="true"
                         android:id="@+id/tv_view"/>
                 </RelativeLayout>

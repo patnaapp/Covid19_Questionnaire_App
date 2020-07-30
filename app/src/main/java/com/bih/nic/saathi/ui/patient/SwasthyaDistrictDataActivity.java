@@ -1,11 +1,11 @@
 package com.bih.nic.saathi.ui.patient;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.bih.nic.saathi.R;
 
-public class SwasthyaDistrictDataActivity extends AppCompatActivity {
+public class SwasthyaDistrictDataActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

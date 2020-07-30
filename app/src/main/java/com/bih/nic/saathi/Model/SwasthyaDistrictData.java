@@ -2,7 +2,9 @@ package com.bih.nic.saathi.Model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SwasthyaDistrictData {
+import java.io.Serializable;
+
+public class SwasthyaDistrictData implements Serializable {
     private SwasthyaDistrictCount Araria;
     private SwasthyaDistrictCount Arwal;
     private SwasthyaDistrictCount Aurangabad;
