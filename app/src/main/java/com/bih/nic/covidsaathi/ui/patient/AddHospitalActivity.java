@@ -513,12 +513,12 @@ public class AddHospitalActivity extends Activity {
             focusView = sp_hospital;
             cancelRegistration = true;
         }
-        if (TextUtils.isEmpty(type_Id)) {
-            Toast.makeText(getApplicationContext(), "Please Select Type", Toast.LENGTH_LONG).show();
-            //sp_block.setError("कृपया प्रखंड का नाम का चयन करे |");
-            focusView = sp_type;
-            cancelRegistration = true;
-        }
+//        if (TextUtils.isEmpty(type_Id)) {
+//            Toast.makeText(getApplicationContext(), "Please Select Type", Toast.LENGTH_LONG).show();
+//            //sp_block.setError("कृपया प्रखंड का नाम का चयन करे |");
+//            focusView = sp_type;
+//            cancelRegistration = true;
+//        }
         if(img == null){
             Toast.makeText(this, "Please Capture Picture", Toast.LENGTH_SHORT).show();
             //focusView = rl_photo;
