@@ -31,6 +31,7 @@ import com.bih.nic.covidsaathi.DataBaseHelper.DataBaseHelper;
 import com.bih.nic.covidsaathi.GlobalVariables;
 import com.bih.nic.covidsaathi.Model.AddHospitalEntity;
 import com.bih.nic.covidsaathi.Model.CategoryMaster;
+import com.bih.nic.covidsaathi.Model.DefaultResponse;
 import com.bih.nic.covidsaathi.Model.District;
 import com.bih.nic.covidsaathi.Model.FacilitiesEntity;
 import com.bih.nic.covidsaathi.Model.HospitalMastar;
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 
 public class AddHospitalActivity extends Activity {
     Spinner sp_Dist,sp_category,sp_hospital,sp_level_type,sp_type;
-    String level_type_Id="",level_type_Name="",type_Id="",type_Name="",User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
+    String str_img="",level_type_Id="",level_type_Name="",type_Id="",type_Name="",User_Id="",Dist_Code="",Dist_Name="",latitude="",longitude="",Cat_Code="",Cat_Name="",Hos_Code="",Hos_Name="";
     ArrayList<District> DistrictList = new ArrayList<District>();
     ArrayList<CategoryMaster> CategoryList = new ArrayList<CategoryMaster>();
     ArrayList<FacilitiesEntity> HospitalList = new ArrayList<FacilitiesEntity>();
@@ -58,6 +59,7 @@ public class AddHospitalActivity extends Activity {
     int ThumbnailSize =500;
     ImageView img1;
     byte[] img;
+    String distCode="";
     Bitmap bmp;
     AddHospitalEntity benfiList;;
     Button btn_reg;
@@ -73,9 +75,10 @@ public class AddHospitalActivity extends Activity {
         setContentView(R.layout.activity_add_hospital);
         getActionBar().hide();
         localDBHelper=new DataBaseHelper(AddHospitalActivity.this);
+        benfiList= new AddHospitalEntity();
 
         User_Id=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("UserId", "");
-        Dist_Code=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistCode", "");
+        distCode=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("DistCode", "");
 
         Log.e("DistCode", Dist_Code);
 
@@ -358,7 +361,7 @@ public class AddHospitalActivity extends Activity {
         typeNameArray[0] = "-Select District-";
         int i = 0;
         int setID=0;
-        String distCode=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Dist_Code", "");
+        //String distCode=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("Dist_Code", "");
         for (District type : DistrictList) {
             typeNameArray[i+1] = type.get_DistName();
             if(distCode.equalsIgnoreCase(DistrictList.get(i).get_DistCode()))
@@ -438,7 +441,7 @@ public class AddHospitalActivity extends Activity {
                     Bitmap bmpImg = BitmapFactory.decodeByteArray(imgData, 0, imgData.length);
                     bmp = bmpImg;
                     img1.setImageBitmap(bmpImg);
-                    //str_aadhar_img = org.kobjects.base64.Base64.encode(imgData);
+                    str_img = org.kobjects.base64.Base64.encode(imgData);
 
                     latitude = String.valueOf(data.getStringExtra("Lat"));
                     longitude = String.valueOf(data.getStringExtra("Lng"));
@@ -529,12 +532,12 @@ public class AddHospitalActivity extends Activity {
             // error in login
             focusView.requestFocus();
         } else {
-            benfiList.setDist_Code(Dist_Code);
+            benfiList.setDist_Code(distCode);
             benfiList.setLevelType_Id(level_type_Id);
             benfiList.setCat_Code(Cat_Code);
             benfiList.setHos_Code(Hos_Code);
             benfiList.setType_Id(type_Id);
-            benfiList.setPic(img);
+            benfiList.setImage(str_img);
             benfiList.setLatitude(latitude);
             benfiList.setLongitude(longitude);
             benfiList.setUserId(User_Id);
@@ -563,87 +566,6 @@ public class AddHospitalActivity extends Activity {
         }
     }
 
-    private class RegistrationTask extends AsyncTask<AddHospitalEntity, Void, String> {
-
-        private final ProgressDialog dialog = new ProgressDialog(AddHospitalActivity.this);
-
-        private final android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(AddHospitalActivity.this).create();
-
-        AddHospitalEntity info;
-
-        @Override
-        protected void onPreExecute() {
-
-            this.dialog.setCanceledOnTouchOutside(false);
-            this.dialog.setMessage("Uploading...");
-            this.dialog.show();
-        }
-
-        public RegistrationTask(AddHospitalEntity info) {
-            this.info = info;
-        }
-
-        @Override
-        protected String doInBackground(AddHospitalEntity... param) {
-
-            return WebserviceHelper.Registration(info);
-        }
-
-        @Override
-
-        protected void onPostExecute(String result) {
-
-            if (this.dialog.isShowing()) {
-                this.dialog.dismiss();
-            }
-            if (result != null) {
-
-                if (result.equals("1")) {
-
-                    android.app.AlertDialog.Builder ab = new android.app.AlertDialog.Builder(AddHospitalActivity.this);
-                    ab.setCancelable(false);
-                    //ab.setIcon(R.drawable.biharlogo);
-                    ab.setMessage(Html.fromHtml(
-                            "<font color=#000000>Sucess</font>"));
-                    ab.setPositiveButton("ओके", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            Intent intent = new Intent(getBaseContext(), Supervisor_HomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            //setFinishOnTouchOutside(false);
-                            finish();
-                        }
-                    });
-
-                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                    ab.show();
-
-                } else if (result.equals("2")) {
-
-                    android.app.AlertDialog.Builder ab = new android.app.AlertDialog.Builder(AddHospitalActivity.this);
-                    ab.setMessage(Html.fromHtml(
-                            "<font color=#000000>Failure</font>"));
-                    ab.setPositiveButton("ओके", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
-                    ab.show();
-                }
-            } else {
-
-                Toast.makeText(AddHospitalActivity.this,
-                        "इंटरनेट की स्पीड स्लो है | कृपया कुछ समय बाद प्रयास करे: ", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-
-
-    }
 
     private class loadCategory extends AsyncTask<String, Void, CategoryMaster> {
 
@@ -750,7 +672,7 @@ public class AddHospitalActivity extends Activity {
         @Override
         protected ArrayList<FacilitiesEntity> doInBackground(String... params) {
 
-            ArrayList<FacilitiesEntity> res1 = WebserviceHelper.GetQuarantineFacility_List(Cat_Code,level_type_Id,Dist_Code);
+            ArrayList<FacilitiesEntity> res1 = WebserviceHelper.GetQuarantineFacility_List(Cat_Code,level_type_Id,distCode);
 
             return res1;
         }
@@ -784,5 +706,57 @@ public class AddHospitalActivity extends Activity {
             }
         }
 
+    }
+    private class RegistrationTask extends AsyncTask<String, Void, DefaultResponse> {
+        private final ProgressDialog dialog = new ProgressDialog(AddHospitalActivity.this);
+        AddHospitalEntity info;
+        public RegistrationTask(AddHospitalEntity info) {
+
+            this.info = info;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setCanceledOnTouchOutside(false);
+            this.dialog.setMessage("अप्लोड हो रहा है...");
+            this.dialog.show();
+        }
+
+        @Override
+        protected DefaultResponse doInBackground(String...arg) {
+            return WebserviceHelper.Registration(info);
+        }
+
+        @Override
+        protected void onPostExecute(DefaultResponse result) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
+            if(result != null){
+                if (result.getStatus()==true) {
+                    Toast.makeText(AddHospitalActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(AddHospitalActivity.this,Supervisor_HomeActivity.class);
+                    startActivity(i);
+                }else{
+                    AlertDialog.Builder ab = new AlertDialog.Builder(AddHospitalActivity.this);
+                    ab.setCancelable(false);
+                    ab.setTitle("Failed");
+                    ab.setMessage(result.getMessage());
+                    ab.setPositiveButton("[OK]", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    ab.create().getWindow().getAttributes().windowAnimations = R.style.alert_animation;
+                    ab.show();
+                }
+            }else{
+                Toast.makeText(AddHospitalActivity.this, "Update Failed, Null Record", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
