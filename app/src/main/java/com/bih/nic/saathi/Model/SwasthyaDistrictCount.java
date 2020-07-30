@@ -1,6 +1,8 @@
 package com.bih.nic.saathi.Model;
 
-public class SwasthyaDistrictCount {
+import java.io.Serializable;
+
+public class SwasthyaDistrictCount implements Serializable {
     private SwasthyaDataEntity total;
 
     public SwasthyaDistrictCount(SwasthyaDataEntity total) {

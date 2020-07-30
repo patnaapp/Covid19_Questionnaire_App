@@ -1,6 +1,8 @@
 package com.bih.nic.saathi.Model;
 
-public class SwasthyaDataEntity {
+import java.io.Serializable;
+
+public class SwasthyaDataEntity implements Serializable {
 
     private String confirmed;
     private String deceased;
