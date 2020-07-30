@@ -30,7 +30,7 @@ public class FacilitiesEntity implements KvmSerializable, Serializable {
             this.Name = obj.getProperty("Name").toString();
             this.Bed = obj.getProperty("Bed").toString();
             this.Available = obj.getProperty("Available").toString();
-            this.MapGroup = obj.getProperty("MapGroup").toString();
+            //this.MapGroup = obj.getProperty("MapGroup").toString();
             this.LevelType = obj.getProperty("LevelType").toString();
             this.CenterType = obj.getProperty("CenterType").toString();
 

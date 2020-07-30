@@ -3153,7 +3153,7 @@ public class WebserviceHelper implements KvmSerializable {
             request.addProperty("_Image",user.getPic());
             request.addProperty("_Latlong",user.getLatitude());
             request.addProperty("_Longitude",user.getLongitude());
-            request.addProperty("_benName",user.getUserId());
+            request.addProperty("_UpdatedBy",user.getUserId());
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
                     SoapEnvelope.VER11);
