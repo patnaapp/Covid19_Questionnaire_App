@@ -16,7 +16,7 @@
          the container. -->
     <fragment
         android:id="@+id/navigation_drawer"
-        android:name="com.bih.nic.covidsaathi.NavigationDrawer.NavigationDrawerFragment"
+        android:name="com.bih.nic.saathi.NavigationDrawer.NavigationDrawerFragment"
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.patient.SwasthyaDistrictDataActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="District Wise Covid Updates"
+        android:layout_below="@id/header"
+        android:textSize="15sp"
+        android:id="@+id/tv_desc"
+        android:layout_margin="8dp"
+        android:textColor="@color/holo_green_dark"
+        android:textAlignment="center"/>
+
+    <com.levitnudi.legacytableview.LegacyTableView
+        android:id="@+id/legacy_table_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_desc"
+        android:layout_above="@+id/footer"/>
+
+</RelativeLayout>

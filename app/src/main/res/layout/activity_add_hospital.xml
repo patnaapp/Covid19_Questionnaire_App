@@ -213,11 +213,11 @@
                                             android:text="फोटो लें" />
                                     </LinearLayout>
                                 </RelativeLayout>
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_weight=".005"
-                                    android:layout_height="match_parent"
-                                    android:background="@android:color/white"/>
+<!--                                <View-->
+<!--                                    android:layout_width="0dp"-->
+<!--                                    android:layout_weight=".005"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:background="@android:color/white"/>-->
                                 <RelativeLayout
                                     android:background="@android:color/darker_gray"
                                     android:id="@+id/re_p2"

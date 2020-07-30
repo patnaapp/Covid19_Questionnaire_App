@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_labour"
-        android:name="com.bih.nic.covidsaathi.ui.patient.LabourFragment"
+        android:name="com.bih.nic.saathi.ui.patient.LabourFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_labour" />
 
     <fragment
         android:id="@+id/navigation_employer"
-        android:name="com.bih.nic.covidsaathi.ui.employer.EmployerFragment"
+        android:name="com.bih.nic.saathi.ui.employer.EmployerFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_employer" />
 
     <fragment
         android:id="@+id/navigation_hq"
-        android:name="com.bih.nic.covidsaathi.ui.hq.HqFragment"
+        android:name="com.bih.nic.saathi.ui.hq.HqFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
