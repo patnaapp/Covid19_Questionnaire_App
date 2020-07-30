@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class AddHospitalActivity extends Activity {
     String center_type[] = {"-select-","Hospital","Isolation Center","Testing Center"};
     ArrayAdapter ben_aaray_level_type,ben_aaray_type,ben_cen_type_type;
     RelativeLayout rl_photo;
+    LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,7 @@ public class AddHospitalActivity extends Activity {
         img1 = findViewById(R.id.img1);
         btn_reg = findViewById(R.id.btn_reg);
         rl_photo = findViewById(R.id.rl_photo);
+        ll_content = findViewById(R.id.ll_content);
 
         ImageView img = findViewById(R.id.img);
         img.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +112,7 @@ public class AddHospitalActivity extends Activity {
         ben_cen_type_type = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, center_type);
         sp_category.setAdapter(ben_cen_type_type);
 
-
+        ll_content.setVisibility(View.GONE);
 
         sp_Dist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -164,6 +167,8 @@ public class AddHospitalActivity extends Activity {
                     {
                         level_type_Id = "B";
                     }
+
+                    ll_content.setVisibility(View.VISIBLE);
 
                 } else {
                     level_type_Id = "";

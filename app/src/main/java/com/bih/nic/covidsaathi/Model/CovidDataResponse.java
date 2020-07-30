@@ -1,6 +1,7 @@
 package com.bih.nic.covidsaathi.Model;
 
 public class CovidDataResponse {
+
     private BiharCovidData BR;
 
     public CovidDataResponse(BiharCovidData BR) {

@@ -4,7 +4,7 @@ public class CovidDataEntity {
 
     private String confirmed;
     private String deceased;
-    private String migrated;
+    private String migrated="";
     private String recovered;
     private String tested;
 

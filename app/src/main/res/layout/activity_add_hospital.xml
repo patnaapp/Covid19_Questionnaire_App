@@ -112,14 +112,46 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="36dp" />
                         </LinearLayout>
+
                         <LinearLayout
+                            android:id="@+id/ll_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:weightSum="2"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
+
                             <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Centre Type : [*]"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"/>
+
+                                    <Spinner
+                                        android:background="@drawable/spinner_bg1"
+                                        android:layout_marginTop="4dp"
+                                        android:id="@+id/sp_category"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="36dp" />
+                                </LinearLayout>
 
 
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="12dp"
                                 android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -128,43 +160,113 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Centre Type : [*]"
+                                    android:text="Hospital Name: [*]"
                                     android:textColor="@color/black"
                                     android:textSize="12sp"/>
 
                                 <Spinner
                                     android:background="@drawable/spinner_bg1"
                                     android:layout_marginTop="4dp"
-                                    android:id="@+id/sp_category"
+                                    android:id="@+id/sp_hospital"
                                     android:layout_width="match_parent"
                                     android:layout_height="36dp" />
                             </LinearLayout>
 
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="12dp"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hospital Name: [*]"
-                                android:textColor="@color/black"
-                                android:textSize="12sp"/>
-
-                            <Spinner
-                                android:background="@drawable/spinner_bg1"
-                                android:layout_marginTop="4dp"
-                                android:id="@+id/sp_hospital"
+                            <LinearLayout
+                                android:weightSum="1"
                                 android:layout_width="match_parent"
-                                android:layout_height="36dp" />
+                                android:layout_height="180dp">
+
+                                <RelativeLayout
+                                    android:id="@+id/rl_photo"
+                                    android:background="@android:color/darker_gray"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".5"
+                                    android:layout_height="match_parent">
+                                    <ImageView
+                                        android:onClick="onClick"
+                                        android:id="@+id/img1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:clickable="true"
+                                        android:scaleType="fitXY"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:src="@drawable/ic_action_photo"/>
+
+                                        <TextView
+                                            android:id="@+id/text_p1"
+                                            android:layout_width="110dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:gravity="center"
+                                            android:padding="5dp"
+                                            android:text="फोटो लें" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".005"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/white"/>
+                                <RelativeLayout
+                                    android:background="@android:color/darker_gray"
+                                    android:id="@+id/re_p2"
+                                    android:visibility="gone"
+                                    android:layout_width="0dp"
+                                    android:layout_weight=".5"
+                                    android:layout_height="fill_parent">
+                                    <ImageView
+                                        android:onClick="onClick"
+                                        android:id="@+id/img2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="fill_parent"
+                                        android:background="@null"
+                                        android:scaleType="fitXY"
+                                        />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:src="@drawable/ic_action_photo"/>
+                                        <TextView
+                                            android:id="@+id/text_p2"
+                                            android:text="नागरिक के साथ सेल्फी लें"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:padding="5dp"
+                                            android:layout_gravity="center_vertical" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <Button
+                                android:layout_gravity="center"
+                                android:id="@+id/btn_reg"
+                                android:layout_width="150dp"
+                                android:layout_height="36dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/buttonshape"
+                                android:text="    SUBMIT   "
+                                android:textColor="#ffff"
+                                android:textSize="17sp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:visibility="gone"
                             android:layout_marginTop="5dp"
@@ -188,105 +290,7 @@
                                 android:layout_height="36dp" />
                         </LinearLayout>
 
-
-                        <LinearLayout
-                            android:weightSum="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp">
-
-                            <RelativeLayout
-                                android:id="@+id/rl_photo"
-                                android:background="@android:color/darker_gray"
-                                android:layout_width="0dp"
-                                android:layout_weight=".5"
-                                android:layout_height="match_parent">
-                                <ImageView
-                                    android:onClick="onClick"
-                                    android:id="@+id/img1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:clickable="true"
-                                    android:scaleType="fitXY"
-                                    />
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:src="@drawable/ic_action_photo"/>
-
-                                    <TextView
-                                        android:id="@+id/text_p1"
-                                        android:layout_width="110dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_vertical"
-                                        android:gravity="center"
-                                        android:padding="5dp"
-                                        android:text="फोटो लें" />
-                                </LinearLayout>
-                            </RelativeLayout>
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_weight=".005"
-                                android:layout_height="match_parent"
-                                android:background="@android:color/white"/>
-                            <RelativeLayout
-                                android:background="@android:color/darker_gray"
-                                android:id="@+id/re_p2"
-                                android:visibility="gone"
-                                android:layout_width="0dp"
-                                android:layout_weight=".5"
-                                android:layout_height="fill_parent">
-                                <ImageView
-                                    android:onClick="onClick"
-                                    android:id="@+id/img2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="fill_parent"
-                                    android:background="@null"
-                                    android:scaleType="fitXY"
-                                    />
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerInParent="true"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:src="@drawable/ic_action_photo"/>
-                                    <TextView
-                                        android:id="@+id/text_p2"
-                                        android:text="नागरिक के साथ सेल्फी लें"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:padding="5dp"
-                                        android:layout_gravity="center_vertical" />
-                                </LinearLayout>
-                            </RelativeLayout>
-                        </LinearLayout>
-
-
-
                     </LinearLayout>
-
-                    <Button
-                        android:layout_gravity="center"
-                        android:id="@+id/btn_reg"
-                        android:layout_width="150dp"
-                        android:layout_height="36dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/buttonshape"
-                        android:text="    SUBMIT   "
-                        android:textColor="#ffff"
-                        android:textSize="17sp" />
-
 
                 </LinearLayout>
             </LinearLayout>
